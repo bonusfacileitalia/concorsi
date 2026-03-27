@@ -221,3 +221,12 @@
     </script>
 </body>
 </html>
+
+<!-- INIEZIONE TASTO RIPETI QUIZ -->
+<script>
+    let btnRipeti = document.createElement("button");
+    btnRipeti.innerHTML = "🔄 Ripeti il Quiz";
+    btnRipeti.style.cssText = "display: block; width: 80%; max-width: 300px; margin: 30px auto; padding: 15px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); color: #1a1a1a; border: none; border-radius: 50px; font-size: 18px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 5px 15px rgba(0, 201, 255, 0.4); text-align: center;";
+    btnRipeti.onclick = function() { location.reload(); };
+    document.body.appendChild(btnRipeti);
+</script>
