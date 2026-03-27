@@ -230,3 +230,24 @@
     btnRipeti.onclick = function() { location.reload(); };
     document.body.appendChild(btnRipeti);
 </script>
+
+<!-- INIEZIONE INTELLIGENTE TASTO RIPETI -->
+<script>
+    // 1. Elimina il bottone sballato di prima se esiste ancora
+    document.querySelectorAll('button').forEach(b => {
+        if(b.innerText.includes("Ripeti il Quiz") && b.parentNode === document.body) {
+            b.remove();
+        }
+    });
+
+    // 2. Crea il nuovo bottone usando le TUE classi CSS per renderlo identico al resto
+    let btnRipeti = document.createElement("button");
+    btnRipeti.innerHTML = "🔄 RIPETI IL QUIZ";
+    btnRipeti.className = "btn-primary"; 
+    btnRipeti.style.backgroundColor = "var(--primary-blue)";
+    btnRipeti.style.marginTop = "1.5rem";
+    btnRipeti.onclick = function() { location.reload(); };
+
+    // 3. Lo sposta DENTRO la schermata finale (così resta nascosto finché non finisce il quiz!)
+    document.getElementById("result-screen").appendChild(btnRipeti);
+</script>
