@@ -287,10 +287,34 @@
                 btn.innerText = opt;
                 btn.onclick = () => {
                     const all = optionsGrid.querySelectorAll('.option-btn');
-                    all.forEach(b => b.disabled = true);
-                    if(opt === q.a) { btn.classList.add('correct'); score++; feedbackTitle.innerText="✅ ESATTO"; feedbackBox.classList.add('success'); }
-                    else { btn.classList.add('wrong'); feedbackTitle.innerText="❌ SBAGLIATO"; feedbackBox.classList.add('error'); }
-                    feedbackText.innerText = q.e;
+                    all.forEach(b => {
+                        b.disabled = true;
+                        if(b.innerText === q.a) {
+                            b.classList.add('correct'); 
+                        }
+                    });
+                    
+                    feedbackBox.style.padding = "1.2rem";
+                    feedbackBox.style.borderRadius = "8px";
+                    feedbackBox.style.marginTop = "1.2rem";
+                    
+                    if(opt === q.a) { 
+                        score++; 
+                        feedbackTitle.innerText="✅ ESATTO"; 
+                        feedbackTitle.style.color = "#065F46";
+                        feedbackBox.style.backgroundColor = '#D1FAE5'; 
+                        feedbackBox.style.border = '2px solid #10B981';
+                        feedbackText.innerHTML = "<strong>Riferimento normativo:</strong> " + q.e;
+                    }
+                    else { 
+                        btn.classList.add('wrong'); 
+                        feedbackTitle.innerText="❌ ERRORE GRAVE"; 
+                        feedbackTitle.style.color = "#991B1B";
+                        feedbackBox.style.backgroundColor = '#FEE2E2'; 
+                        feedbackBox.style.border = '2px solid #EF4444';
+                        feedbackText.innerHTML = "<strong style='color: #991B1B;'>La risposta corretta era:</strong> <span style='color: #065F46; font-weight: 800;'>" + q.a + "</span><br><br><strong style='color: #991B1B;'>Perché hai sbagliato:</strong> " + q.e + " <br><br><em style='color: #666; font-size: 0.85rem;'>⚠️ Hai risposto d'impulso cadendo in un classico trabocchetto. Al concorso un errore così banale ti costa l'idoneità.</em>";
+                    }
+                    
                     feedbackBox.classList.add('show');
                     nextBtn.style.display = 'block';
                 };
