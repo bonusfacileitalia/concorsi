@@ -424,7 +424,7 @@
             document.getElementById('question-counter').innerText = "Domanda " + (currentQuestionIndex + 1) + "/13";
             document.getElementById('progress-fill').style.width = ((currentQuestionIndex)/13)*100 + "%";
             
-            q.options.forEach(opt => {
+            shuffle([...q.options]).forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 btn.innerText = opt;
