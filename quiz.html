@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulatore Concorsi 2026 - ARENA</title>
+    <title>Simulatore Concorsi 2026 - Piattaforma Avanzata</title>
     <style>
         :root { 
-            --primary: #1a252f; --accent: #c0392b; --success: #27ae60; 
+            --primary: #1a252f; --accent: #2980b9; --success: #27ae60; --danger: #c0392b;
             --bg: #0a0a0a; --card: #141414; --text: #e0e0e0; 
         }
         body { 
@@ -17,105 +17,105 @@
         }
         
         #home-page { text-align: center; background: var(--card); padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 550px; width: 90%; border: 1px solid #222; }
-        h1 { color: #fff; font-size: 2.2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; }
-        .subtitle { color: #888; margin-bottom: 25px; font-style: italic; font-size: 0.9em; }
+        h1 { color: #fff; font-size: 2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .subtitle { color: #aaa; margin-bottom: 25px; font-size: 0.95em; line-height: 1.4; }
         .stats-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 25px; }
         .stat-box { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; }
-        .stat-val { display: block; font-size: 2em; font-weight: bold; color: #3498db; }
+        .stat-val { display: block; font-size: 2em; font-weight: bold; color: var(--accent); }
         .stat-label { font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
         
         .btn-start { 
-            background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; border: none; padding: 18px 40px; 
-            border-radius: 12px; font-size: 1.1em; font-weight: 900; cursor: pointer; 
-            transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(39, 174, 96, 0.2);
+            background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 18px 40px; 
+            border-radius: 8px; font-size: 1.1em; font-weight: 700; cursor: pointer; 
+            transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.2);
             margin-bottom: 30px; letter-spacing: 1px;
         }
-        .btn-start:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); }
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.4); background: linear-gradient(135deg, #3498db, #34495e); }
 
         /* DOSSIER OPERATIVO */
         .briefing-box { text-align: left; border-top: 1px solid #2a2a2a; padding-top: 25px; }
-        .briefing-title { color: var(--accent); font-size: 0.85em; letter-spacing: 2px; margin-bottom: 15px; display: flex; align-items: center; font-weight: bold; text-transform: uppercase; }
-        .briefing-title::before { content: '⚠️'; margin-right: 8px; font-size: 1.2em; }
+        .briefing-title { color: var(--accent); font-size: 0.85em; letter-spacing: 1px; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; display: flex; align-items: center; }
+        .briefing-title::before { content: '📊'; margin-right: 8px; font-size: 1.2em; filter: grayscale(100%); }
         
-        .faq-item { background: #111; border: 1px solid #222; margin-bottom: 8px; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+        .faq-item { background: #111; border: 1px solid #222; margin-bottom: 8px; border-radius: 6px; overflow: hidden; transition: 0.3s; }
         .faq-item:hover { border-color: #444; }
-        .faq-q { padding: 16px; color: #ddd; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.95em; align-items: center; }
+        .faq-q { padding: 16px; color: #ddd; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.95em; align-items: center; }
         .faq-q:hover { color: #fff; background: #161616; }
-        .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #999; font-size: 0.9em; line-height: 1.6; font-style: italic; background: #0a0a0a; }
+        .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #999; font-size: 0.9em; line-height: 1.6; background: #0a0a0a; }
         .faq-a.open { padding: 16px; max-height: 250px; border-top: 1px solid #222; }
-        .faq-a strong { color: #ccc; }
+        .faq-a strong { color: #ccc; font-weight: 600; }
         .arrow { color: var(--accent); font-size: 0.8em; transition: transform 0.3s; }
         .faq-q.active .arrow { transform: rotate(180deg); }
 
         /* QUIZ ARENA */
-        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 20px; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 12px; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.8); border: 1px solid #222; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .timer { font-family: 'Courier New', monospace; font-size: 1.8em; color: var(--accent); font-weight: bold; background: #2a1111; padding: 5px 15px; border-radius: 8px; border: 1px solid var(--accent); }
+        .timer { font-family: 'Courier New', monospace; font-size: 1.8em; color: var(--danger); font-weight: bold; background: #1a0a0a; padding: 5px 15px; border-radius: 6px; border: 1px solid var(--danger); }
         .session-progress { font-size: 0.9em; color: #aaa; font-weight: bold; }
         
-        .progress-bar-container { width: 100%; height: 8px; background: #333; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
-        #progress-fill { height: 100%; background: linear-gradient(90deg, #27ae60, #2ecc71); width: 0%; transition: 0.4s; }
+        .progress-bar-container { width: 100%; height: 6px; background: #333; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
+        #progress-fill { height: 100%; background: linear-gradient(90deg, #2980b9, #3498db); width: 0%; transition: 0.4s; }
 
-        .materia-tag { color: #3498db; font-size: 0.75em; text-transform: uppercase; font-weight: 900; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
-        .question { font-size: 1.3em; margin-bottom: 30px; line-height: 1.5; color: #fff; }
+        .materia-tag { color: var(--accent); font-size: 0.75em; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .question { font-size: 1.25em; margin-bottom: 30px; line-height: 1.6; color: #fff; font-weight: 500; }
         
         .options { display: grid; gap: 12px; }
-        .option { padding: 18px; background: #2a2a2a; border: 2px solid #444; border-radius: 12px; cursor: pointer; transition: 0.2s; font-size: 1em; color: #ccc; }
-        .option:hover { background: #333; border-color: #666; color: #fff; }
-        .option.correct { background: #1e4620 !important; border-color: var(--success) !important; color: #fff !important; }
-        .option.wrong { background: #461e1e !important; border-color: var(--accent) !important; color: #fff !important; animation: shake 0.4s; }
+        .option { padding: 18px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 1em; color: #ccc; }
+        .option:hover { background: #222; border-color: #555; color: #fff; }
+        .option.correct { background: #112a18 !important; border-color: var(--success) !important; color: #fff !important; }
+        .option.wrong { background: #2a1111 !important; border-color: var(--danger) !important; color: #fff !important; }
 
-        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
+        .explanation { margin-top: 25px; padding: 20px; background: #111820; border-left: 4px solid var(--accent); display: none; border-radius: 4px; font-size: 0.95em; color: #bdc3c7; line-height: 1.6; }
+        .btn-next { margin-top: 30px; width: 100%; padding: 18px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.05em; font-weight: bold; display: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+        .btn-next:hover { background: #3498db; }
 
-        .explanation { margin-top: 25px; padding: 20px; background: #162633; border-left: 6px solid #3498db; display: none; border-radius: 4px; font-size: 0.95em; color: #bdc3c7; line-height: 1.6; }
-        .btn-next { margin-top: 30px; width: 100%; padding: 18px; background: #3498db; color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 1.1em; font-weight: bold; display: none; text-transform: uppercase; letter-spacing: 1px; }
-
-        .feedback-box { background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 30px 0; text-align: left; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
-        .feedback-title { font-size: 0.9em; color: #3498db; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; margin-bottom: 10px; }
-        .feedback-text { font-size: 1.1em; color: #ddd; line-height: 1.5; font-style: italic; }
+        .feedback-box { background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; margin: 30px 0; text-align: left; }
+        .feedback-title { font-size: 0.85em; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; }
+        .feedback-title::before { content: '📋'; margin-right: 8px; filter: grayscale(100%); }
+        .feedback-text { font-size: 1.05em; color: #ddd; line-height: 1.6; }
         
-        .time-badge { display: inline-block; background: #222; border: 1px solid #444; color: #aaa; padding: 8px 15px; border-radius: 8px; font-size: 0.9em; font-family: monospace; margin-top: 15px; }
+        .time-badge { display: inline-block; background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 8px 15px; border-radius: 6px; font-size: 0.9em; font-family: monospace; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <div id="home-page">
-    <h1>Concorso Arena</h1>
-    <p class="subtitle">Simulatore Ufficiale RIPAM 2026. La graduatoria ti aspetta.</p>
+    <h1>Piattaforma Concorsi</h1>
+    <p class="subtitle">Simulatore Avanzato RIPAM 2026.<br>Massimizza il tuo vantaggio competitivo prima della prova.</p>
     
     <div class="stats-grid">
         <div class="stat-box">
             <span class="stat-val" id="db-total">0</span>
-            <span class="stat-label">Quesiti Inediti nel Database</span>
+            <span class="stat-label">Quesiti di Livello Avanzato Disponibili</span>
         </div>
     </div>
 
-    <button class="btn-start" onclick="iniziaSessione()">Entra in Trincea (25 Q)</button>
+    <button class="btn-start" onclick="iniziaSessione()">Avvia Simulazione (25 Q)</button>
 
     <div class="briefing-box">
-        <div class="briefing-title">Dossier Operativo RIPAM 3997</div>
+        <div class="briefing-title">Analisi Strategica della Prova</div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">🎯 Cosa nasconde questo database? <span class="arrow">▼</span></div>
-            <div class="faq-a">Non troverai definizioni da manuale. Ti scontrerai con <strong>Amministrativo, TUEL, Appalti (D.Lgs 36/23), GDPR, Penale e Logica RIPAM avanzata</strong>. Trappole ingegnerizzate per simulare il vero esame.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Struttura del Database Inedito <span class="arrow">▼</span></div>
+            <div class="faq-a">I quesiti coprono materie ad alta complessità: <strong>Diritto Amministrativo, TUEL, Codice Appalti (D.Lgs 36/23), GDPR, Penale e Logica RIPAM</strong>. Le opzioni sono ingegnerizzate per testare la reale comprensione normativa, escludendo il puro nozionismo mnemonico.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">🩸 Qual è il vero livello di difficoltà? <span class="arrow">▼</span></div>
-            <div class="faq-a">Estremamente tecnico. Abbiamo tarato i distrattori per sembrare corretti. La soglia minima di idoneità è l'<strong>85%</strong>. Non si fanno sconti.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Soglia di Sbarramento e Difficoltà <span class="arrow">▼</span></div>
+            <div class="faq-a">La simulazione ricalca gli standard di massima severità delle prove preselettive. I distrattori (risposte errate) sono calibrati per indurre all'errore di distrazione. L'algoritmo richiede una rigida <strong>soglia di idoneità dell'85%</strong>.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">⏳ Quanto manca all'esame? <span class="arrow">▼</span></div>
-            <div class="faq-a">Ogni giorno perso è un vantaggio per i tuoi concorrenti. Le convocazioni sono alle porte: ottimizza il tuo tempo e chiudi le lacune.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Gestione del Tempo e Pressione <span class="arrow">▼</span></div>
+            <div class="faq-a">Il simulatore impone il ritmo reale d'esame: <strong>25 minuti per 25 quesiti</strong>. Allenarsi sotto vincoli temporali è l'unica via per sviluppare la rapidità di lettura e la freddezza decisionale necessarie.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">📡 Intelligence: Ultime sul Concorso <span class="arrow">▼</span></div>
-            <div class="faq-a">Con altissima probabilità <strong>NON ci sarà la pubblicazione della banca dati ufficiale</strong> prima del test. Servirà una preparazione trasversale reale, non mnemonica.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Aggiornamenti sulle Banche Dati <span class="arrow">▼</span></div>
+            <div class="faq-a">Gli ultimi orientamenti istituzionali confermano un trend chiaro: <strong>l'assenza di banche dati pubbliche preventive</strong>. Affrontare scenari inediti su base regolare è il principale fattore discriminante per posizionarsi utilmente in graduatoria.</div>
         </div>
     </div>
 </div>
 
 <div id="quiz-container">
     <div class="top-bar">
-        <span class="session-progress">DOMANDA <span id="current-q-idx">1</span> / 25</span>
+        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> / 25</span>
         <div class="timer" id="timer">25:00</div>
     </div>
     
@@ -125,7 +125,7 @@
     <div class="question" id="question-text"></div>
     <div class="options" id="options-container"></div>
     <div class="explanation" id="explanation-box"></div>
-    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">AVANTI →</button>
+    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">CONFERMA E PROCEDI →</button>
 </div>
 
 <script>
@@ -6744,7 +6744,7 @@ const databaseQuiz = [
 ];
 const STORAGE_KEY = 'concorso_progres_2026';
 const SESSION_KEY = 'concorso_active_session_2026';
-const MAX_TIME_SECONDS = 25 * 60; // 25 minuti
+const MAX_TIME_SECONDS = 25 * 60;
 
 let domandeViste = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let sessionPool = [];
@@ -6806,7 +6806,7 @@ function iniziaSessione() {
     sessionPool = pool.slice(0, 25);
     
     if (sessionPool.length === 0) {
-        alert("🎉 INCREDIBILE! HAI SVUOTATO L'ARSENALE! 🎉\n\nHai affrontato tutte le " + databaseQuiz.length + " domande del database.\nIl simulatore verrà resettato.");
+        alert("Simulazione completata. Hai visionato tutto il materiale a disposizione. Il database verrà ora ripristinato.");
         domandeViste = []; localStorage.removeItem(STORAGE_KEY); distruggiStatoSessione(); location.reload(); return;
     }
     sessionIdx = 0; sessionAnswers = []; timeLeft = MAX_TIME_SECONDS; salvaStatoSessione();
@@ -6818,12 +6818,12 @@ function startTimer() {
     clearInterval(timerInterval); aggiornaSchermoTimer();
     timerInterval = setInterval(() => {
         timeLeft--; aggiornaSchermoTimer(); salvaStatoSessione();
-        if (timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO SCADUTO!"); }
+        if (timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO SCADUTO"); }
     }, 1000);
 }
 
 function caricaDomanda() {
-    if (sessionIdx >= sessionPool.length) { fineSessione("SESSIONE COMPLETATA"); return; }
+    if (sessionIdx >= sessionPool.length) { fineSessione("VALUTAZIONE COMPLETATA"); return; }
     const qIdx = sessionPool[sessionIdx]; domandaCorrente = databaseQuiz[qIdx];
     document.getElementById('current-q-idx').innerText = sessionIdx + 1;
     document.getElementById('progress-fill').style.width = ((sessionIdx / 25) * 100) + "%";
@@ -6844,7 +6844,7 @@ function caricaDomanda() {
     if (sessionAnswers[sessionIdx] !== undefined) {
         const opzioni = document.querySelectorAll('.option'); opzioni.forEach(o => o.onclick = null);
         opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
-        document.getElementById('explanation-box').innerHTML = `<strong>ANALISI:</strong> ${domandaCorrente.e}`;
+        document.getElementById('explanation-box').innerHTML = `<strong>Approfondimento:</strong> ${domandaCorrente.e}`;
         document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
     }
 }
@@ -6862,7 +6862,7 @@ function controllaRisposta(index, element) {
     if (!domandeViste.includes(qIdx)) { domandeViste.push(qIdx); localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste)); }
     salvaStatoSessione();
 
-    document.getElementById('explanation-box').innerHTML = `<strong>ANALISI:</strong> ${domandaCorrente.e}`;
+    document.getElementById('explanation-box').innerHTML = `<strong>Approfondimento:</strong> ${domandaCorrente.e}`;
     document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
 }
 
@@ -6871,7 +6871,6 @@ function prossimaDomanda() { sessionIdx++; salvaStatoSessione(); caricaDomanda()
 function fineSessione(titolo) {
     clearInterval(timerInterval); distruggiStatoSessione();
     
-    // Calcolo del Tempo Impiegato
     let timeUsed = MAX_TIME_SECONDS - timeLeft;
     let minsUsed = Math.floor(timeUsed / 60);
     let secsUsed = timeUsed % 60;
@@ -6884,44 +6883,44 @@ function fineSessione(titolo) {
     let passed = exactPercentage >= 85;
     
     let color = passed ? '#27ae60' : '#c0392b'; 
-    let statusText = passed ? 'IDONEITÀ RAGGIUNTA 🏆' : 'SOTTO SOGLIA ❌';
+    let statusText = passed ? 'IDONEITÀ RAGGIUNTA' : 'SOTTO SOGLIA';
 
     let erroriMateria = {};
     sessionAnswers.forEach(a => { if (a && !a.correct) erroriMateria[a.materia] = (erroriMateria[a.materia] || 0) + 1; });
     
-    let peggiorMateria = "Nessuna, sei perfetto!"; let maxErrori = 0;
+    let peggiorMateria = "Nessuna, esecuzione perfetta!"; let maxErrori = 0;
     for (const [mat, err] of Object.entries(erroriMateria)) { if (err > maxErrori) { maxErrori = err; peggiorMateria = mat; } }
 
     const msgSuccesso = [
-        `Un punteggio solido, ben fatto! Tuttavia, i dati indicano che <strong>${peggiorMateria}</strong> necessita ancora di attenzione. In sede d'esame non faranno sconti. Continua a spingere.`, 
-        `Ottimo lavoro, sei ampiamente in zona di sicurezza. Copri le tue lacune residue in <strong>${peggiorMateria}</strong> e la graduatoria finale sarà tua. Avanti così.`, 
-        `Sbarramento superato con successo. Il tuo unico vero ostacolo verso l'eccellenza rimane <strong>${peggiorMateria}</strong>. Limiamo questo dettaglio e sarai imbattibile.`
+        `Valutazione ampiamente positiva. I dati elaborati suggeriscono di affinare ulteriormente le competenze in <strong>${peggiorMateria}</strong> per blindare il punteggio in vista della prova ufficiale.`, 
+        `Performance solida e in linea con i parametri di idoneità. Si consiglia un focus mirato su <strong>${peggiorMateria}</strong> per minimizzare i margini di rischio residui.`, 
+        `Sbarramento superato. L'algoritmo rileva un'ottima padronanza generale. Colmando le lievi incertezze su <strong>${peggiorMateria}</strong>, il posizionamento in graduatoria sarà ottimale.`
     ];
     
     const msgFallimento = [
-        `Non ci siamo ancora. L'algoritmo è spietato e i dati parlano chiaro: stai perdendo troppi punti in <strong>${peggiorMateria}</strong>. Analizza gli errori, respira e riprova. Puoi fare di meglio.`, 
-        `Questa performance rischia di costarti caro. Le tue insicurezze su <strong>${peggiorMateria}</strong> ti stanno frenando. Usa questa simulazione come campanello d'allarme. Ritorna sui libri e riprova.`, 
-        `Obiettivo fallito. Stai lasciando punti preziosi sul campo a causa di <strong>${peggiorMateria}</strong>. Non regalare il tuo posto agli altri. Resetta la mente, analizza le soluzioni e torna in arena.`
+        `Esito negativo. L'analisi evidenzia una criticità specifica nell'area: <strong>${peggiorMateria}</strong>. È necessario un ripasso approfondito su questo cluster prima della prossima simulazione.`, 
+        `I parametri minimi non sono stati raggiunti. Le lacune concentrate su <strong>${peggiorMateria}</strong> compromettono l'idoneità complessiva. Si suggerisce di consultare le normative di riferimento.`, 
+        `Punteggio insufficiente per il superamento della prova. L'ostacolo principale rilevato è <strong>${peggiorMateria}</strong>. Ottimizza lo studio su questa specifica sezione e ripeti il test.`
     ];
     
-    let feedbackCasuale = (sessionScore === totalQuestions) ? "PERFEZIONE ASSOLUTA. 100% netto. Nessun punto debole rilevato. Continua a mantenere questo standard e non avrai rivali." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
+    let feedbackCasuale = (sessionScore === totalQuestions) ? "Prestazione eccellente. 100% di accuratezza riscontrata. Mantenere questo standard operativo garantisce il superamento agevole della selezione." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
 
     document.getElementById('quiz-container').innerHTML = `
         <div style="text-align:center;">
-            <h1 style="color: ${color}; font-size: 2.2em; text-transform: uppercase;">${statusText}</h1>
-            <p style="font-size: 1.1em; color: #aaa; margin-top: -10px;">${titolo}</p>
+            <h1 style="color: ${color}; font-size: 2em; text-transform: uppercase;">${statusText}</h1>
+            <p style="font-size: 1em; color: #aaa; margin-top: -10px;">${titolo}</p>
             
-            <div style="font-size:4.5em; color:${color}; font-weight:900; margin:15px 0 5px 0;">${exactPercentage}%</div>
+            <div style="font-size:4em; color:${color}; font-weight:800; margin:15px 0 5px 0;">${exactPercentage}%</div>
             
-            <div class="time-badge">⏱️ Tempo impiegato: ${timeString}</div>
+            <div class="time-badge">⏱️ Tempo di esecuzione: ${timeString}</div>
             
-            <p style="font-size: 1.2em; margin: 25px 0; color: #fff;">Esatte: <strong>${sessionScore}</strong> su <strong>${totalQuestions}</strong></p>
+            <p style="font-size: 1.1em; margin: 25px 0; color: #fff;">Risposte corrette: <strong>${sessionScore}</strong> su <strong>${totalQuestions}</strong></p>
             
             <div class="feedback-box">
-                <div class="feedback-title">Analisi del Mentore 🧠</div>
+                <div class="feedback-title">Report di Valutazione</div>
                 <div class="feedback-text">${feedbackCasuale}</div>
             </div>
-            <button class="btn-start" style="background: #3498db; margin-top: 15px;" onclick="location.reload()">Nuova Simulazione</button>
+            <button class="btn-start" style="background: var(--accent); margin-top: 15px;" onclick="location.reload()">Nuova Simulazione</button>
         </div>
     `;
 }
