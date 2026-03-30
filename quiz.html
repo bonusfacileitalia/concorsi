@@ -25,7 +25,6 @@
         .stat-val { display: block; font-size: 2.2em; font-weight: 900; color: var(--accent); }
         .stat-label { font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 5px; display: block; }
         
-        /* BACHECA MATERIE IN EVIDENZA */
         .subjects-board { background: #0a0a0a; border: 1px solid #222; border-radius: 10px; padding: 20px; margin-bottom: 25px; text-align: left; }
         .subjects-board-title { color: var(--accent); font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
         .subjects-board-title::before { content: '🎯'; margin-right: 8px; filter: grayscale(100%); font-size: 1.2em; }
@@ -34,13 +33,21 @@
         .subject-tag span { color: var(--accent); margin-right: 10px; font-size: 1.2em; }
         @media (max-width: 500px) { .subjects-grid { grid-template-columns: 1fr; } }
         
+        .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        @media (max-width: 500px) { .mode-grid { grid-template-columns: 1fr; } }
+
         .btn-start { 
-            background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 18px 40px; 
+            background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 15px 20px; 
             border-radius: 8px; font-size: 1.05em; font-weight: 700; cursor: pointer; 
             transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.15);
-            margin-bottom: 20px; letter-spacing: 1.5px;
+            letter-spacing: 1px; line-height: 1.4;
         }
         .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.3); background: linear-gradient(135deg, #3498db, #34495e); }
+        .btn-start span { font-size: 0.7em; font-weight: 500; letter-spacing: 0.5px; color: #baddf9; display: block; margin-top: 4px; text-transform: none; }
+
+        .btn-exam { background: linear-gradient(135deg, #c0392b, #8e44ad); box-shadow: 0 10px 20px rgba(192, 57, 43, 0.15); }
+        .btn-exam:hover { background: linear-gradient(135deg, #e74c3c, #9b59b6); box-shadow: 0 15px 30px rgba(192, 57, 43, 0.3); }
+        .btn-exam span { color: #f5b7b1; }
 
         .manual-banner { background: linear-gradient(135deg, #0d0d0d, #050505); border: 1px solid #333; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
         .manual-info h3 { margin: 0 0 5px 0; color: #fff; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
@@ -134,7 +141,16 @@
         </div>
     </div>
 
-    <button class="btn-start" onclick="iniziaSessione()">AVVIA TEST (25 Q)</button>
+    <div class="mode-grid">
+        <button class="btn-start" onclick="preparaSessione(25, 25, false)">
+            TEST SPRINT
+            <span>25 Quesiti - Modalità Addestramento</span>
+        </button>
+        <button class="btn-start btn-exam" onclick="preparaSessione(60, 60, true)">
+            ESAME UFFICIALE
+            <span>60 Quesiti - Simulazione Integrale</span>
+        </button>
+    </div>
 
     <div class="manual-banner">
         <div class="manual-info">
@@ -148,22 +164,22 @@
         <div class="briefing-title">Parametri di Valutazione</div>
         <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">Soglia di Sbarramento <span class="arrow">▼</span></div>
-            <div class="faq-a">Il sistema impone una <strong>soglia di idoneità dell'85%</strong>. I distrattori (risposte errate) sono calibrati per simulare le insidie delle prove concorsuali di fascia alta.</div>
+            <div class="faq-a">Il sistema impone una <strong>soglia di idoneità dell'85%</strong> in entrambe le modalità. I distrattori sono calibrati per simulare le insidie concorsuali. Non si fanno sconti.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">Gestione Temporale <span class="arrow">▼</span></div>
-            <div class="faq-a">L'esecuzione è vincolata a <strong>25 minuti per 25 quesiti</strong>. La pressione temporale è parte integrante del test attitudinale.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Differenza tra le Modalità <span class="arrow">▼</span></div>
+            <div class="faq-a">Il <strong>Test Sprint</strong> (25Q) garantisce l'estrazione di quesiti sempre nuovi ad ogni sessione, ottimale per lo studio incrementale. L'<strong>Esame Ufficiale</strong> (60Q) genera simulazioni integrali pescando dall'intero archivio, testando l'imprevedibilità e la gestione dello stress della prova concorsuale.</div>
         </div>
     </div>
 </div>
 
 <div id="quiz-container">
     <div class="top-bar">
-        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> DI 25</span>
+        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> DI <span id="total-q-count">25</span></span>
         <div class="controls-group">
             <button class="control-btn" onclick="riavviaSessione()" title="Azzera e Riavvia">🔄</button>
             <button class="control-btn" onclick="tornaAllaHome()" title="Interrompi Sessione">🏠</button>
-            <div class="timer" id="timer">25:00</div>
+            <div class="timer" id="timer">00:00</div>
         </div>
     </div>
     
@@ -6792,15 +6808,16 @@ const databaseQuiz = [
 ];
 const STORAGE_KEY = 'concorso_progres_2026';
 const SESSION_KEY = 'concorso_active_session_2026';
-const MAX_TIME_SECONDS = 25 * 60;
 
+let MAX_TIME_SECONDS = 0; 
 let domandeViste = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let sessionPool = [];
 let sessionIdx = 0;
 let sessionAnswers = [];
 let domandaCorrente = null;
 let timerInterval;
-let timeLeft = MAX_TIME_SECONDS;
+let timeLeft = 0;
+let isExamMode = false;
 
 document.getElementById('db-total').innerText = databaseQuiz.length;
 
@@ -6824,9 +6841,18 @@ function inizializzaMaterie() {
 inizializzaMaterie();
 
 function salvaStatoSessione() {
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ pool: sessionPool, idx: sessionIdx, answers: sessionAnswers, time: timeLeft }));
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ 
+        pool: sessionPool, 
+        idx: sessionIdx, 
+        answers: sessionAnswers, 
+        time: timeLeft,
+        maxTime: MAX_TIME_SECONDS,
+        examMode: isExamMode
+    }));
 }
+
 function distruggiStatoSessione() { localStorage.removeItem(SESSION_KEY); }
+
 function formatTime(seconds) {
     let m = Math.floor(seconds / 60);
     let s = seconds % 60;
@@ -6843,6 +6869,8 @@ function controllaEAvviaSessione() {
         sessionIdx = savedSession.idx; 
         sessionAnswers = savedSession.answers || []; 
         timeLeft = parseInt(savedSession.time, 10);
+        MAX_TIME_SECONDS = savedSession.maxTime || (25 * 60);
+        isExamMode = savedSession.examMode || false;
         
         document.getElementById('home-page').style.display = 'none'; 
         document.getElementById('quiz-container').style.display = 'block';
@@ -6854,18 +6882,28 @@ function controllaEAvviaSessione() {
 }
 controllaEAvviaSessione();
 
-function iniziaSessione() {
-    let poolDisponibili = databaseQuiz.map((q, i) => i).filter(i => !domandeViste.includes(i));
-    poolDisponibili.sort(() => Math.random() - 0.5);
-    
-    if (poolDisponibili.length === 0) {
-        alert("Database esaurito. L'archivio verrà ripristinato per un nuovo ciclo di studi.");
-        domandeViste = []; localStorage.removeItem(STORAGE_KEY); distruggiStatoSessione(); location.reload(); return;
+function preparaSessione(numQuestions, timeMinutes, modeFlag) {
+    isExamMode = modeFlag;
+    let poolDisponibili = [];
+
+    if (isExamMode) {
+        poolDisponibili = databaseQuiz.map((q, i) => i);
+    } else {
+        poolDisponibili = databaseQuiz.map((q, i) => i).filter(i => !domandeViste.includes(i));
+        if (poolDisponibili.length === 0) {
+            alert("Complimenti! Hai esaurito le domande inedite del Test Sprint. L'archivio verrà resettato per ricominciare.");
+            domandeViste = []; 
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
+            location.reload(); 
+            return;
+        }
     }
 
+    poolDisponibili.sort(() => Math.random() - 0.5);
+    
     sessionPool = [];
     let bufferMaterie = [];
-    let targetSize = Math.min(25, poolDisponibili.length);
+    let targetSize = Math.min(numQuestions, poolDisponibili.length);
 
     while (sessionPool.length < targetSize) {
         let foundIdx = poolDisponibili.findIndex(qIdx => {
@@ -6889,14 +6927,26 @@ function iniziaSessione() {
         }
     }
 
-    sessionIdx = 0; sessionAnswers = []; timeLeft = MAX_TIME_SECONDS; salvaStatoSessione();
-    document.getElementById('home-page').style.display = 'none'; document.getElementById('quiz-container').style.display = 'block';
-    startTimer(); caricaDomanda();
+    sessionIdx = 0; 
+    sessionAnswers = []; 
+    MAX_TIME_SECONDS = timeMinutes * 60;
+    timeLeft = MAX_TIME_SECONDS; 
+    
+    salvaStatoSessione();
+    document.getElementById('home-page').style.display = 'none'; 
+    document.getElementById('quiz-container').style.display = 'block';
+    startTimer(); 
+    caricaDomanda();
 }
 
 function riavviaSessione() {
     if (confirm("Attenzione: Questa azione interromperà la sessione corrente. I dati non salvati andranno persi. Procedere?")) {
-        clearInterval(timerInterval); distruggiStatoSessione(); iniziaSessione();
+        let currentModeQuestions = sessionPool.length;
+        let currentModeMinutes = MAX_TIME_SECONDS / 60;
+        let flag = isExamMode;
+        clearInterval(timerInterval); 
+        distruggiStatoSessione(); 
+        preparaSessione(currentModeQuestions, currentModeMinutes, flag);
     }
 }
 
@@ -6916,9 +6966,12 @@ function startTimer() {
 
 function caricaDomanda() {
     if (sessionIdx >= sessionPool.length) { fineSessione("VERIFICA COMPLETATA"); return; }
+    
+    document.getElementById('total-q-count').innerText = sessionPool.length;
+    
     const qIdx = sessionPool[sessionIdx]; domandaCorrente = databaseQuiz[qIdx];
     document.getElementById('current-q-idx').innerText = sessionIdx + 1;
-    document.getElementById('progress-fill').style.width = ((sessionIdx / 25) * 100) + "%";
+    document.getElementById('progress-fill').style.width = ((sessionIdx / sessionPool.length) * 100) + "%";
     document.getElementById('explanation-box').style.display = 'none'; document.getElementById('next-btn').style.display = 'none';
     document.getElementById('materia-label').innerText = domandaCorrente.materia || "Materia Generale";
     document.getElementById('question-text').innerText = domandaCorrente.q;
@@ -6961,7 +7014,12 @@ function controllaRisposta(index, element) {
 
     sessionAnswers[sessionIdx] = { correct: isCorrect, materia: mat, clickedIndex: index };
     const qIdx = sessionPool[sessionIdx];
-    if (!domandeViste.includes(qIdx)) { domandeViste.push(qIdx); localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste)); }
+    
+    if (!isExamMode && !domandeViste.includes(qIdx)) { 
+        domandeViste.push(qIdx); 
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste)); 
+    }
+    
     salvaStatoSessione();
 
     document.getElementById('explanation-box').innerHTML = `<strong>Riferimento Normativo/Dottrinale:</strong><br>${domandaCorrente.e}`;
@@ -6993,7 +7051,7 @@ function fineSessione(reason) {
     for (const [mat, err] of Object.entries(erroriMateria)) { if (err > maxErrori) { maxErrori = err; peggiorMateria = mat; } }
 
     const msgSuccesso = [
-        `I parametri di valutazione indicano una preparazione strutturata. Tuttavia, si consiglia un approfondimento su <strong>${peggiorMateria}</strong> per massimizzare il potenziale in sede di graduatoria.`, 
+        `I parametri indicano una preparazione strutturata. Tuttavia, si consiglia un approfondimento su <strong>${peggiorMateria}</strong> per blindare la graduatoria.`, 
         `Performance in linea con gli standard ministeriali richiesti. Consolidare la dottrina relativa a <strong>${peggiorMateria}</strong> eliminerà i margini di errore residui.`
     ];
     
