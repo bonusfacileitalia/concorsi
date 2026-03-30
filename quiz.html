@@ -6723,14 +6723,29 @@ const SESSION_KEY = 'concorso_active_session_2026';
 let domandeViste = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let sessionPool = [];
 let sessionIdx = 0;
-let sessionAnswers = []; // Traccia {correct: bool, materia: string} per ogni domanda
+let sessionAnswers = [];
 let domandaCorrente = null;
 let timerInterval;
 let timeLeft = 25 * 60;
 
+// MOSTRA SOLO IL TOTALE NELLA HOME
 document.getElementById('db-total').innerText = databaseQuiz.length;
 
-// FUNZIONI DI SCATOLA NERA (Salvataggio in tempo reale)
+// FIX: Reinserita la funzione per mappare le materie per il Mentore!
+function inizializzaMaterie() {
+    databaseQuiz.forEach((q, i) => {
+        if (!q.materia) {
+            if (i < 100) q.materia = "Diritto Amministrativo";
+            else if (i < 200) q.materia = "TUEL";
+            else if (i < 300) q.materia = "Codice Appalti";
+            else if (i < 400) q.materia = "Pubblico Impiego";
+            else if (i < 500) q.materia = "Fiscalità & UE";
+            else q.materia = "Logica & Attualità";
+        }
+    });
+}
+inizializzaMaterie();
+
 function salvaStatoSessione() {
     localStorage.setItem(SESSION_KEY, JSON.stringify({
         pool: sessionPool,
@@ -6744,18 +6759,24 @@ function distruggiStatoSessione() {
     localStorage.removeItem(SESSION_KEY);
 }
 
-// AL CARICAMENTO DELLA PAGINA: C'è una sessione appesa?
+function aggiornaSchermoTimer() {
+    let mins = Math.floor(timeLeft / 60);
+    let secs = timeLeft % 60;
+    document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// AL CARICAMENTO DELLA PAGINA
 window.onload = function() {
     let savedSession = JSON.parse(localStorage.getItem(SESSION_KEY));
     if (savedSession && savedSession.pool && savedSession.time > 0 && savedSession.idx < savedSession.pool.length) {
-        // Ripristina tutto!
         sessionPool = savedSession.pool;
         sessionIdx = savedSession.idx;
         sessionAnswers = savedSession.answers || [];
-        timeLeft = savedSession.time;
+        timeLeft = parseInt(savedSession.time, 10); // FIX: Assicurati che sia un intero!
         
         document.getElementById('home-page').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'block';
+        
         startTimer();
         caricaDomanda();
     }
@@ -6767,7 +6788,7 @@ function iniziaSessione() {
     sessionPool = pool.slice(0, 25);
     
     if (sessionPool.length === 0) {
-        alert("🎉 INCREDIBILE! HAI SVUOTATO L'ARSENALE! 🎉\n\nHai affrontato con successo tutte le " + databaseQuiz.length + " domande del database.\nIl simulatore verrà resettato.");
+        alert("🎉 INCREDIBILE! HAI SVUOTATO L'ARSENALE! 🎉\n\nHai affrontato tutte le " + databaseQuiz.length + " domande del database.\nIl simulatore verrà resettato.");
         domandeViste = [];
         localStorage.removeItem(STORAGE_KEY);
         distruggiStatoSessione();
@@ -6789,13 +6810,13 @@ function iniziaSessione() {
 }
 
 function startTimer() {
+    clearInterval(timerInterval); // FIX: Pulisce eventuali timer "fantasma"
+    aggiornaSchermoTimer(); // FIX: Aggiorna la grafica IMMEDIATAMENTE, senza aspettare 1 secondo
+    
     timerInterval = setInterval(() => {
         timeLeft--;
-        let mins = Math.floor(timeLeft / 60);
-        let secs = timeLeft % 60;
-        document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        
-        salvaStatoSessione(); // Salva il tempo ogni secondo!
+        aggiornaSchermoTimer();
+        salvaStatoSessione();
         
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -6823,13 +6844,10 @@ function caricaDomanda() {
     const container = document.getElementById('options-container');
     container.innerHTML = '';
 
-    // IL FRULLATORE OPZIONI
     let opzioniMix = domandaCorrente.options.map((testo, indiceOriginale) => {
         return { testo: testo, isCorrect: (indiceOriginale === domandaCorrente.a) };
     });
     
-    // Lo shuffle va fatto solo se non abbiamo ancora risposto a questa domanda
-    // Se ricarichiamo la pagina dopo aver risposto, teniamo tutto com'è per non creare glitch visivi
     if (!sessionAnswers[sessionIdx]) {
         opzioniMix.sort(() => Math.random() - 0.5);
     }
@@ -6844,10 +6862,9 @@ function caricaDomanda() {
         container.appendChild(div);
     });
 
-    // SISTEMA ANTI-CHEAT: Se l'utente ha aggiornato la pagina DOPO aver risposto
     if (sessionAnswers[sessionIdx] !== undefined) {
         const opzioni = document.querySelectorAll('.option');
-        opzioni.forEach(o => o.onclick = null); // Blocca click
+        opzioni.forEach(o => o.onclick = null);
         opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
         
         document.getElementById('explanation-box').innerHTML = `<strong>ANALISI:</strong> ${domandaCorrente.e}`;
@@ -6870,17 +6887,15 @@ function controllaRisposta(index, element) {
         opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
     }
 
-    // Registra la risposta nella sessione
     sessionAnswers[sessionIdx] = { correct: isCorrect, materia: mat };
 
-    // Registra come "vista" nel database globale
     const qIdx = sessionPool[sessionIdx];
     if (!domandeViste.includes(qIdx)) {
         domandeViste.push(qIdx);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
     }
 
-    salvaStatoSessione(); // Salva lo stato immediatamente
+    salvaStatoSessione();
 
     document.getElementById('explanation-box').innerHTML = `<strong>ANALISI:</strong> ${domandaCorrente.e}`;
     document.getElementById('explanation-box').style.display = 'block';
@@ -6889,13 +6904,13 @@ function controllaRisposta(index, element) {
 
 function prossimaDomanda() {
     sessionIdx++;
-    salvaStatoSessione(); // Salva il passaggio alla nuova domanda
+    salvaStatoSessione();
     caricaDomanda();
 }
 
 function fineSessione(titolo) {
     clearInterval(timerInterval);
-    distruggiStatoSessione(); // Svuota la sessione così al prossimo F5 torna alla Home
+    distruggiStatoSessione();
     
     let totalQuestions = sessionPool.length;
     let sessionScore = sessionAnswers.filter(a => a && a.correct).length;
