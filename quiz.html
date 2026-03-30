@@ -7,120 +7,142 @@
     <style>
         :root { 
             --primary: #1a252f; --accent: #2980b9; --success: #27ae60; --danger: #c0392b;
-            --bg: #0a0a0a; --card: #141414; --text: #e0e0e0; 
+            --bg: #050505; --card: #111; --text: #e0e0e0; 
         }
         body { 
-            font-family: 'Inter', system-ui, sans-serif; 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background: var(--bg); color: var(--text); 
             margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
             padding: 20px 0;
         }
         
-        #home-page { display: none; text-align: center; background: var(--card); padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 550px; width: 90%; border: 1px solid #222; }
-        h1 { color: #fff; font-size: 2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .subtitle { color: #aaa; margin-bottom: 25px; font-size: 0.95em; line-height: 1.4; }
+        #home-page { display: none; text-align: center; background: var(--card); padding: 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); max-width: 550px; width: 90%; border: 1px solid #222; }
+        h1 { color: #fff; font-size: 2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .subtitle { color: #888; margin-bottom: 25px; font-size: 0.95em; line-height: 1.5; }
         .stats-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 25px; }
-        .stat-box { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; }
-        .stat-val { display: block; font-size: 2em; font-weight: bold; color: var(--accent); }
-        .stat-label { font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-box { background: #161616; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        .stat-val { display: block; font-size: 2.2em; font-weight: 900; color: var(--accent); }
+        .stat-label { font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 5px; display: block; }
         
         .btn-start { 
             background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 18px 40px; 
-            border-radius: 8px; font-size: 1.1em; font-weight: 700; cursor: pointer; 
-            transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.2);
-            margin-bottom: 20px; letter-spacing: 1px;
+            border-radius: 8px; font-size: 1em; font-weight: 700; cursor: pointer; 
+            transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.15);
+            margin-bottom: 20px; letter-spacing: 1.5px;
         }
-        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.4); background: linear-gradient(135deg, #3498db, #34495e); }
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.3); background: linear-gradient(135deg, #3498db, #34495e); }
 
-        .manual-banner { background: linear-gradient(135deg, #111, #0a0a0a); border: 1px solid #333; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
-        .manual-info h3 { margin: 0 0 5px 0; color: #fff; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
-        .manual-info h3::before { content: '📚'; margin-right: 8px; filter: grayscale(100%); }
-        .manual-info p { margin: 0; color: #888; font-size: 0.85em; line-height: 1.5; }
-        .btn-manual { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 6px; font-weight: bold; text-decoration: none; text-transform: uppercase; font-size: 0.8em; white-space: nowrap; transition: 0.3s; }
+        .manual-banner { background: linear-gradient(135deg, #0d0d0d, #050505); border: 1px solid #333; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+        .manual-info h3 { margin: 0 0 5px 0; color: #fff; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .manual-info p { margin: 0; color: #777; font-size: 0.85em; line-height: 1.5; }
+        .btn-manual { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 6px; font-weight: 700; text-decoration: none; text-transform: uppercase; font-size: 0.8em; white-space: nowrap; transition: 0.3s; letter-spacing: 1px; }
         .btn-manual:hover { background: var(--accent); color: #fff; }
         @media (max-width: 500px) { .manual-banner { flex-direction: column; text-align: center; } .btn-manual { width: 100%; box-sizing: border-box; } }
 
-        .briefing-box { text-align: left; border-top: 1px solid #2a2a2a; padding-top: 25px; }
-        .briefing-title { color: var(--accent); font-size: 0.85em; letter-spacing: 1px; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; display: flex; align-items: center; }
-        .briefing-title::before { content: '📊'; margin-right: 8px; font-size: 1.2em; filter: grayscale(100%); }
-        .faq-item { background: #111; border: 1px solid #222; margin-bottom: 8px; border-radius: 6px; overflow: hidden; transition: 0.3s; }
+        .briefing-box { text-align: left; border-top: 1px solid #222; padding-top: 25px; }
+        .briefing-title { color: var(--accent); font-size: 0.85em; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
+        .faq-item { background: #161616; border: 1px solid #2a2a2a; margin-bottom: 8px; border-radius: 6px; overflow: hidden; transition: 0.3s; }
         .faq-item:hover { border-color: #444; }
-        .faq-q { padding: 16px; color: #ddd; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.95em; align-items: center; }
-        .faq-q:hover { color: #fff; background: #161616; }
-        .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #999; font-size: 0.9em; line-height: 1.6; background: #0a0a0a; }
-        .faq-a.open { padding: 16px; max-height: 250px; border-top: 1px solid #222; }
+        .faq-q { padding: 16px; color: #ddd; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.9em; align-items: center; letter-spacing: 0.5px; }
+        .faq-q:hover { color: #fff; background: #1c1c1c; }
+        .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #999; font-size: 0.85em; line-height: 1.6; background: #111; }
+        .faq-a.open { padding: 16px; max-height: 250px; border-top: 1px solid #2a2a2a; }
+        .faq-a strong { color: #ccc; font-weight: 600; }
+        .arrow { color: var(--accent); font-size: 0.8em; transition: transform 0.3s; }
+        .faq-q.active .arrow { transform: rotate(180deg); }
 
-        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 12px; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.8); border: 1px solid #222; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .session-progress { font-size: 0.9em; color: #aaa; font-weight: bold; }
+        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 16px; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.9); border: 1px solid #222; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .session-progress { font-size: 0.85em; color: #888; font-weight: 700; letter-spacing: 1px; }
         
-        /* CONTROLLI EMERGENZA (HOME E RIAVVIO) */
         .controls-group { display: flex; gap: 10px; align-items: center; }
-        .control-btn { background: #111; border: 1px solid #333; color: #888; border-radius: 6px; width: 38px; height: 38px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s ease; font-size: 1.1em; }
-        .control-btn:hover { background: #1a1a1a; color: #fff; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2); }
+        .control-btn { background: #161616; border: 1px solid #333; color: #888; border-radius: 6px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s ease; font-size: 1.1em; }
+        .control-btn:hover { background: #222; color: #fff; border-color: var(--accent); transform: translateY(-2px); }
         
-        .timer { font-family: 'Courier New', monospace; font-size: 1.8em; color: var(--danger); font-weight: bold; background: #1a0a0a; padding: 5px 15px; border-radius: 6px; border: 1px solid var(--danger); }
-        .progress-bar-container { width: 100%; height: 6px; background: #333; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
-        #progress-fill { height: 100%; background: linear-gradient(90deg, #2980b9, #3498db); width: 0%; transition: 0.4s; }
+        .timer { font-family: 'Courier New', monospace; font-size: 1.6em; color: #fff; font-weight: 700; background: #1a1a1a; padding: 5px 15px; border-radius: 6px; border: 1px solid #333; letter-spacing: 2px; }
+        .progress-bar-container { width: 100%; height: 4px; background: #222; border-radius: 2px; margin-bottom: 30px; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.4s; }
 
-        .materia-tag { color: var(--accent); font-size: 0.75em; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .materia-tag { color: var(--accent); font-size: 0.75em; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; display: inline-block; padding: 4px 10px; background: rgba(41, 128, 185, 0.1); border-radius: 4px; border: 1px solid rgba(41, 128, 185, 0.2); }
         .question { font-size: 1.25em; margin-bottom: 30px; line-height: 1.6; color: #fff; font-weight: 500; }
         .options { display: grid; gap: 12px; }
-        .option { padding: 18px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 1em; color: #ccc; }
-        .option:hover { background: #222; border-color: #555; color: #fff; }
-        .option.correct { background: #112a18 !important; border-color: var(--success) !important; color: #fff !important; }
-        .option.wrong { background: #2a1111 !important; border-color: var(--danger) !important; color: #fff !important; }
+        .option { padding: 18px 20px; background: #161616; border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-size: 0.95em; color: #bbb; line-height: 1.5; }
+        .option:hover { background: #1c1c1c; border-color: #555; color: #fff; }
+        .option.correct { background: rgba(39, 174, 96, 0.1) !important; border-color: var(--success) !important; color: #fff !important; }
+        .option.wrong { background: rgba(192, 57, 43, 0.1) !important; border-color: var(--danger) !important; color: #fff !important; }
 
-        .explanation { margin-top: 25px; padding: 20px; background: #111820; border-left: 4px solid var(--accent); display: none; border-radius: 4px; font-size: 0.95em; color: #bdc3c7; line-height: 1.6; }
-        .btn-next { margin-top: 30px; width: 100%; padding: 18px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.05em; font-weight: bold; display: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+        .explanation { margin-top: 25px; padding: 20px; background: #111; border-left: 4px solid var(--accent); border-right: 1px solid #222; border-top: 1px solid #222; border-bottom: 1px solid #222; display: none; border-radius: 0 6px 6px 0; font-size: 0.9em; color: #aaa; line-height: 1.6; }
+        .btn-next { margin-top: 30px; width: 100%; padding: 18px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 700; display: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
         .btn-next:hover { background: #3498db; }
 
-        .feedback-box { background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; margin: 30px 0; text-align: left; }
-        .feedback-title { font-size: 0.85em; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; }
-        .feedback-text { font-size: 1.05em; color: #ddd; line-height: 1.6; }
-        .time-badge { display: inline-block; background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 8px 15px; border-radius: 6px; font-size: 0.9em; font-family: monospace; margin-top: 15px; }
-        .promo-link-end { display: inline-block; margin-top: 20px; color: #888; font-size: 0.85em; text-decoration: none; border-bottom: 1px solid #444; transition: 0.3s; }
-        .promo-link-end:hover { color: #fff; border-color: #fff; }
+        /* EXECUTIVE DASHBOARD (RISULTATI) */
+        .results-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .results-title { font-size: 0.85em; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+        .results-status { font-size: 2.2em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        .status-pass { color: var(--success); }
+        .status-fail { color: var(--danger); }
+        
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+        .metric-card { background: #161616; border: 1px solid #2a2a2a; border-radius: 8px; padding: 20px 10px; text-align: center; }
+        .metric-label { font-size: 0.7em; color: #777; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+        .metric-value { font-size: 1.8em; font-weight: 900; color: #fff; font-family: 'Courier New', monospace; }
+        .metric-value.pass { color: var(--success); }
+        .metric-value.fail { color: var(--danger); }
+        .metric-sub { font-size: 0.5em; color: #666; font-weight: 500; }
+        
+        @media (max-width: 600px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+        .feedback-box { background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 25px; margin-bottom: 30px; text-align: left; }
+        .feedback-title { font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .feedback-text { font-size: 0.95em; color: #bbb; line-height: 1.6; }
+        
+        .promo-link-premium { display: block; background: #161616; border: 1px solid #333; border-left: 4px solid var(--accent); color: #fff; padding: 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; transition: 0.3s; text-align: left; line-height: 1.5; margin-top: 15px; }
+        .promo-link-premium:hover { background: #1c1c1c; border-color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .promo-highlight { color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; display: block; margin-bottom: 5px; font-weight: 800; }
     </style>
 </head>
 <body>
 
 <div id="home-page">
     <h1>Piattaforma Concorsi</h1>
-    <p class="subtitle">Simulatore Avanzato RIPAM 2026.<br>Massimizza il tuo vantaggio competitivo prima della prova.</p>
+    <p class="subtitle">Simulatore Avanzato RIPAM 2026.<br>Sviluppa freddezza decisionale e accuratezza normativa.</p>
     
     <div class="stats-grid">
         <div class="stat-box">
+            <span class="stat-label">Quesiti Tecnici a Disposizione</span>
             <span class="stat-val" id="db-total">0</span>
-            <span class="stat-label">Quesiti di Livello Avanzato Disponibili</span>
         </div>
     </div>
 
-    <button class="btn-start" onclick="iniziaSessione()">Avvia Simulazione (25 Q)</button>
+    <button class="btn-start" onclick="iniziaSessione()">Avvia Sessione Operativa</button>
 
     <div class="manual-banner">
         <div class="manual-info">
             <h3>La Dottrina: Manuale 2026</h3>
-            <p>Il simulatore non perdona i tentativi alla cieca. 69 pagine di Diritto Amministrativo, Nuovo Codice Appalti e PNRR distillate per garantirti il superamento della soglia.</p>
+            <p>Non affidarti al caso. 69 pagine di Diritto Amministrativo e Nuovo Codice Appalti strutturate per garantire l'idoneità.</p>
         </div>
         <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="btn-manual">Acquisisci</a>
     </div>
 
     <div class="briefing-box">
-        <div class="briefing-title">Analisi Strategica della Prova</div>
+        <div class="briefing-title">Parametri di Valutazione</div>
         <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">Struttura del Database Inedito <span class="arrow">▼</span></div>
-            <div class="faq-a">I quesiti coprono materie ad alta complessità. Le opzioni sono ingegnerizzate per testare la reale comprensione normativa.</div>
+            <div class="faq-q" onclick="toggleFaq(this)">Soglia di Sbarramento <span class="arrow">▼</span></div>
+            <div class="faq-a">Il sistema impone una <strong>soglia di idoneità dell'85%</strong>. I distrattori sono calibrati per simulare le insidie delle prove concorsuali di fascia alta.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Gestione Temporale <span class="arrow">▼</span></div>
+            <div class="faq-a">L'esecuzione è vincolata a <strong>25 minuti per 25 quesiti</strong>. La pressione temporale è parte integrante del test attitudinale.</div>
         </div>
     </div>
 </div>
 
 <div id="quiz-container">
     <div class="top-bar">
-        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> / 25</span>
+        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> DI 25</span>
         <div class="controls-group">
-            <button class="control-btn" onclick="riavviaSessione()" title="Riavvia Simulazione">🔄</button>
-            <button class="control-btn" onclick="tornaAllaHome()" title="Torna alla Home">🏠</button>
+            <button class="control-btn" onclick="riavviaSessione()" title="Azzera e Riavvia">🔄</button>
+            <button class="control-btn" onclick="tornaAllaHome()" title="Interrompi Sessione">🏠</button>
             <div class="timer" id="timer">25:00</div>
         </div>
     </div>
@@ -131,7 +153,7 @@
     <div class="question" id="question-text"></div>
     <div class="options" id="options-container"></div>
     <div class="explanation" id="explanation-box"></div>
-    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">CONFERMA E PROCEDI →</button>
+    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">CONFERMA RISPOSTA</button>
 </div>
 
 <script>
@@ -6785,10 +6807,13 @@ function salvaStatoSessione() {
     localStorage.setItem(SESSION_KEY, JSON.stringify({ pool: sessionPool, idx: sessionIdx, answers: sessionAnswers, time: timeLeft }));
 }
 function distruggiStatoSessione() { localStorage.removeItem(SESSION_KEY); }
+function formatTime(seconds) {
+    let m = Math.floor(seconds / 60);
+    let s = seconds % 60;
+    return `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+}
 function aggiornaSchermoTimer() {
-    let mins = Math.floor(timeLeft / 60);
-    let secs = timeLeft % 60;
-    document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    document.getElementById('timer').innerText = formatTime(timeLeft);
 }
 
 function controllaEAvviaSessione() {
@@ -6814,7 +6839,7 @@ function iniziaSessione() {
     poolDisponibili.sort(() => Math.random() - 0.5);
     
     if (poolDisponibili.length === 0) {
-        alert("Simulazione completata. Hai visionato tutto il materiale a disposizione. Il database verrà ora ripristinato.");
+        alert("Database esaurito. L'archivio verrà ripristinato per un nuovo ciclo di studi.");
         domandeViste = []; localStorage.removeItem(STORAGE_KEY); distruggiStatoSessione(); location.reload(); return;
     }
 
@@ -6849,20 +6874,15 @@ function iniziaSessione() {
     startTimer(); caricaDomanda();
 }
 
-// FUNZIONI DI EMERGENZA
 function riavviaSessione() {
-    if (confirm("⚠️ Attenzione: Vuoi annullare questa simulazione e generarne una nuova? I progressi attuali andranno persi.")) {
-        clearInterval(timerInterval);
-        distruggiStatoSessione();
-        iniziaSessione();
+    if (confirm("Attenzione: Questa azione interromperà la sessione corrente. I dati non salvati andranno persi. Procedere?")) {
+        clearInterval(timerInterval); distruggiStatoSessione(); iniziaSessione();
     }
 }
 
 function tornaAllaHome() {
-    if (confirm("⚠️ Attenzione: Vuoi ritirarti dalla simulazione e tornare alla Home?")) {
-        clearInterval(timerInterval);
-        distruggiStatoSessione();
-        location.reload();
+    if (confirm("Attenzione: Vuoi abbandonare la sessione e tornare al pannello principale?")) {
+        clearInterval(timerInterval); distruggiStatoSessione(); location.reload();
     }
 }
 
@@ -6870,12 +6890,12 @@ function startTimer() {
     clearInterval(timerInterval); aggiornaSchermoTimer();
     timerInterval = setInterval(() => {
         timeLeft--; aggiornaSchermoTimer(); salvaStatoSessione();
-        if (timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO SCADUTO"); }
+        if (timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO ESAURITO"); }
     }, 1000);
 }
 
 function caricaDomanda() {
-    if (sessionIdx >= sessionPool.length) { fineSessione("VALUTAZIONE COMPLETATA"); return; }
+    if (sessionIdx >= sessionPool.length) { fineSessione("VERIFICA COMPLETATA"); return; }
     const qIdx = sessionPool[sessionIdx]; domandaCorrente = databaseQuiz[qIdx];
     document.getElementById('current-q-idx').innerText = sessionIdx + 1;
     document.getElementById('progress-fill').style.width = ((sessionIdx / 25) * 100) + "%";
@@ -6902,7 +6922,7 @@ function caricaDomanda() {
             opzioni[ans.clickedIndex].classList.add('wrong');
             opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
         }
-        document.getElementById('explanation-box').innerHTML = `<strong>Approfondimento:</strong> ${domandaCorrente.e}`;
+        document.getElementById('explanation-box').innerHTML = `<strong>Riferimento Normativo/Dottrinale:</strong><br>${domandaCorrente.e}`;
         document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
     }
 }
@@ -6924,19 +6944,17 @@ function controllaRisposta(index, element) {
     if (!domandeViste.includes(qIdx)) { domandeViste.push(qIdx); localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste)); }
     salvaStatoSessione();
 
-    document.getElementById('explanation-box').innerHTML = `<strong>Approfondimento:</strong> ${domandaCorrente.e}`;
+    document.getElementById('explanation-box').innerHTML = `<strong>Riferimento Normativo/Dottrinale:</strong><br>${domandaCorrente.e}`;
     document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
 }
 
 function prossimaDomanda() { sessionIdx++; salvaStatoSessione(); caricaDomanda(); }
 
-function fineSessione(titolo) {
+function fineSessione(reason) {
     clearInterval(timerInterval); distruggiStatoSessione();
     
     let timeUsed = MAX_TIME_SECONDS - timeLeft;
-    let minsUsed = Math.floor(timeUsed / 60);
-    let secsUsed = timeUsed % 60;
-    let timeString = `${minsUsed}m e ${secsUsed < 10 ? '0' : ''}${secsUsed}s`;
+    let timeString = formatTime(timeUsed);
 
     let totalQuestions = sessionPool.length; 
     let sessionScore = sessionAnswers.filter(a => a && a.correct).length;
@@ -6944,45 +6962,62 @@ function fineSessione(titolo) {
     let exactPercentage = parseFloat(percentage.toFixed(2));
     let passed = exactPercentage >= 85;
     
-    let color = passed ? '#27ae60' : '#c0392b'; 
-    let statusText = passed ? 'IDONEITÀ RAGGIUNTA' : 'SOTTO SOGLIA';
+    let statusClass = passed ? 'status-pass' : 'status-fail';
+    let valClass = passed ? 'pass' : 'fail';
+    let statusText = passed ? 'IDONEITÀ ACCERTATA' : 'ESITO NEGATIVO';
 
     let erroriMateria = {};
     sessionAnswers.forEach(a => { if (a && !a.correct) erroriMateria[a.materia] = (erroriMateria[a.materia] || 0) + 1; });
     
-    let peggiorMateria = "Nessuna, esecuzione perfetta!"; let maxErrori = 0;
+    let peggiorMateria = "Nessuna, esecuzione perfetta"; let maxErrori = 0;
     for (const [mat, err] of Object.entries(erroriMateria)) { if (err > maxErrori) { maxErrori = err; peggiorMateria = mat; } }
 
     const msgSuccesso = [
-        `Valutazione ampiamente positiva. Affina ulteriormente le competenze in <strong>${peggiorMateria}</strong> per blindare il punteggio.`, 
-        `Performance solida. Si consiglia un focus mirato su <strong>${peggiorMateria}</strong> per minimizzare i margini di rischio.`, 
-        `Sbarramento superato. Colmando le lievi incertezze su <strong>${peggiorMateria}</strong>, il posizionamento in graduatoria sarà ottimale.`
+        `I parametri di valutazione indicano una preparazione strutturata. Tuttavia, si consiglia un approfondimento su <strong>${peggiorMateria}</strong> per massimizzare il potenziale in sede di graduatoria.`, 
+        `Performance in linea con gli standard ministeriali richiesti. Consolidare la dottrina relativa a <strong>${peggiorMateria}</strong> eliminerà i margini di errore residui.`
     ];
     
     const msgFallimento = [
-        `Esito negativo. L'analisi evidenzia una criticità specifica nell'area: <strong>${peggiorMateria}</strong>. Si prescrive un riallineamento teorico.`, 
-        `I parametri minimi non sono stati raggiunti. Le lacune su <strong>${peggiorMateria}</strong> compromettono l'idoneità.`, 
-        `Punteggio insufficiente. L'ostacolo principale rilevato è <strong>${peggiorMateria}</strong>. Ottimizza lo studio su questa specifica sezione.`
+        `La soglia di sbarramento non è stata raggiunta. L'algoritmo segnala carenze critiche nell'ambito: <strong>${peggiorMateria}</strong>. È necessario un riallineamento teorico rigoroso.`, 
+        `L'accuratezza espressa è insufficiente per il superamento della prova. Si rileva una sistematica difficoltà in <strong>${peggiorMateria}</strong>. Intervenire sul quadro normativo di riferimento.`
     ];
     
-    let feedbackCasuale = (sessionScore === totalQuestions) ? "Prestazione eccellente. 100% di accuratezza." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
-    let promoTesto = passed ? "Vuoi assicurarti il 100%? Ottieni il Manuale Operativo 2026" : "Le lacune non si colmano da sole. Studia il Manuale Operativo 2026";
+    let feedbackCasuale = (sessionScore === totalQuestions) ? "Esecuzione impeccabile. Nessuna criticità rilevata nel quadro delle competenze testate." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
+    
+    let promoTesto = passed ? "BLINDA LA TUA PREPARAZIONE CON IL MANUALE OPERATIVO 2026 (69 PAGG.)" : "COLMA LE LACUNE TEORICHE: ACQUISISCI IL MANUALE OPERATIVO 2026 (69 PAGG.)";
 
     document.getElementById('quiz-container').innerHTML = `
-        <div style="text-align:center;">
-            <h1 style="color: ${color}; font-size: 2em; text-transform: uppercase;">${statusText}</h1>
-            <p style="font-size: 1em; color: #aaa; margin-top: -10px;">${titolo}</p>
-            <div style="font-size:4em; color:${color}; font-weight:800; margin:15px 0 5px 0;">${exactPercentage}%</div>
-            <div class="time-badge">⏱️ Tempo di esecuzione: ${timeString}</div>
-            <p style="font-size: 1.1em; margin: 25px 0; color: #fff;">Risposte corrette: <strong>${sessionScore}</strong> su <strong>${totalQuestions}</strong></p>
-            <div class="feedback-box">
-                <div class="feedback-title">Report di Valutazione</div>
-                <div class="feedback-text">${feedbackCasuale}</div>
-            </div>
-            <button class="btn-start" style="background: var(--accent); margin-top: 5px; margin-bottom: 5px;" onclick="location.reload()">Nuova Simulazione</button>
-            <br>
-            <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="promo-link-end">📚 ${promoTesto} (69 pagg.)</a>
+        <div class="results-header">
+            <div class="results-title">Report di Valutazione Ufficiale</div>
+            <h2 class="results-status ${statusClass}">${statusText}</h2>
         </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Accuratezza</div>
+                <div class="metric-value ${valClass}">${exactPercentage}%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Quesiti Esatti</div>
+                <div class="metric-value">${sessionScore}<span class="metric-sub">/${totalQuestions}</span></div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Tempo Operativo</div>
+                <div class="metric-value">${timeString}</div>
+            </div>
+        </div>
+        
+        <div class="feedback-box">
+            <div class="feedback-title">Analisi Diagnostica</div>
+            <div class="feedback-text">${feedbackCasuale}</div>
+        </div>
+        
+        <button class="btn-start" style="margin-bottom: 20px;" onclick="location.reload()">NUOVA SESSIONE</button>
+        
+        <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="promo-link-premium">
+            <span class="promo-highlight">Risorsa Avanzata</span>
+            ${promoTesto}
+        </a>
     `;
 }
 </script>
