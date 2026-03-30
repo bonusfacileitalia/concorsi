@@ -28,9 +28,43 @@
             background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 18px 40px; 
             border-radius: 8px; font-size: 1.1em; font-weight: 700; cursor: pointer; 
             transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.2);
-            margin-bottom: 30px; letter-spacing: 1px;
+            margin-bottom: 20px; letter-spacing: 1px;
         }
         .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.4); background: linear-gradient(135deg, #3498db, #34495e); }
+
+        /* BANNER MANUALE - MARKETING SUBDOLO E ISTITUZIONALE */
+        .manual-banner {
+            background: linear-gradient(135deg, #111, #0a0a0a);
+            border: 1px solid #333;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .manual-info h3 { margin: 0 0 5px 0; color: #fff; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
+        .manual-info h3::before { content: '📚'; margin-right: 8px; filter: grayscale(100%); }
+        .manual-info p { margin: 0; color: #888; font-size: 0.85em; line-height: 1.5; }
+        .btn-manual {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .btn-manual:hover { background: var(--accent); color: #fff; }
+        @media (max-width: 500px) { .manual-banner { flex-direction: column; text-align: center; } .btn-manual { width: 100%; box-sizing: border-box; } }
 
         /* DOSSIER OPERATIVO */
         .briefing-box { text-align: left; border-top: 1px solid #2a2a2a; padding-top: 25px; }
@@ -75,6 +109,8 @@
         .feedback-text { font-size: 1.05em; color: #ddd; line-height: 1.6; }
         
         .time-badge { display: inline-block; background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 8px 15px; border-radius: 6px; font-size: 0.9em; font-family: monospace; margin-top: 15px; }
+        .promo-link-end { display: inline-block; margin-top: 20px; color: #888; font-size: 0.85em; text-decoration: none; border-bottom: 1px solid #444; transition: 0.3s; }
+        .promo-link-end:hover { color: #fff; border-color: #fff; }
     </style>
 </head>
 <body>
@@ -91,6 +127,14 @@
     </div>
 
     <button class="btn-start" onclick="iniziaSessione()">Avvia Simulazione (25 Q)</button>
+
+    <div class="manual-banner">
+        <div class="manual-info">
+            <h3>La Dottrina: Manuale 2026</h3>
+            <p>Il simulatore non perdona i tentativi alla cieca. 69 pagine di Diritto Amministrativo, Nuovo Codice Appalti e PNRR distillate per garantirti il superamento della soglia.</p>
+        </div>
+        <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="btn-manual">Acquisisci</a>
+    </div>
 
     <div class="briefing-box">
         <div class="briefing-title">Analisi Strategica della Prova</div>
@@ -6898,12 +6942,15 @@ function fineSessione(titolo) {
     ];
     
     const msgFallimento = [
-        `Esito negativo. L'analisi evidenzia una criticità specifica nell'area: <strong>${peggiorMateria}</strong>. È necessario un ripasso approfondito su questo cluster prima della prossima simulazione.`, 
-        `I parametri minimi non sono stati raggiunti. Le lacune concentrate su <strong>${peggiorMateria}</strong> compromettono l'idoneità complessiva. Si suggerisce di consultare le normative di riferimento.`, 
-        `Punteggio insufficiente per il superamento della prova. L'ostacolo principale rilevato è <strong>${peggiorMateria}</strong>. Ottimizza lo studio su questa specifica sezione e ripeti il test.`
+        `Esito negativo. L'analisi evidenzia una criticità specifica nell'area: <strong>${peggiorMateria}</strong>. Procedere per tentativi è inefficace: si prescrive un riallineamento teorico prima della prossima sessione.`, 
+        `I parametri minimi non sono stati raggiunti. Le lacune concentrate su <strong>${peggiorMateria}</strong> compromettono l'idoneità complessiva. Si suggerisce di consolidare la dottrina di riferimento.`, 
+        `Punteggio insufficiente per il superamento della prova. L'ostacolo principale rilevato è <strong>${peggiorMateria}</strong>. Ottimizza lo studio su questa specifica sezione e ripeti il test quando sarai pronto.`
     ];
     
     let feedbackCasuale = (sessionScore === totalQuestions) ? "Prestazione eccellente. 100% di accuratezza riscontrata. Mantenere questo standard operativo garantisce il superamento agevole della selezione." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
+
+    // Link subdolo di rimando a seconda dell'esito
+    let promoTesto = passed ? "Vuoi assicurarti il 100%? Ottieni il Manuale Operativo 2026" : "Le lacune non si colmano da sole. Studia il Manuale Operativo 2026";
 
     document.getElementById('quiz-container').innerHTML = `
         <div style="text-align:center;">
@@ -6920,7 +6967,10 @@ function fineSessione(titolo) {
                 <div class="feedback-title">Report di Valutazione</div>
                 <div class="feedback-text">${feedbackCasuale}</div>
             </div>
-            <button class="btn-start" style="background: var(--accent); margin-top: 15px;" onclick="location.reload()">Nuova Simulazione</button>
+            
+            <button class="btn-start" style="background: var(--accent); margin-top: 5px; margin-bottom: 5px;" onclick="location.reload()">Nuova Simulazione</button>
+            <br>
+            <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="promo-link-end">📚 ${promoTesto} (69 pagg.)</a>
         </div>
     `;
 }
