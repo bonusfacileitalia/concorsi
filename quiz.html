@@ -3,58 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulatore Concorsi 2026 - Versione Elite</title>
+    <title>Simulatore Concorsi 2026 - Piattaforma Avanzata</title>
     <style>
-        :root { --primary: #1a252f; --accent: #2980b9; --success: #27ae60; --danger: #c0392b; --bg: #050505; --card: #111; --text: #e0e0e0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px 0; }
-        #home-page { text-align: center; background: var(--card); padding: 40px; border-radius: 16px; border: 1px solid #222; max-width: 600px; width: 90%; }
-        h1 { color: #fff; font-size: 2.2em; text-transform: uppercase; font-weight: 800; margin-bottom: 10px; }
-        .stat-val { font-size: 2.2em; font-weight: 900; color: var(--accent); margin-bottom: 20px; }
-        .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-        .btn-start { background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 700; cursor: pointer; text-transform: uppercase; width: 100%; transition: 0.3s; }
-        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(41,128,185,0.4); }
-        .btn-exam { background: linear-gradient(135deg, #c0392b, #8e44ad); }
-        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 16px; max-width: 850px; width: 95%; border: 1px solid #222; }
-        .timer { font-family: monospace; font-size: 1.6em; color: #fff; background: #1a1a1a; padding: 5px 15px; border-radius: 6px; border: 1px solid #333; }
-        .materia-tag { color: var(--accent); font-size: 0.75em; text-transform: uppercase; font-weight: 800; margin-bottom: 15px; display: inline-block; padding: 4px 10px; background: rgba(41, 128, 185, 0.1); border-radius: 4px; }
-        .question { font-size: 1.25em; margin-bottom: 30px; line-height: 1.6; color: #fff; }
-        .option { padding: 18px 20px; background: #161616; border: 1px solid #333; border-radius: 8px; cursor: pointer; margin-bottom: 10px; font-size: 0.95em; color: #bbb; transition: 0.2s; }
+        :root { 
+            --primary: #1a252f; --accent: #2980b9; --success: #27ae60; --danger: #c0392b;
+            --bg: #050505; --card: #111; --text: #e0e0e0; 
+        }
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background: var(--bg); color: var(--text); 
+            margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        #home-page { text-align: center; background: var(--card); padding: 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); max-width: 600px; width: 90%; border: 1px solid #222; }
+        h1 { color: #fff; font-size: 2.2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .subtitle { color: #888; margin-bottom: 25px; font-size: 0.95em; line-height: 1.5; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 20px; }
+        .stat-box { background: #161616; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        .stat-val { display: block; font-size: 2.2em; font-weight: 900; color: var(--accent); }
+        .stat-label { font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 5px; display: block; }
+        
+        .subjects-board { background: #0a0a0a; border: 1px solid #222; border-radius: 10px; padding: 20px; margin-bottom: 25px; text-align: left; }
+        .subjects-board-title { color: var(--accent); font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
+        .subjects-board-title::before { content: '🎯'; margin-right: 8px; filter: grayscale(100%); font-size: 1.2em; }
+        .subjects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .subject-tag { background: #161616; border: 1px solid #2a2a2a; padding: 10px 12px; border-radius: 6px; font-size: 0.85em; color: #ccc; display: flex; align-items: center; line-height: 1.3; font-weight: 500; }
+        .subject-tag span { color: var(--accent); margin-right: 10px; font-size: 1.2em; }
+        @media (max-width: 500px) { .subjects-grid { grid-template-columns: 1fr; } }
+        
+        .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        @media (max-width: 500px) { .mode-grid { grid-template-columns: 1fr; } }
+
+        .btn-start { 
+            background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; border: none; padding: 15px 20px; 
+            border-radius: 8px; font-size: 1.05em; font-weight: 700; cursor: pointer; 
+            transition: all 0.3s ease; width: 100%; text-transform: uppercase; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.15);
+            letter-spacing: 1px; line-height: 1.4;
+        }
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(41, 128, 185, 0.3); background: linear-gradient(135deg, #3498db, #34495e); }
+        .btn-start span { font-size: 0.7em; font-weight: 500; letter-spacing: 0.5px; color: #baddf9; display: block; margin-top: 4px; text-transform: none; }
+
+        .btn-exam { background: linear-gradient(135deg, #c0392b, #8e44ad); box-shadow: 0 10px 20px rgba(192, 57, 43, 0.15); }
+        .btn-exam:hover { background: linear-gradient(135deg, #e74c3c, #9b59b6); box-shadow: 0 15px 30px rgba(192, 57, 43, 0.3); }
+        .btn-exam span { color: #f5b7b1; }
+
+        .manual-banner { background: linear-gradient(135deg, #0d0d0d, #050505); border: 1px solid #333; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+        .manual-info h3 { margin: 0 0 5px 0; color: #fff; font-size: 1.05em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .manual-info p { margin: 0; color: #777; font-size: 0.85em; line-height: 1.5; }
+        .btn-manual { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 6px; font-weight: 700; text-decoration: none; text-transform: uppercase; font-size: 0.8em; white-space: nowrap; transition: 0.3s; letter-spacing: 1px; }
+        .btn-manual:hover { background: var(--accent); color: #fff; }
+        @media (max-width: 500px) { .manual-banner { flex-direction: column; text-align: center; } .btn-manual { width: 100%; box-sizing: border-box; } }
+
+        .briefing-box { text-align: left; border-top: 1px solid #222; padding-top: 25px; }
+        .briefing-title { color: var(--accent); font-size: 0.85em; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
+        .faq-item { background: #161616; border: 1px solid #2a2a2a; margin-bottom: 8px; border-radius: 6px; overflow: hidden; transition: 0.3s; }
+        .faq-item:hover { border-color: #444; }
+        .faq-q { padding: 16px; color: #ddd; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.9em; align-items: center; letter-spacing: 0.5px; }
+        .faq-q:hover { color: #fff; background: #1c1c1c; }
+        .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #999; font-size: 0.85em; line-height: 1.6; background: #111; }
+        .faq-a.open { padding: 16px; max-height: 250px; border-top: 1px solid #2a2a2a; }
+        .faq-a strong { color: #ccc; font-weight: 600; }
+        .arrow { color: var(--accent); font-size: 0.8em; transition: transform 0.3s; }
+        .faq-q.active .arrow { transform: rotate(180deg); }
+
+        #quiz-container { display: none; background: var(--card); padding: 40px; border-radius: 16px; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.9); border: 1px solid #222; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .session-progress { font-size: 0.85em; color: #888; font-weight: 700; letter-spacing: 1px; }
+        
+        .controls-group { display: flex; gap: 10px; align-items: center; }
+        .control-btn { background: #161616; border: 1px solid #333; color: #888; border-radius: 6px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s ease; font-size: 1.1em; }
+        .control-btn:hover { background: #222; color: #fff; border-color: var(--accent); transform: translateY(-2px); }
+        
+        .timer { font-family: 'Courier New', monospace; font-size: 1.6em; color: #fff; font-weight: 700; background: #1a1a1a; padding: 5px 15px; border-radius: 6px; border: 1px solid #333; letter-spacing: 2px; }
+        .progress-bar-container { width: 100%; height: 4px; background: #222; border-radius: 2px; margin-bottom: 30px; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.4s; }
+
+        .materia-tag { color: var(--accent); font-size: 0.75em; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; display: inline-block; padding: 4px 10px; background: rgba(41, 128, 185, 0.1); border-radius: 4px; border: 1px solid rgba(41, 128, 185, 0.2); }
+        .question { font-size: 1.25em; margin-bottom: 30px; line-height: 1.6; color: #fff; font-weight: 500; }
+        .options { display: grid; gap: 12px; }
+        .option { padding: 18px 20px; background: #161616; border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-size: 0.95em; color: #bbb; line-height: 1.5; }
         .option:hover { background: #1c1c1c; border-color: #555; color: #fff; }
         .option.correct { background: rgba(39, 174, 96, 0.1) !important; border-color: var(--success) !important; color: #fff !important; }
         .option.wrong { background: rgba(192, 57, 43, 0.1) !important; border-color: var(--danger) !important; color: #fff !important; }
-        .explanation { margin-top: 20px; padding: 20px; background: #111; border-left: 4px solid var(--accent); display: none; color: #aaa; font-size: 0.9em; line-height: 1.6; }
-        .btn-next { width: 100%; padding: 18px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 700; display: none; cursor: pointer; text-transform: uppercase; }
-        .btn-manual { display: block; margin-top: 20px; color: var(--accent); text-decoration: none; font-size: 0.8em; font-weight: 700; text-transform: uppercase; border: 1px solid var(--accent); padding: 10px; border-radius: 6px; }
+
+        .explanation { margin-top: 25px; padding: 20px; background: #111; border-left: 4px solid var(--accent); border-right: 1px solid #222; border-top: 1px solid #222; border-bottom: 1px solid #222; display: none; border-radius: 0 6px 6px 0; font-size: 0.9em; color: #aaa; line-height: 1.6; }
+        .btn-next { margin-top: 30px; width: 100%; padding: 18px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 700; display: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+        .btn-next:hover { background: #3498db; }
+
+        .results-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .results-title { font-size: 0.85em; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+        .results-status { font-size: 2.2em; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        .status-pass { color: var(--success); }
+        .status-fail { color: var(--danger); }
+        
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+        .metric-card { background: #161616; border: 1px solid #2a2a2a; border-radius: 8px; padding: 20px 10px; text-align: center; }
+        .metric-label { font-size: 0.7em; color: #777; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+        .metric-value { font-size: 1.8em; font-weight: 900; color: #fff; font-family: 'Courier New', monospace; }
+        .metric-value.pass { color: var(--success); }
+        .metric-value.fail { color: var(--danger); }
+        .metric-sub { font-size: 0.5em; color: #666; font-weight: 500; }
+        @media (max-width: 600px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+        .feedback-box { background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 25px; margin-bottom: 30px; text-align: left; }
+        .feedback-title { font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .feedback-text { font-size: 0.95em; color: #bbb; line-height: 1.6; }
+        
+        .promo-link-premium { display: block; background: #161616; border: 1px solid #333; border-left: 4px solid var(--accent); color: #fff; padding: 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; transition: 0.3s; text-align: left; line-height: 1.5; margin-top: 15px; }
+        .promo-link-premium:hover { background: #1c1c1c; border-color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .promo-highlight { color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; display: block; margin-bottom: 5px; font-weight: 800; }
     </style>
 </head>
 <body>
 
 <div id="home-page">
-    <h1>Centrale Concorsi</h1>
-    <p>Simulatore RIPAM 2026 - Analisi Normativa</p>
-    <div class="stat-val" id="db-total">50</div>
-    <div class="mode-grid">
-        <button class="btn-start" onclick="preparaSessione(25, 25, false)">Test Sprint (25Q)</button>
-        <button class="btn-start btn-exam" onclick="preparaSessione(50, 50, true)">Esame Full (50Q)</button>
+    <h1>Piattaforma Concorsi</h1>
+    <p class="subtitle">Simulatore Avanzato RIPAM 2026.<br>Sviluppa freddezza decisionale e accuratezza normativa.</p>
+    
+    <div class="stats-grid">
+        <div class="stat-box">
+            <span class="stat-label">Quesiti Tecnici a Disposizione</span>
+            <span class="stat-val" id="db-total">0</span>
+        </div>
     </div>
-    <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="btn-manual">Acquisisci il Manuale Tecnico</a>
+
+    <div class="subjects-board">
+        <div class="subjects-board-title">Aree Normative Sottoposte a Verifica</div>
+        <div class="subjects-grid">
+            <div class="subject-tag"><span>⚖️</span> Diritto Amministrativo & L. 241/90</div>
+            <div class="subject-tag"><span>🏛️</span> Ordinamento Enti Locali (TUEL)</div>
+            <div class="subject-tag"><span>🏗️</span> Codice Appalti (D.Lgs 36/23)</div>
+            <div class="subject-tag"><span>💼</span> P.I. & Anticorruzione (L. 190/12)</div>
+            <div class="subject-tag"><span>🧠</span> Logica RIPAM & Diritto UE</div>
+            <div class="subject-tag"><span>💶</span> Fiscalità, Privacy (GDPR) & PNRR</div>
+        </div>
+    </div>
+
+    <div class="mode-grid">
+        <button class="btn-start" onclick="preparaSessione(25, 25, false)">
+            TEST SPRINT
+            <span>25 Quesiti - Modalità Addestramento</span>
+        </button>
+        <button class="btn-start btn-exam" onclick="preparaSessione(50, 50, true)">
+            ESAME UFFICIALE
+            <span>50 Quesiti - Simulazione Integrale</span>
+        </button>
+    </div>
+
+    <div class="manual-banner">
+        <div class="manual-info">
+            <h3>La Dottrina: Manuale 2026</h3>
+            <p>Non affidarti al caso. 69 pagine di Diritto Amministrativo e Codice Appalti strutturate per garantire l'idoneità.</p>
+        </div>
+        <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="btn-manual">Acquisisci</a>
+    </div>
+
+    <div class="briefing-box">
+        <div class="briefing-title">Parametri di Valutazione</div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Soglia di Sbarramento <span class="arrow">▼</span></div>
+            <div class="faq-a">Il sistema impone una <strong>soglia di idoneità dell'85%</strong> in entrambe le modalità. I distrattori sono calibrati per simulare le insidie concorsuali. Non si fanno sconti.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Differenza tra le Modalità <span class="arrow">▼</span></div>
+            <div class="faq-a">Il <strong>Test Sprint</strong> (25Q) garantisce l'estrazione di quesiti sempre nuovi ad ogni sessione, ottimale per lo studio incrementale. L'<strong>Esame Ufficiale</strong> (50Q) genera simulazioni integrali pescando dall'intero archivio, testando l'imprevedibilità e la gestione dello stress della prova concorsuale.</div>
+        </div>
+    </div>
 </div>
 
 <div id="quiz-container">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom: 1px solid #222; padding-bottom: 10px;">
-        <span style="font-weight:700; color:#888;">QUESITO <span id="current-q-idx">1</span>/<span id="total-q-count">50</span></span>
-        <div class="timer" id="timer">00:00</div>
+    <div class="top-bar">
+        <span class="session-progress">QUESITO <span id="current-q-idx">1</span> DI <span id="total-q-count">50</span></span>
+        <div class="controls-group">
+            <button class="control-btn" onclick="riavviaSessione()" title="Azzera e Riavvia">🔄</button>
+            <button class="control-btn" onclick="tornaAllaHome()" title="Interrompi Sessione">🏠</button>
+            <div class="timer" id="timer">00:00</div>
+        </div>
     </div>
+    
+    <div class="progress-bar-container"><div id="progress-fill"></div></div>
+    
     <span id="materia-label" class="materia-tag"></span>
     <div class="question" id="question-text"></div>
-    <div id="options-container"></div>
+    <div class="options" id="options-container"></div>
     <div class="explanation" id="explanation-box"></div>
-    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">Conferma Risposta</button>
+    <button class="btn-next" id="next-btn" onclick="prossimaDomanda()">CONFERMA RISPOSTA</button>
 </div>
 
 <script>
 const databaseQuiz = [
-    // --- AMMINISTRATIVO (15) ---
     { "q": "Ai sensi dell'art. 6 della L. 241/90, l'organo competente all'adozione del provvedimento finale:", "options": ["Deve conformarsi alle risultanze dell'istruttoria condotta dal responsabile del procedimento.", "Può discostarsi dalle risultanze istruttorie fornendo una motivazione analitica nell'atto finale.", "È libero di decidere in modo difforme senza dover esplicitare le ragioni della scelta effettuata.", "Non può emettere il provvedimento in presenza di un parere tecnico negativo del responsabile."], "a": 1, "e": "L'organo decisionale può ribaltare l'istruttoria, ma l'obbligo di motivazione è il limite alla sua discrezionalità.", "materia": "Diritto Amministrativo" },
     { "q": "In materia di SCIA, decorso il termine di 60 giorni per i poteri inibitori ordinari, la PA:", "options": ["Perde ogni potere di intervento sulla legittimità dell'attività segnalata dal soggetto privato.", "Può intervenire solo se ricorrono i presupposti per l'annullamento d'ufficio ex art. 21-nonies.", "Ha la facoltà di sospendere l'attività a tempo indeterminato per motivi di semplice opportunità.", "Deve obbligatoriamente avviare un nuovo procedimento di autorizzazione espresso per legge."], "a": 1, "e": "Dopo i 60 giorni, la SCIA si stabilizza: la PA può agire solo con i poteri di autotutela (12 mesi + interesse pubblico).", "materia": "Diritto Amministrativo" },
     { "q": "L'accesso civico generalizzato (FOIA) può essere rifiutato per tutelare interessi commerciali se:", "options": ["L'impresa ha presentato una generica opposizione scritta entro i termini previsti dalla legge.", "L'ostensione dei dati determina un pregiudizio concreto e provato alla competitività dell'azienda.", "L'amministrazione ritiene che il diritto alla riservatezza prevalga sempre sulla trasparenza totale.", "I documenti richiesti contengono esclusivamente dati anagrafici dei soci e degli amministratori."], "a": 1, "e": "Il rifiuto del FOIA non è automatico: serve il 'test del pregiudizio concreto' per bilanciare trasparenza e privacy.", "materia": "Trasparenza" },
@@ -67,11 +206,10 @@ const databaseQuiz = [
     { "q": "Il preavviso di rigetto (art. 10-bis L. 241/90) obbliga l'amministrazione a:", "options": ["Comunicare i motivi ostativi all'accoglimento dell'istanza prima dell'adozione dell'atto.", "Sospendere il procedimento per un periodo fisso di sessanta giorni per ulteriori verifiche.", "Archiviare la pratica qualora l'interessato non presenti osservazioni entro cinque giorni.", "Indire una conferenza di servizi per valutare le controdeduzioni presentate dal privato."], "a": 0, "e": "Serve a instaurare un contraddittorio: ti dico perché sto per bocciarti e tu hai 10 giorni per convincermi.", "materia": "Diritto Amministrativo" },
     { "q": "La conferenza di servizi decisoria è sempre indetta quando l'amministrazione deve:", "options": ["Acquisire pareri consultivi non vincolanti da parte di altre amministrazioni competenti.", "Concludere un accordo sostitutivo di provvedimento ai sensi dell'art. 11 della L. 241/90.", "Acquisire intese, nulla osta o assensi di altre PA per l'adozione di un provvedimento.", "Valutare l'opportunità economica di un investimento pubblico in ambito infrastrutturale."], "a": 2, "e": "La decisoria serve a 'decidere'. Se servono permessi di altri, la conferenza li mette tutti insieme.", "materia": "Diritto Amministrativo" },
     { "q": "Il provvedimento adottato in violazione del giudicato (sentenza passata in giudicato) è:", "options": ["Annullabile per eccesso di potere sotto il profilo del travisamento dei fatti accaduti.", "Nullo per difetto assoluto di attribuzione o violazione/elusione del giudicato stesso.", "Irregolare, ma suscettibile di ratifica da parte dell'organo gerarchicamente superiore.", "Valido se l'amministrazione dimostra la sopravvenienza di nuovi interessi pubblici."], "a": 1, "e": "Se il giudice ti ha detto di non farlo e tu lo fai, l'atto è nullo (art. 21-septies).", "materia": "Diritto Amministrativo" },
-    { "q": "L'accordo sostitutivo di provvedimento (art. 11 L. 241/90) deve essere stipulato:", "options": ["In forma scritta a pena di nullità, salvo che la legge disponga diversamente per l'atto.", "Esclusivamente in forma pubblica davanti a un notaio o un segretario comunale.", "Anche in forma verbale, purché il contenuto sia riportato nel verbale del procedimento.", "In forma digitale con firma elettronica qualificata solo se tra amministrazioni pubbliche."], "a": 0, "e": "La forma scritta è 'ad substantiam'. Senza carta (o file firmato), l'accordo non esiste.", "materia": "Diritto Amministrativo" },
+    { "q": "L'accordo sostitutivo di provvedimento (art. 11 L. 241/90) deve essere stipulato:", "options": ["In forma scritta a pena di nullità, salvo che la legge disponga altrimenti per l'atto.", "Esclusivamente in forma pubblica davanti a un notaio o un segretario comunale.", "Anche in forma verbale, purché il contenuto sia riportato nel verbale del procedimento.", "In forma digitale con firma elettronica qualificata solo se tra amministrazioni pubbliche."], "a": 0, "e": "La forma scritta è 'ad substantiam'. Senza carta (o file firmato), l'accordo non esiste.", "materia": "Diritto Amministrativo" },
     { "q": "La nullità del provvedimento amministrativo può essere eccepita in sede giudiziale:", "options": ["Entro il termine perentorio di sessanta giorni dalla conoscenza legale dell'atto viziato.", "Senza limiti di tempo dall'interessato e può essere rilevata d'ufficio dal magistrato.", "Esclusivamente se il vizio riguarda la competenza territoriale dell'organo emanante.", "Solo dopo aver esperito infruttuosamente il ricorso gerarchico presso l'ente."], "a": 1, "e": "La nullità è un vizio gravissimo: non scade mai e il giudice la vede anche se tu non la scrivi.", "materia": "Diritto Amministrativo" },
     { "q": "La comunicazione di avvio del procedimento non è richiesta per i provvedimenti:", "options": ["Cautelari, data la necessità di intervenire con urgenza a tutela dell'interesse pubblico.", "Sanzionatori, per evitare che il destinatario possa occultare le prove dell'illecito.", "Concessori, in quanto determinano un ampliamento della sfera giuridica del destinatario.", "Di pianificazione urbanistica generale che coinvolgono un numero limitato di soggetti."], "a": 0, "e": "Art. 7 L. 241/90. Se devo agire subito per evitare un danno (cautelare), non perdo tempo a scriverti.", "materia": "Diritto Amministrativo" },
 
-    // --- APPALTI (15) ---
     { "q": "Il Principio del Risultato (Art. 1 D.Lgs 36/2023) costituisce per le stazioni appaltanti:", "options": ["Un criterio meramente programmatico privo di valore cogente nelle procedure di gara.", "Il criterio prioritario per l'esercizio del potere discrezionale e la valutazione del RUP.", "Un obbligo subordinato al principio di concorrenza e massima partecipazione delle ditte.", "Una clausola di stile inserita per adeguarsi alle direttive comunitarie sugli appalti."], "a": 1, "e": "Il Risultato è il 'super-principio' del nuovo codice: tutto deve tendere a finire l'opera bene.", "materia": "Codice Appalti" },
     { "q": "Negli appalti di lavori sotto la soglia di 150.000 euro, il codice 36/2023 prevede:", "options": ["L'obbligo di indizione di una procedura negoziata con almeno cinque inviti formali.", "L'affidamento diretto anche senza consultazione di più operatori economici qualificati.", "La pubblicazione obbligatoria del bando sulla piattaforma telematica dell'ANAC.", "Il ricorso alla procedura aperta con il criterio dell'offerta economicamente vantaggiosa."], "a": 1, "e": "Sotto i 150k per i lavori, il legislatore vuole velocità: affidamento diretto puro.", "materia": "Codice Appalti" },
     { "q": "Il soccorso istruttorio (art. 101 D.Lgs 36/2023) non è ammesso per sanare mancanze relative:", "options": ["Alla documentazione amministrativa necessaria per la verifica dei requisiti generali.", "All'offerta economica e agli elementi essenziali dell'offerta tecnica presentata.", "Al pagamento del contributo obbligatorio in favore dell'Autorità Nazionale Anticorruzione.", "Alla firma digitale dei documenti contenuti nel fascicolo virtuale dell'operatore."], "a": 1, "e": "Non puoi usare il soccorso per cambiare il prezzo o la qualità tecnica: falseresti la gara.", "materia": "Codice Appalti" },
@@ -88,7 +226,6 @@ const databaseQuiz = [
     { "q": "Il DGUE (Documento di Gara Unico Europeo) è un'autodichiarazione che serve a:", "options": ["Certificare il pagamento degli oneri previdenziali e assistenziali dei lavoratori.", "Attestare preliminarmente il possesso dei requisiti generali e speciali richiesti.", "Descrivere dettagliatamente l'offerta tecnica e le modalità di esecuzione dei lavori.", "Elencare i subappaltatori che verranno utilizzati durante l'esecuzione del contratto."], "a": 1, "e": "È un modulo standard: l'impresa 'giura' di essere a posto, la PA controlla dopo.", "materia": "Codice Appalti" },
     { "q": "L'aggiudicazione di un appalto pubblico diventa efficace solo dopo:", "options": ["L'approvazione del verbale di gara da parte della commissione giudicatrice.", "La verifica positiva del possesso dei requisiti in capo all'operatore economico.", "La pubblicazione della determina di aggiudicazione sull'Albo Pretorio online.", "La stipula del contratto d'appalto in forma pubblica amministrativa telematica."], "a": 1, "e": "Puoi vincere, ma se dai controlli risulta che hai mentito sui requisiti, l'efficacia decade.", "materia": "Codice Appalti" },
 
-    // --- ANTICORRUZIONE E PUBBLICO IMPIEGO (10) ---
     { "q": "Il Piano Triennale di Prevenzione della Corruzione (PTPCT) viene adottato da:", "options": ["Il Responsabile della Prevenzione della Corruzione e della Trasparenza (RPCT).", "L'organo di indirizzo politico dell'amministrazione (es. la Giunta comunale).", "L'Autorità Nazionale Anticorruzione su proposta vincolante del Segretario.", "L'Organismo Indipendente di Valutazione (OIV) dopo la verifica delle performance."], "a": 1, "e": "Il tecnico (RPCT) lo scrive, ma la responsabilità della scelta politica è della Giunta.", "materia": "Anticorruzione" },
     { "q": "Il Whistleblowing (D.Lgs 24/2023) garantisce al segnalante di illeciti:", "options": ["Un premio economico proporzionato al valore del danno erariale recuperato.", "La riservatezza dell'identità e la protezione da misure ritorsive sul lavoro.", "L'immunità totale per qualsiasi reato commesso durante lo svolgimento del servizio.", "La promozione automatica al livello retributivo superiore per merito civile."], "a": 1, "e": "In Italia non ci sono premi in denaro: c'è solo protezione e anonimato.", "materia": "Anticorruzione" },
     { "q": "Il Pantouflage (revolving doors) prevede un divieto di assunzione per:", "options": ["Un anno dalla cessazione del rapporto di lavoro con la Pubblica Amministrazione.", "Tre anni dalla cessazione del servizio per i dipendenti con poteri autoritativi.", "Cinque anni, esteso a tutti i dipendenti pubblici indipendentemente dal ruolo.", "Sempre, qualora l'ente privato operi in regime di monopolio o concessione pubblica."], "a": 1, "e": "3 anni di blocco per evitare che un dirigente faccia favori a ditte che poi lo assumeranno.", "materia": "Anticorruzione" },
@@ -100,113 +237,229 @@ const databaseQuiz = [
     { "q": "Il Responsabile della Prevenzione della Corruzione (RPCT) è solitamente:", "options": ["Il rappresentante sindacale più anziano presente all'interno dell'amministrazione.", "Un dirigente di ruolo o il Segretario Generale negli enti locali territoriali.", "Un esperto esterno nominato dal Prefetto su indicazione del Ministero dell'Interno.", "Il titolare di una posizione organizzativa appartenente all'area economica."], "a": 1, "e": "Figura di vertice: garantisce che le regole anticorruzione siano seguite da tutti.", "materia": "Anticorruzione" },
     { "q": "Le sanzioni disciplinari nel pubblico impiego sono irrogate:", "options": ["Dal giudice del lavoro dopo l'esperimento del tentativo di conciliazione.", "Dall'Ufficio Procedimenti Disciplinari (UPD) per le mancanze più gravi.", "Esclusivamente dal dirigente superiore gerarchico del dipendente sanzionato.", "Dalla commissione paritetica composta da dirigenti e delegati sindacali."], "a": 1, "e": "Per le cose serie decide l'UPD, non il tuo capo diretto, per evitare vendette personali.", "materia": "Pubblico Impiego" },
 
-    // --- LOGICA (5) ---
     { "q": "Se piove, allora la strada è bagnata. Sappiamo che la strada NON è bagnata. Quindi:", "options": ["Potrebbe aver piovuto ma la strada si è asciugata molto velocemente.", "Certamente non ha piovuto, per la regola logica del modus tollens.", "Ha piovuto ma l'acqua è stata assorbita dal drenaggio dell'asfalto.", "Non possiamo trarre alcuna conclusione certa sulla pioggia caduta."], "a": 1, "e": "Regola base: Se A porta B, e B non c'è, allora non c'è neanche A.", "materia": "Logica" },
     { "q": "Tutti i vincitori di concorso hanno studiato. Marco ha studiato. Ne consegue che:", "options": ["Marco vincerà sicuramente il concorso pubblico cui ha partecipato.", "Marco appartiene alla categoria di persone che potrebbero vincere il concorso.", "Non è possibile concludere con certezza che Marco vincerà il concorso.", "Chi studia vince sempre i concorsi banditi dalla Pubblica Amministrazione."], "a": 2, "e": "Errore classico: Studiare è necessario ma non sufficiente per vincere.", "materia": "Logica" },
     { "q": "Trova il numero mancante nella serie: 2 - 5 - 11 - 23 - ?", "options": ["Quarantacinque, applicando la progressione dei numeri primi esistenti.", "Quarantasette, raddoppiando il numero precedente e aggiungendo uno.", "Quarantanove, aggiungendo al numero precedente potenze di due crescenti.", "Cinquantuno, moltiplicando per tre e sottraendo uno alla cifra precedente."], "a": 1, "e": "Logica numerica: (2x2)+1=5; (5x2)+1=11; (11x2)+1=23; (23x2)+1=47.", "materia": "Logica" },
     { "q": "Individua l'intruso tra i seguenti termini: Monitor, Mouse, Stampante, Software.", "options": ["Monitor, in quanto periferica di output necessaria alla visualizzazione.", "Mouse, perché è l'unica periferica di input basata sul puntamento fisico.", "Stampante, essendo un dispositivo elettromeccanico di produzione cartacea.", "Software, poiché è l'unico elemento intangibile (logico) della lista."], "a": 3, "e": "Tutti gli altri sono 'Hardware' (si toccano), il software è codice (non si tocca).", "materia": "Informatica" },
     { "q": "Alcuni politici sono onesti. Tutti gli onesti sono altruisti. Quindi:", "options": ["Tutti i politici sono altruisti e agiscono per il bene della comunità.", "Alcuni politici sono altruisti, in quanto appartenenti alla categoria onesti.", "Nessun altruista può essere un politico impegnato nelle istituzioni.", "L'onestà è una condizione necessaria per fare politica nel sistema attuale."], "a": 1, "e": "Sillogismo: se un pezzo di A è in B, e tutto B è in C, allora quel pezzo di A è in C.", "materia": "Logica" },
 
-    // --- INFORMATICA E INGLESE (10) ---
-    { "q": "Il domicilio digitale, previsto dal CAD (D.Lgs 82/2005), corrisponde a:", "options": ["L'indirizzo di residenza fisica dichiarato all'ufficio anagrafe comunale.", "Un indirizzo PEC o un servizio di recapito certificato qualificato.", "L'indirizzo IP statico del computer utilizzato per lo smart working.", "Il profilo utente creato sul portale istituzionale dell'ente di appartenenza."], "a": 1, "e": "Domicilio Digitale = PEC. È dove lo Stato ti manda le multe e le notifiche legali.", "materia": "Informatica" },
+    { "q": "Il domicilio digitale, previsto dal CAD (D.Lgs 82/2005), corrisponde a:", "options": ["L'indirizzo di residenza fisica dichiarato all'ufficio anagrafe comunale.", "Un indirizzo PEC o un servizio di recapito certificato qualificato.", "L'indirizzo IP statico del computer utilizzato per lo smart working.", "Il profilo utente creato sul portale istituzionale dell'ente di appartenenza."], "a": 1, "e": "Domicilio Digitale = PEC. È dove lo Stato ti manda le notifiche legali.", "materia": "Informatica" },
     { "q": "La firma digitale garantisce tre proprietà del documento informatico:", "options": ["Velocità di trasmissione, risparmio di carta e facilità di archiviazione.", "Integrità, autenticità e non ripudiabilità della firma del sottoscrittore.", "Segretezza del contenuto, crittografia end-to-end e backup automatico.", "Compatibilità universale, leggibilità nel tempo e facilità di stampa."], "a": 1, "e": "Se è firmato digitalmente, sono sicuro di chi l'ha scritto e che non è stato cambiato.", "materia": "Informatica" },
     { "q": "Cos'è lo SPID (Sistema Pubblico di Identità Digitale)?", "options": ["Un software di protezione contro virus e malware della rete informatica.", "Un sistema di credenziali uniche per accedere ai servizi online della PA.", "Una rete intranet riservata esclusivamente ai dipendenti ministeriali.", "Un database centralizzato che raccoglie le impronte digitali dei cittadini."], "a": 1, "e": "Una chiave sola per aprire tutti i siti dello Stato (Inps, Agenzia Entrate, ecc).", "materia": "Informatica" },
-    { "q": "Una rete LAN (Local Area Network) è una connessione che:", "options": ["Collega computer situati in un'area geografica limitata, come un ufficio.", "Permette la navigazione internet su scala globale tramite satelliti dedicati.", "Gestisce esclusivamente il traffico telefonico e i messaggi vocali criptati.", "Assicura la protezione dei dati sensibili durante i pagamenti elettronici."], "a": 0, "e": "LAN = Locale. È la rete che collega i PC dentro una stanza o un edificio.", "materia": "Informatica" },
-    { "q": "Il formato PDF/A è utilizzato nella Pubblica Amministrazione perché:", "options": ["Permette di modificare il testo liberamente anche dopo la firma digitale.", "Garantisce la conservazione a lungo termine e l'inalterabilità del file.", "Riduce drasticamente le dimensioni del documento per l'invio tramite email.", "Consente l'inserimento di video e contenuti multimediali interattivi."], "a": 1, "e": "È il formato 'archivio': tra 20 anni il file si aprirà esattamente come oggi.", "materia": "Informatica" },
     { "q": "Quale tra queste è la traduzione corretta di 'Public Procurement'?", "options": ["Assunzioni nel settore pubblico attraverso concorsi o graduatorie.", "Appalti pubblici per l'acquisizione di beni, servizi o lavori da privati.", "Contabilità pubblica e gestione del bilancio preventivo degli enti locali.", "Ufficio relazioni con il pubblico per la gestione delle istanze civiche."], "a": 1, "e": "Termine tecnico: Procurement = Appalti/Acquisti.", "materia": "Inglese" },
-    { "q": "In English, the term 'Deadline' refers to:", "options": ["A line on a map indicating a dangerous or forbidden territory.", "The final date or time by which something must be completed.", "The process of deleting old files from a computer server system.", "A period of vacation during which public offices remain closed."], "a": 1, "e": "Deadline = Scadenza. Fondamentale per non essere esclusi dai concorsi.", "materia": "Inglese" },
-    { "q": "Choose the correct verb: 'The candidate _______ to submit the application yesterday.'", "options": ["forgot, as it is the past simple form of the verb to forget.", "forget, which is the present tense and implies a habitual action.", "forgotten, which requires an auxiliary verb to form the past tense.", "forgetting, used for continuous actions happening at the moment."], "a": 0, "e": "Yesterday richiede il Past Simple: Forgot.", "materia": "Inglese" },
-    { "q": "What does 'To call off' mean in a professional context?", "options": ["To postpone a meeting to a future date to be determined later.", "To cancel an event or an agreement that was previously planned.", "To start a conference call with participants from different countries.", "To promote a colleague to a higher position within the organization."], "a": 1, "e": "Call off = Cancellare. Se il concorso è 'called off', non si fa più.", "materia": "Inglese" },
     { "q": "Translate: 'The manager is looking forward to _______ the new team.'", "options": ["meet, as it follows the preposition to in the infinitive form.", "meeting, because looking forward to is followed by the gerund.", "met, using the past tense to indicate a completed action in time.", "meets, used for third person singular in the present simple tense."], "a": 1, "e": "Regola bastarda: 'Looking forward to' vuole la forma in -ING.", "materia": "Inglese" }
 ];
 
-const STORAGE_KEY = 'concorso_progres_v4';
-const SESSION_KEY = 'concorso_active_session_v4';
+const STORAGE_KEY = 'concorso_progres_v5';
+const SESSION_KEY = 'concorso_active_session_v5';
 
+let MAX_TIME_SECONDS = 0;
+let domandeViste = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let sessionPool = [];
 let sessionIdx = 0;
 let sessionAnswers = [];
-let timeLeft = 0;
-let MAX_TIME_SECONDS = 0;
+let domandaCorrente = null;
 let timerInterval;
+let timeLeft = 0;
 let isExamMode = false;
 
 document.getElementById('db-total').innerText = databaseQuiz.length;
 
-function preparaSessione(num, min, exam) {
-    isExamMode = exam;
-    sessionPool = databaseQuiz.map((_, i) => i).sort(() => Math.random() - 0.5).slice(0, num);
+function toggleFaq(element) {
+    element.classList.toggle('active');
+    element.nextElementSibling.classList.toggle('open');
+}
+
+function salvaStatoSessione() {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+        pool: sessionPool,
+        idx: sessionIdx,
+        answers: sessionAnswers,
+        time: timeLeft,
+        maxTime: MAX_TIME_SECONDS,
+        examMode: isExamMode
+    }));
+}
+
+function distruggiStatoSessione() {
+    localStorage.removeItem(SESSION_KEY);
+}
+
+function formatTime(seconds) {
+    let m = Math.floor(seconds / 60);
+    let s = seconds % 60;
+    return `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+}
+
+function aggiornaSchermoTimer() {
+    document.getElementById('timer').innerText = formatTime(timeLeft);
+}
+
+function controllaEAvviaSessione() {
+    let savedSession = JSON.parse(localStorage.getItem(SESSION_KEY));
+    if (savedSession && savedSession.pool && savedSession.time > 0 && savedSession.idx < savedSession.pool.length) {
+        sessionPool = savedSession.pool;
+        sessionIdx = savedSession.idx;
+        sessionAnswers = savedSession.answers || [];
+        timeLeft = parseInt(savedSession.time, 10);
+        MAX_TIME_SECONDS = savedSession.maxTime || (25 * 60);
+        isExamMode = savedSession.examMode || false;
+        
+        document.getElementById('home-page').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        startTimer();
+        caricaDomanda();
+    } else {
+        document.getElementById('home-page').style.display = 'block';
+    }
+}
+controllaEAvviaSessione();
+
+function preparaSessione(numQuestions, timeMinutes, modeFlag) {
+    isExamMode = modeFlag;
+    let poolDisponibili = [];
+    
+    if (isExamMode) {
+        poolDisponibili = databaseQuiz.map((q, i) => i);
+    } else {
+        poolDisponibili = databaseQuiz.map((q, i) => i).filter(i => !domandeViste.includes(i));
+        if (poolDisponibili.length === 0) {
+            alert("Complimenti! Hai esaurito le domande inedite. L'archivio verrà resettato.");
+            domandeViste = [];
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
+            location.reload();
+            return;
+        }
+    }
+    
+    poolDisponibili.sort(() => Math.random() - 0.5);
+    sessionPool = poolDisponibili.slice(0, numQuestions);
+    
     sessionIdx = 0;
     sessionAnswers = [];
-    MAX_TIME_SECONDS = min * 60;
+    MAX_TIME_SECONDS = timeMinutes * 60;
     timeLeft = MAX_TIME_SECONDS;
+    salvaStatoSessione();
     
     document.getElementById('home-page').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'block';
-    document.getElementById('total-q-count').innerText = num;
-    
     startTimer();
     caricaDomanda();
 }
 
+function riavviaSessione() {
+    if (confirm("Vuoi riavviare la sessione?")) {
+        let n = sessionPool.length;
+        let m = MAX_TIME_SECONDS / 60;
+        let f = isExamMode;
+        clearInterval(timerInterval);
+        distruggiStatoSessione();
+        preparaSessione(n, m, f);
+    }
+}
+
+function tornaAllaHome() {
+    if (confirm("Tornare alla Home?")) {
+        clearInterval(timerInterval);
+        distruggiStatoSessione();
+        location.reload();
+    }
+}
+
 function startTimer() {
     clearInterval(timerInterval);
+    aggiornaSchermoTimer();
     timerInterval = setInterval(() => {
         timeLeft--;
-        let m = Math.floor(timeLeft / 60);
-        let s = timeLeft % 60;
-        document.getElementById('timer').innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-        if(timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO SCADUTO"); }
+        aggiornaSchermoTimer();
+        salvaStatoSessione();
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            fineSessione("TEMPO ESAURITO");
+        }
     }, 1000);
 }
 
 function caricaDomanda() {
-    let qIdx = sessionPool[sessionIdx];
-    let q = databaseQuiz[qIdx];
+    if (sessionIdx >= sessionPool.length) {
+        fineSessione("COMPLETATO");
+        return;
+    }
+    document.getElementById('total-q-count').innerText = sessionPool.length;
+    const qIdx = sessionPool[sessionIdx];
+    domandaCorrente = databaseQuiz[qIdx];
     document.getElementById('current-q-idx').innerText = sessionIdx + 1;
-    document.getElementById('materia-label').innerText = q.materia;
-    document.getElementById('question-text').innerText = q.q;
+    document.getElementById('progress-fill').style.width = ((sessionIdx / sessionPool.length) * 100) + "%";
+    
     document.getElementById('explanation-box').style.display = 'none';
     document.getElementById('next-btn').style.display = 'none';
-
-    let cont = document.getElementById('options-container');
-    cont.innerHTML = '';
     
-    q.options.forEach((opt, i) => {
-        let div = document.createElement('div');
+    document.getElementById('materia-label').innerText = domandaCorrente.materia || "Generale";
+    document.getElementById('question-text').innerText = domandaCorrente.q;
+    
+    const container = document.getElementById('options-container');
+    container.innerHTML = '';
+    
+    domandaCorrente.options.forEach((opt, i) => {
+        const div = document.createElement('div');
         div.className = 'option';
         div.innerText = opt;
-        div.onclick = () => {
-            document.querySelectorAll('.option').forEach(o => o.onclick = null);
-            let isCorrect = (i === q.a);
-            sessionAnswers[sessionIdx] = isCorrect;
-            if(isCorrect) div.classList.add('correct');
-            else { div.classList.add('wrong'); cont.children[q.a].classList.add('correct'); }
-            document.getElementById('explanation-box').innerText = q.e;
-            document.getElementById('explanation-box').style.display = 'block';
-            document.getElementById('next-btn').style.display = 'block';
-        };
-        cont.appendChild(div);
+        div.onclick = () => controllaRisposta(i, div);
+        container.appendChild(div);
     });
+}
+
+function controllaRisposta(index, element) {
+    const opzioni = document.querySelectorAll('.option');
+    opzioni.forEach(o => o.onclick = null);
+    
+    let isCorrect = (index === domandaCorrente.a);
+    if (isCorrect) {
+        element.classList.add('correct');
+    } else {
+        element.classList.add('wrong');
+        opzioni[domandaCorrente.a].classList.add('correct');
+    }
+    
+    sessionAnswers[sessionIdx] = isCorrect;
+    
+    if (!isExamMode) {
+        const qIdx = sessionPool[sessionIdx];
+        if (!domandeViste.includes(qIdx)) {
+            domandeViste.push(qIdx);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
+        }
+    }
+    salvaStatoSessione();
+    
+    document.getElementById('explanation-box').innerHTML = `<strong>Spiegazione:</strong><br>${domandaCorrente.e}`;
+    document.getElementById('explanation-box').style.display = 'block';
+    document.getElementById('next-btn').style.display = 'block';
 }
 
 function prossimaDomanda() {
     sessionIdx++;
-    if(sessionIdx < sessionPool.length) caricaDomanda();
-    else fineSessione("COMPLETATO");
+    salvaStatoSessione();
+    caricaDomanda();
 }
 
 function fineSessione(reason) {
     clearInterval(timerInterval);
+    distruggiStatoSessione();
     let esatte = sessionAnswers.filter(a => a === true).length;
     let perc = ((esatte / sessionPool.length) * 100).toFixed(1);
     let idoneo = perc >= 85;
-    
+
     document.getElementById('quiz-container').innerHTML = `
-        <h2 style="color:${idoneo ? '#27ae60' : '#c0392b'}">${idoneo ? 'IDONEO' : 'NON IDONEO'}</h2>
-        <p>Punteggio: ${esatte}/${sessionPool.length} (${perc}%)</p>
-        <p>Soglia minima: 85%</p>
-        <button class="btn-start" onclick="location.reload()">Torna alla Home</button>
+        <div class="results-header">
+            <h2 class="results-status ${idoneo ? 'status-pass' : 'status-fail'}">${idoneo ? 'IDONEO' : 'NON IDONEO'}</h2>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-label">Punteggio</div><div class="metric-value">${esatte}/${sessionPool.length}</div></div>
+            <div class="metric-card"><div class="metric-label">Accuratezza</div><div class="metric-value">${perc}%</div></div>
+            <div class="metric-card"><div class="metric-label">Soglia</div><div class="metric-value">85%</div></div>
+        </div>
+        <button class="btn-start" onclick="location.reload()">TORNA ALLA HOME</button>
     `;
 }
 </script>
