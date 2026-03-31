@@ -193,10 +193,74 @@
 </div>
 
 <script>
+const databaseQuiz = [
+    // --- DIRITTO AMMINISTRATIVO E TRASPARENZA ---
+    { "q": "Il responsabile del procedimento (L. 241/90) valuta i requisiti. L'organo competente per l'adozione finale:", "options": ["Deve sempre attenersi alle risultanze, senza eccezioni.", "Può discostarsi, ma deve indicarne la motivazione nel provvedimento finale.", "Può discostarsi liberamente senza obbligo di motivazione formale.", "Non può adottare il provvedimento se differisce dalla valutazione."], "a": 1, "e": "Art. 6 L.241/90. Chi firma può ribaltare l'istruttoria, ma deve assumersene la responsabilità motivando il perché. Niente automatismi.", "materia": "Diritto Amministrativo" },
+    { "q": "Se la PA impiega più del dovuto a concludere un procedimento, il privato:", "options": ["Ha diritto automatico al risarcimento del danno per il ritardo.", "Ha diritto a un indennizzo, ma il risarcimento del danno richiede la prova dell'ingiustizia e del dolo/colpa.", "Non ha alcun diritto economico se il provvedimento finale è sfavorevole.", "Vede accolta la sua istanza tramite silenzio-assenso in ogni caso."], "a": 1, "e": "Risarcimento richiede la prova del danno ingiusto. L'indennizzo è invece automatico per il mero ritardo, ma le cifre sono irrisorie.", "materia": "Diritto Amministrativo" },
+    { "q": "L'annullamento d'ufficio (Art. 21-nonies) di un'autorizzazione illegittima ha efficacia:", "options": ["Ex nunc (dalla data di adozione dell'annullamento).", "Ex tunc (retroattiva), travolgendo gli effetti già prodotti.", "Condizionata all'approvazione del TAR.", "Esclusivamente per il futuro, per tutelare il legittimo affidamento."], "a": 1, "e": "L'annullamento cancella l'atto fin dall'origine (ex tunc). La revoca (Art. 21-quinquies) agisce per il futuro (ex nunc). Se li confondi ai quiz, sei fuori.", "materia": "Diritto Amministrativo" },
+    { "q": "L'accordo integrativo del provvedimento (Art. 11 L.241/90):", "options": ["Elimina la necessità di adottare il provvedimento finale.", "Serve a determinare il contenuto discrezionale del provvedimento, che va comunque adottato.", "È ammissibile solo nei procedimenti ad istanza di parte.", "Può derogare liberamente ai diritti dei terzi."], "a": 1, "e": "Integrativo = si accordano sul contenuto, ma la PA deve comunque emanare l'atto finale. Sostitutivo = l'accordo prende il posto dell'atto.", "materia": "Diritto Amministrativo" },
+    { "q": "Un cittadino richiede un accesso civico semplice per un dato non pubblicato. La PA non risponde in 30 giorni. Che succede?", "options": ["Si forma il silenzio-diniego impugnabile al TAR.", "Si forma il silenzio-assenso.", "Il cittadino può ricorrere al titolare del potere sostitutivo.", "Il cittadino deve presentare istanza FOIA."], "a": 2, "e": "In caso di inerzia sull'accesso civico semplice, ci si rivolge al titolare del potere sostitutivo (di solito il RPCT).", "materia": "Trasparenza" },
+    { "q": "La comunicazione di avvio del procedimento (Art. 7) non è obbligatoria per:", "options": ["Atti normativi, atti amministrativi generali, di pianificazione e programmazione.", "Provvedimenti sanzionatori.", "Procedimenti a istanza di parte che si concludono positivamente.", "Procedimenti complessi che durano più di 90 giorni."], "a": 0, "e": "Art. 13 L.241/90. Gli atti generali e normativi (es. bandi) non richiedono l'avviso individuale. Immagina mandare una raccomandata a 60 milioni di italiani.", "materia": "Diritto Amministrativo" },
+    { "q": "Il provvedimento vincolato adottato omettendo la comunicazione di avvio del procedimento è:", "options": ["Sempre annullabile per violazione del contraddittorio.", "Non annullabile se la PA dimostra che il contenuto non poteva essere diverso.", "Nullo per mancanza di un elemento essenziale.", "Irregolare ma intoccabile."], "a": 1, "e": "Dequotazione dei vizi formali. Se l'atto è vincolato e il risultato era obbligato, annullarlo per un vizio di forma è inutile.", "materia": "Diritto Amministrativo" },
+    { "q": "Conferenza dei servizi istruttoria. La sua indizione è:", "options": ["Sempre obbligatoria quando sono coinvolte due amministrazioni.", "Facoltativa, qualora sia opportuno effettuare un esame contestuale degli interessi.", "Obbligatoria solo se si devono acquisire intese o nulla osta.", "Vietata se il procedimento dura meno di 30 giorni."], "a": 1, "e": "Istruttoria = Facoltativa (si valutano interessi). Decisoria = Obbligatoria (servono nulla osta per chiudere).", "materia": "Diritto Amministrativo" },
+    { "q": "Un accordo sostitutivo stipulato in forma orale per estrema urgenza è:", "options": ["Annullabile entro 60 giorni.", "Valido, se l'emergenza è certificata dal RUP.", "Radicalmente nullo, senza eccezioni.", "Soggetto a sanatoria entro 30 giorni."], "a": 2, "e": "La forma scritta negli accordi è ad substantiam (pena nullità). L'urgenza non giustifica l'ignoranza.", "materia": "Diritto Amministrativo" },
+    { "q": "Nella SCIA, in caso di dichiarazioni mendaci, la PA può intervenire:", "options": ["Entro un limite massimo di 60 giorni.", "Entro 12 mesi, limite dell'annullamento d'ufficio.", "Anche oltre i 12 mesi previsti per l'annullamento d'ufficio.", "Mai, ma il privato risponde penalmente."], "a": 2, "e": "Art. 21-nonies, co. 2-bis. Se c'è falso accertato penalmente, il limite dei 12 mesi salta. La PA ti blocca quando vuole.", "materia": "Diritto Amministrativo" },
+    { "q": "Il diniego al FOIA per tutelare interessi commerciali di un'azienda:", "options": ["È assoluto.", "Scatta solo se l'azienda si oppone entro 10 giorni.", "Richiede la prova di un pregiudizio concreto alla tutela di tale interesse.", "Non è previsto per le aziende che operano con la PA."], "a": 2, "e": "I limiti relativi del FOIA richiedono sempre il 'test del pregiudizio concreto'. Niente automatismi.", "materia": "Trasparenza" },
+    { "q": "Il vizio di 'eccesso di potere' colpisce un provvedimento:", "options": ["Adottato in assenza assoluta di una norma attributiva del potere.", "Emanato da un organo appartenente a un ente diverso.", "Vincolato, in cui il dirigente ha applicato male la legge.", "Discrezionale, ma viziato da illogicità o travisamento dei fatti."], "a": 3, "e": "L'eccesso di potere è la 'malattia' della discrezionalità. Non esiste negli atti vincolati.", "materia": "Diritto Amministrativo" },
+    { "q": "Il D.P.R. 445/2000 (Autocertificazione) vieta le dichiarazioni sostitutive per:", "options": ["Titoli di studio e qualifiche.", "Certificati medici, sanitari e veterinari.", "Stato di famiglia e residenza.", "Casellario giudiziale."], "a": 1, "e": "Non puoi autocertificare la tua salute fisica o mentale. Serve un medico. Punto.", "materia": "Diritto Amministrativo" },
+    { "q": "La Nullità del provvedimento (Art. 21-septies) può essere eccepita:", "options": ["Solo entro 60 giorni.", "Solo dal controinteressato.", "Senza limiti di tempo (imprescrittibile) e rilevata d'ufficio dal giudice.", "Solo per vizi formali."], "a": 2, "e": "La nullità è un vizio radicale. L'atto è carta straccia. Si può far valere sempre e il giudice può rilevarla da solo.", "materia": "Diritto Amministrativo" },
+    { "q": "È possibile usare l'accesso documentale per visionare atti preparatori di un bando non pubblicato?", "options": ["Sì, per trasparenza.", "No, è escluso per atti in corso di formazione.", "Solo dai sindacati.", "Sì, oscurando i criteri."], "a": 1, "e": "L'Art. 24 esclude l'accesso per atti in corso di formazione per tutelare la serenità della PA.", "materia": "Diritto Amministrativo" },
+
+    // --- NUOVO CODICE APPALTI (D.Lgs 36/2023) ---
+    { "q": "Il 'Principio del Risultato' stabilisce che la concorrenza:", "options": ["È il fine ultimo di ogni procedura.", "È un mezzo funzionale a conseguire il miglior risultato possibile.", "Può essere sacrificata in caso di calamità.", "Prevale sulla tempestività."], "a": 1, "e": "Cambio di paradigma: la concorrenza non è più un feticcio, ma uno strumento per ottenere l'opera veloce e bene.", "materia": "Codice Appalti" },
+    { "q": "Il soccorso istruttorio integrativo è ammesso per sanare:", "options": ["La mancanza dell'offerta economica se il RUP concorda.", "Le carenze dell'offerta tecnica, entro 5 giorni.", "Le carenze amministrative, ma mai dell'offerta tecnica ed economica.", "Qualsiasi documento, pagando una sanzione."], "a": 2, "e": "L'offerta tecnica ed economica sono la 'linea rossa'. Se le sani, violi la par condicio.", "materia": "Codice Appalti" },
+    { "q": "Affidamento diretto per lavori: qual è l'attuale soglia massima?", "options": ["40.000 euro.", "150.000 euro.", "500.000 euro.", "1.000.000 di euro."], "a": 1, "e": "Il D.Lgs 36/2023 ha stabilizzato la soglia lavori per affidamento diretto a 150.000 euro.", "materia": "Codice Appalti" },
+    { "q": "Il subappalto 'a cascata' nel nuovo Codice:", "options": ["È vietato in modo assoluto.", "È consentito, ma la stazione appaltante può limitarlo motivando.", "È obbligatorio per lavori ad alta intensità.", "È ammesso solo con attestazione SOA."], "a": 1, "e": "La UE ci ha bacchettati sui divieti assoluti. Ora è ammesso di default, ma la PA può limitarlo motivando.", "materia": "Codice Appalti" },
+    { "q": "Offerte anomale, quali giustificazioni causano esclusione immediata?", "options": ["Efficienza del metodo di costruzione.", "Ribassi sui costi della sicurezza e sui minimi salariali inderogabili.", "Possesso di macchinari esclusivi.", "Aiuti di Stato legittimi."], "a": 1, "e": "Sicurezza e salari minimi non si toccano. Su quelli non si fa lo sconto.", "materia": "Codice Appalti" },
+    { "q": "Negli appalti sotto soglia, la 'Rotazione degli inviti':", "options": ["Vieta il reinvito per 5 anni.", "Impedisce l'invito al contraente uscente per due affidamenti consecutivi.", "Si applica solo alle procedure aperte.", "È derogabile dal Prefetto."], "a": 1, "e": "Il contraente uscente salta un giro. Regola base per evitare monopoli nel sottosoglia.", "materia": "Codice Appalti" },
+    { "q": "Revisione Prezzi (Art. 60): scatta obbligatoriamente se la variazione supera il:", "options": ["2% dell'importo.", "5% dell'importo, e si riconosce l'80% dell'eccedenza.", "10% dell'importo, riconoscendo il 100%.", "15% per i materiali da costruzione."], "a": 1, "e": "Oltre il 5% di variazione la PA copre l'80% dell'eccedenza. È un rischio condiviso.", "materia": "Codice Appalti" },
+    { "q": "La garanzia provvisoria è di regola pari al:", "options": ["1% elevabile al 2%.", "2% del valore stimato.", "5% in tutti i lavori.", "10% del prezzo offerto."], "a": 1, "e": "La provvisoria è il 2% (riducibile per le PMI). La definitiva è il 10%.", "materia": "Codice Appalti" },
+    { "q": "Lo Stand-still period (blocco stipula post-aggiudicazione) è di:", "options": ["10 giorni.", "35 giorni dall'invio dell'ultima comunicazione.", "60 giorni.", "120 giorni."], "a": 1, "e": "35 giorni per permettere ricorsi al TAR prima che si firmino i contratti.", "materia": "Codice Appalti" },
+    { "q": "Il Fascicolo Virtuale dell'Operatore Economico (FVOE):", "options": ["È facoltativo sotto i 40.000 euro.", "Sostituisce il DGUE.", "È lo strumento per la verifica telematica dei requisiti da parte della PA.", "Contiene solo il casellario giudiziale."], "a": 2, "e": "Digitalizzazione pura: il FVOE è la 'cartella clinica' dell'impresa. Vietato chiedere carte inutili.", "materia": "Codice Appalti" },
+
+    // --- PUBBLICO IMPIEGO E ANTICORRUZIONE ---
+    { "q": "Il 'Pantouflage' vieta ai dipendenti con poteri autoritativi di lavorare per i privati destinatari per:", "options": ["1 anno dalla cessazione.", "3 anni dalla cessazione.", "5 anni dalla cessazione.", "Sempre (divieto a vita)."], "a": 1, "e": "3 anni di 'quarantena' per evitare che il dipendente faccia favori sperando in un'assunzione futura.", "materia": "Pubblico Impiego" },
+    { "q": "L'incompatibilità (D.Lgs 39/2013) si verifica quando:", "options": ["Non si può ricevere l'incarico per condanne.", "Si deve scegliere, a pena decadenza, tra l'incarico e un'altra carica.", "Il dirigente in pensione viene riassunto.", "Si rifiuta un trasferimento."], "a": 1, "e": "Inconferibilità = non te lo do. Incompatibilità = te lo do, ma devi dimetterti dall'altro lavoro entro 15 giorni.", "materia": "Pubblico Impiego" },
+    { "q": "Whistleblowing: Quale affermazione è FALSA?", "options": ["L'identità non può essere rivelata senza consenso.", "C'è protezione da licenziamento ritorsivo.", "Il segnalante ha diritto a un premio del 10% del danno recuperato.", "La tutela si estende ai consulenti."], "a": 2, "e": "In Italia NON ci sono taglie per chi denuncia (modello USA). Lo fai per etica, non per lucro.", "materia": "Anticorruzione" },
+    { "q": "Codice di Comportamento sui regali:", "options": ["Vieta regali in modo assoluto.", "Consente regali d'uso di modico valore, indicativamente sotto i 150 euro.", "Permette somme di denaro sotto i 50 euro.", "È derogabile dai dirigenti."], "a": 1, "e": "Regola dei 150 euro. Il panettone a Natale si può prendere (se d'uso), la bustarella o la vacanza no.", "materia": "Pubblico Impiego" },
+    { "q": "Licenziamento disciplinare (Art. 55-quater T.U.P.I.):", "options": ["Serve approvazione del sindacato.", "Tra le cause c'è la falsa attestazione della presenza in servizio.", "Obbligatorio ricorrere alla conciliazione.", "Vietato se si restituisce lo stipendio."], "a": 1, "e": "Furbetti del cartellino? Licenziamento senza preavviso. Nessuna clemenza.", "materia": "Pubblico Impiego" },
+    { "q": "Il RPCT in un Comune è, di norma:", "options": ["Il Sindaco.", "Il Segretario Comunale.", "Il Prefetto.", "Il Presidente del Consiglio."], "a": 1, "e": "Negli Enti Locali il RPCT coincide col Segretario Generale dell'ente, figura di garanzia e vertice tecnico.", "materia": "Anticorruzione" },
+    { "q": "Il PTPCT (oggi nel PIAO) viene adottato da:", "options": ["Organo di indirizzo politico (es. Giunta).", "RPCT.", "OIV.", "ANAC."], "a": 0, "e": "Il tecnico (RPCT) lo scrive, ma la responsabilità dell'adozione è politica (Giunta).", "materia": "Anticorruzione" },
+    { "q": "Le sanzioni disciplinari più gravi della sospensione fino a 10 giorni competono a:", "options": ["Dirigente della struttura.", "Ufficio Procedimenti Disciplinari (UPD).", "Giudice del Lavoro.", "Ispettorato della Funzione Pubblica."], "a": 1, "e": "Sopra i 10 giorni, la competenza va all'UPD per garantire imparzialità.", "materia": "Pubblico Impiego" },
+    { "q": "L'accesso civico semplice si esercita su:", "options": ["Qualsiasi documento detenuto dalla PA.", "Dati e documenti che la PA ha l'obbligo giuridico di pubblicare.", "Fascicoli sanitari.", "Bozze interne."], "a": 1, "e": "L'accesso civico 'semplice' rimedia alla pigrizia PA: doveva pubblicare online e non lo ha fatto. Tu ordini di farlo.", "materia": "Trasparenza" },
+    { "q": "Conflitto di interessi potenziale su una pratica, cosa fare?", "options": ["Proseguire se si è imparziali.", "Astenersi e comunicarlo al dirigente.", "Redigere liberatoria.", "Chiedere autorizzazione al privato."], "a": 1, "e": "Se c'è puzza di conflitto, molli il fascicolo e avvisi il capo. Zero discrezionalità.", "materia": "Pubblico Impiego" },
+
+    // --- LOGICA ---
+    { "q": "Sillogismo: 'Se piove, prendo l'ombrello'. Oggi non ho l'ombrello. Ne deduco logicamente che:", "options": ["Oggi piove.", "Oggi non piove.", "Oggi c'è il sole o il vento.", "Ieri ha piovuto."], "a": 1, "e": "Modus Tollens. Se A implica B, e non ho B, allora non c'è nemmeno A.", "materia": "Logica" },
+    { "q": "Tutti i cani abbaiano. Fido abbaia. Quindi:", "options": ["Fido è un cane.", "Fido potrebbe non essere un cane.", "Tutti quelli che abbaiano sono cani.", "Fido è un gatto."], "a": 1, "e": "Errore logico (affermazione del conseguente). Non si dice che *solo* i cani abbaiano.", "materia": "Logica" },
+    { "q": "Serie numerica: 2, 6, 12, 20, 30... Il prossimo è:", "options": ["38", "40", "42", "44"], "a": 2, "e": "La differenza aumenta di 2: +4, +6, +8, +10. Prossimo: +12. 30+12 = 42.", "materia": "Logica" },
+    { "q": "L'intruso in questa serie: Cattedra, Lavagna, Calamita, Gesso, Registro.", "options": ["Cattedra", "Lavagna", "Calamita", "Registro"], "a": 2, "e": "Tutti oggetti didattici, tranne la calamita (uso generico/scientifico).", "materia": "Logica" },
+    { "q": "'Per superare il concorso RIPAM è necessario iscriversi'. Questo significa che:", "options": ["Chi si è iscritto supererà il concorso.", "Chi supera il concorso si è sicuramente iscritto.", "Chi non si iscrive potrebbe superarlo in casi eccezionali.", "L'iscrizione garantisce il posto."], "a": 1, "e": "Senza iscrizione niente concorso. Ma iscriversi non basta per vincere. Quindi chi ha vinto si era per forza iscritto.", "materia": "Logica" },
+
+    // --- INFORMATICA (CAD) ---
+    { "q": "Cos'è il 'Domicilio Digitale' (CAD)?", "options": ["L'indirizzo IP domestico.", "L'indirizzo PEC o servizio elettronico certificato valido ai fini legali.", "Il sito web del Comune.", "La residenza fiscale online."], "a": 1, "e": "Domicilio Digitale = PEC (o INAD). Serve a mandarti comunicazioni con valore legale.", "materia": "Informatica" },
+    { "q": "La Firma Digitale si basa su un sistema di chiavi:", "options": ["Simmetriche (stessa chiave apre/chiude).", "Asimmetriche (chiave pubblica e privata).", "A rotazione mensile.", "Centralizzate al Ministero."], "a": 1, "e": "Asimmetrica. Tu firmi con la Privata, il mondo verifica con la Pubblica.", "materia": "Informatica" },
+    { "q": "SPID Livello 2 richiede:", "options": ["Solo username e password.", "Username, password e un generatore di codici OTP.", "Smart card hardware.", "Riconoscimento facciale."], "a": 1, "e": "Livello 1: Solo pass. Livello 2: Pass + OTP (usato per Inps, ecc). Livello 3: Smart card/token.", "materia": "Informatica" },
+    { "q": "Se invio una PEC a un indirizzo email ordinario (NON PEC):", "options": ["Non parte dal server.", "Viene consegnata, ma non si ottiene la ricevuta di avvenuta consegna con valore legale.", "Ha lo stesso valore legale della Raccomandata.", "Viene cestinata in automatico."], "a": 1, "e": "Da PEC a Mail Normale NON c'è ricevuta di consegna certificata. Il valore probatorio è castrato.", "materia": "Informatica" },
+    { "q": "Formato richiesto da AgID per conservazione a lungo termine inalterabile?", "options": [".docx", ".pdf/A", ".jpeg", ".txt"], "a": 1, "e": "Il PDF/A incapsula font e colori. Tra 50 anni il documento sarà identico.", "materia": "Informatica" },
+
+    // --- INGLESE B2 ---
+    { "q": "Complete: 'If the PA had published the notice earlier, more candidates _______ applied.'", "options": ["would have", "will have", "had", "have"], "a": 0, "e": "Third Conditional (ipotesi irreale nel passato): If + Past Perfect, would have + Past Participle.", "materia": "Inglese" },
+    { "q": "Preposition: 'The regulations are based _______ European directives.'", "options": ["in", "at", "on", "to"], "a": 2, "e": "Il verbo 'to base' richiede sempre la preposizione 'on'.", "materia": "Inglese" },
+    { "q": "English equivalent for 'Bando di gara'?", "options": ["Contract draft", "Call for tenders", "Public invoice", "Settlement agreement"], "a": 1, "e": "'Call for tenders' è il termine tecnico europeo per Bando di Gara.", "materia": "Inglese" },
+    { "q": "Fill in: 'The manager decided to _______ the meeting because the speaker was ill.'", "options": ["call off", "put up", "bring about", "take over"], "a": 0, "e": "Phrasal verb 'call off' significa annullare/cancellare.", "materia": "Inglese" },
+    { "q": "Which sentence is grammatically correct?", "options": ["He suggested to implement the software.", "He suggested implementing the software.", "He suggested implement the software.", "He suggest implementing the software."], "a": 1, "e": "Il verbo 'suggest' seguito direttamente da un altro verbo richiede la forma in -ing (Gerund).", "materia": "Inglese" }
+];
+
 const STORAGE_KEY = 'concorso_progres_2026';
 const SESSION_KEY = 'concorso_active_session_2026';
 
-let MAX_TIME_SECONDS = 0; 
+let MAX_TIME_SECONDS = 0;
 let domandeViste = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let sessionPool = [];
 let sessionIdx = 0;
@@ -228,23 +292,26 @@ function inizializzaMaterie() {
 inizializzaMaterie();
 
 function salvaStatoSessione() {
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ 
-        pool: sessionPool, 
-        idx: sessionIdx, 
-        answers: sessionAnswers, 
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+        pool: sessionPool,
+        idx: sessionIdx,
+        answers: sessionAnswers,
         time: timeLeft,
         maxTime: MAX_TIME_SECONDS,
         examMode: isExamMode
     }));
 }
 
-function distruggiStatoSessione() { localStorage.removeItem(SESSION_KEY); }
+function distruggiStatoSessione() {
+    localStorage.removeItem(SESSION_KEY);
+}
 
 function formatTime(seconds) {
     let m = Math.floor(seconds / 60);
     let s = seconds % 60;
     return `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
 }
+
 function aggiornaSchermoTimer() {
     document.getElementById('timer').innerText = formatTime(timeLeft);
 }
@@ -252,16 +319,16 @@ function aggiornaSchermoTimer() {
 function controllaEAvviaSessione() {
     let savedSession = JSON.parse(localStorage.getItem(SESSION_KEY));
     if (savedSession && savedSession.pool && savedSession.time > 0 && savedSession.idx < savedSession.pool.length) {
-        sessionPool = savedSession.pool; 
-        sessionIdx = savedSession.idx; 
-        sessionAnswers = savedSession.answers || []; 
+        sessionPool = savedSession.pool;
+        sessionIdx = savedSession.idx;
+        sessionAnswers = savedSession.answers || [];
         timeLeft = parseInt(savedSession.time, 10);
         MAX_TIME_SECONDS = savedSession.maxTime || (25 * 60);
         isExamMode = savedSession.examMode || false;
         
-        document.getElementById('home-page').style.display = 'none'; 
+        document.getElementById('home-page').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'block';
-        startTimer(); 
+        startTimer();
         caricaDomanda();
     } else {
         document.getElementById('home-page').style.display = 'block';
@@ -272,38 +339,37 @@ controllaEAvviaSessione();
 function preparaSessione(numQuestions, timeMinutes, modeFlag) {
     isExamMode = modeFlag;
     let poolDisponibili = [];
-
+    
     if (isExamMode) {
         poolDisponibili = databaseQuiz.map((q, i) => i);
     } else {
         poolDisponibili = databaseQuiz.map((q, i) => i).filter(i => !domandeViste.includes(i));
         if (poolDisponibili.length === 0) {
             alert("Complimenti! Hai esaurito le domande inedite del Test Sprint. L'archivio verrà resettato per ricominciare.");
-            domandeViste = []; 
+            domandeViste = [];
             localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
-            location.reload(); 
+            location.reload();
             return;
         }
     }
-
-    poolDisponibili.sort(() => Math.random() - 0.5);
     
+    poolDisponibili.sort(() => Math.random() - 0.5);
     sessionPool = [];
     let bufferMaterie = [];
     let targetSize = Math.min(numQuestions, poolDisponibili.length);
-
+    
     while (sessionPool.length < targetSize) {
         let foundIdx = poolDisponibili.findIndex(qIdx => {
             let mat = databaseQuiz[qIdx].materia || "Materia Generale";
             return !bufferMaterie.includes(mat);
         });
-
+        
         if (foundIdx !== -1) {
             let qIdx = poolDisponibili[foundIdx];
             sessionPool.push(qIdx);
             let mat = databaseQuiz[qIdx].materia || "Materia Generale";
             bufferMaterie.push(mat);
-            if (bufferMaterie.length > 3) bufferMaterie.shift(); 
+            if (bufferMaterie.length > 3) bufferMaterie.shift();
             poolDisponibili.splice(foundIdx, 1);
         } else {
             let qIdx = poolDisponibili.shift();
@@ -313,16 +379,16 @@ function preparaSessione(numQuestions, timeMinutes, modeFlag) {
             if (bufferMaterie.length > 3) bufferMaterie.shift();
         }
     }
-
-    sessionIdx = 0; 
-    sessionAnswers = []; 
-    MAX_TIME_SECONDS = timeMinutes * 60;
-    timeLeft = MAX_TIME_SECONDS; 
     
+    sessionIdx = 0;
+    sessionAnswers = [];
+    MAX_TIME_SECONDS = timeMinutes * 60;
+    timeLeft = MAX_TIME_SECONDS;
     salvaStatoSessione();
-    document.getElementById('home-page').style.display = 'none'; 
+    
+    document.getElementById('home-page').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'block';
-    startTimer(); 
+    startTimer();
     caricaDomanda();
 }
 
@@ -331,50 +397,73 @@ function riavviaSessione() {
         let currentModeQuestions = sessionPool.length;
         let currentModeMinutes = MAX_TIME_SECONDS / 60;
         let flag = isExamMode;
-        clearInterval(timerInterval); 
-        distruggiStatoSessione(); 
+        clearInterval(timerInterval);
+        distruggiStatoSessione();
         preparaSessione(currentModeQuestions, currentModeMinutes, flag);
     }
 }
 
 function tornaAllaHome() {
     if (confirm("Attenzione: Vuoi abbandonare la sessione e tornare al pannello principale?")) {
-        clearInterval(timerInterval); distruggiStatoSessione(); location.reload();
+        clearInterval(timerInterval);
+        distruggiStatoSessione();
+        location.reload();
     }
 }
 
 function startTimer() {
-    clearInterval(timerInterval); aggiornaSchermoTimer();
+    clearInterval(timerInterval);
+    aggiornaSchermoTimer();
     timerInterval = setInterval(() => {
-        timeLeft--; aggiornaSchermoTimer(); salvaStatoSessione();
-        if (timeLeft <= 0) { clearInterval(timerInterval); fineSessione("TEMPO ESAURITO"); }
+        timeLeft--;
+        aggiornaSchermoTimer();
+        salvaStatoSessione();
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            fineSessione("TEMPO ESAURITO");
+        }
     }, 1000);
 }
 
 function caricaDomanda() {
-    if (sessionIdx >= sessionPool.length) { fineSessione("VERIFICA COMPLETATA"); return; }
-    
+    if (sessionIdx >= sessionPool.length) {
+        fineSessione("VERIFICA COMPLETATA");
+        return;
+    }
     document.getElementById('total-q-count').innerText = sessionPool.length;
-    
-    const qIdx = sessionPool[sessionIdx]; domandaCorrente = databaseQuiz[qIdx];
+    const qIdx = sessionPool[sessionIdx];
+    domandaCorrente = databaseQuiz[qIdx];
     document.getElementById('current-q-idx').innerText = sessionIdx + 1;
     document.getElementById('progress-fill').style.width = ((sessionIdx / sessionPool.length) * 100) + "%";
-    document.getElementById('explanation-box').style.display = 'none'; document.getElementById('next-btn').style.display = 'none';
+    
+    document.getElementById('explanation-box').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    
     document.getElementById('materia-label').innerText = domandaCorrente.materia || "Materia Generale";
     document.getElementById('question-text').innerText = domandaCorrente.q;
     
-    const container = document.getElementById('options-container'); container.innerHTML = '';
-    let opzioniMix = domandaCorrente.options.map((testo, idx) => ({ testo: testo, isCorrect: (idx === domandaCorrente.a) }));
+    const container = document.getElementById('options-container');
+    container.innerHTML = '';
+    
+    let opzioniMix = domandaCorrente.options.map((testo, idx) => ({
+        testo: testo,
+        isCorrect: (idx === domandaCorrente.a)
+    }));
+    
     if (!sessionAnswers[sessionIdx]) opzioniMix.sort(() => Math.random() - 0.5);
     domandaCorrente.indiceCorrettoAttuale = opzioniMix.findIndex(o => o.isCorrect);
-
+    
     opzioniMix.forEach((opt, i) => {
-        const div = document.createElement('div'); div.className = 'option'; div.innerText = opt.testo;
-        div.onclick = () => controllaRisposta(i, div); container.appendChild(div);
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.innerText = opt.testo;
+        div.onclick = () => controllaRisposta(i, div);
+        container.appendChild(div);
     });
-
+    
     if (sessionAnswers[sessionIdx] !== undefined) {
-        const opzioni = document.querySelectorAll('.option'); opzioni.forEach(o => o.onclick = null);
+        const opzioni = document.querySelectorAll('.option');
+        opzioni.forEach(o => o.onclick = null);
         let ans = sessionAnswers[sessionIdx];
         if (ans.correct) {
             opzioni[ans.clickedIndex].classList.add('correct');
@@ -383,106 +472,132 @@ function caricaDomanda() {
             opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
         }
         document.getElementById('explanation-box').innerHTML = `<strong>Riferimento Normativo/Dottrinale:</strong><br>${domandaCorrente.e}`;
-        document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
+        document.getElementById('explanation-box').style.display = 'block';
+        document.getElementById('next-btn').style.display = 'block';
     }
 }
 
 function controllaRisposta(index, element) {
-    const opzioni = document.querySelectorAll('.option'); opzioni.forEach(o => o.onclick = null);
+    const opzioni = document.querySelectorAll('.option');
+    opzioni.forEach(o => o.onclick = null);
+    
     let mat = domandaCorrente.materia || "Materia Generale";
     let isCorrect = (index === domandaCorrente.indiceCorrettoAttuale);
-
+    
     if (isCorrect) {
         element.classList.add('correct');
     } else {
-        element.classList.add('wrong'); 
-        opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct'); 
+        element.classList.add('wrong');
+        opzioni[domandaCorrente.indiceCorrettoAttuale].classList.add('correct');
     }
-
-    sessionAnswers[sessionIdx] = { correct: isCorrect, materia: mat, clickedIndex: index };
+    
+    sessionAnswers[sessionIdx] = {
+        correct: isCorrect,
+        materia: mat,
+        clickedIndex: index
+    };
+    
     const qIdx = sessionPool[sessionIdx];
-    
-    if (!isExamMode && !domandeViste.includes(qIdx)) { 
-        domandeViste.push(qIdx); 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste)); 
+    if (!isExamMode && !domandeViste.includes(qIdx)) {
+        domandeViste.push(qIdx);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(domandeViste));
     }
-    
     salvaStatoSessione();
-
+    
     document.getElementById('explanation-box').innerHTML = `<strong>Riferimento Normativo/Dottrinale:</strong><br>${domandaCorrente.e}`;
-    document.getElementById('explanation-box').style.display = 'block'; document.getElementById('next-btn').style.display = 'block';
+    document.getElementById('explanation-box').style.display = 'block';
+    document.getElementById('next-btn').style.display = 'block';
 }
 
-function prossimaDomanda() { sessionIdx++; salvaStatoSessione(); caricaDomanda(); }
+function prossimaDomanda() {
+    sessionIdx++;
+    salvaStatoSessione();
+    caricaDomanda();
+}
 
 function fineSessione(reason) {
-    clearInterval(timerInterval); distruggiStatoSessione();
+    clearInterval(timerInterval);
+    distruggiStatoSessione();
     
     let timeUsed = MAX_TIME_SECONDS - timeLeft;
     let timeString = formatTime(timeUsed);
-
-    let totalQuestions = sessionPool.length; 
+    let totalQuestions = sessionPool.length;
     let sessionScore = sessionAnswers.filter(a => a && a.correct).length;
-    let percentage = (sessionScore / totalQuestions) * 100; 
+    
+    let percentage = (sessionScore / totalQuestions) * 100;
     let exactPercentage = parseFloat(percentage.toFixed(2));
     let passed = exactPercentage >= 85;
     
     let statusClass = passed ? 'status-pass' : 'status-fail';
     let valClass = passed ? 'pass' : 'fail';
     let statusText = passed ? 'IDONEITÀ ACCERTATA' : 'ESITO NEGATIVO';
-
-    let erroriMateria = {};
-    sessionAnswers.forEach(a => { if (a && !a.correct) erroriMateria[a.materia] = (erroriMateria[a.materia] || 0) + 1; });
     
-    let peggiorMateria = "Nessuna, esecuzione perfetta"; let maxErrori = 0;
-    for (const [mat, err] of Object.entries(erroriMateria)) { if (err > maxErrori) { maxErrori = err; peggiorMateria = mat; } }
-
+    let erroriMateria = {};
+    sessionAnswers.forEach(a => {
+        if (a && !a.correct) erroriMateria[a.materia] = (erroriMateria[a.materia] || 0) + 1;
+    });
+    
+    let peggiorMateria = "Nessuna, esecuzione perfetta";
+    let maxErrori = 0;
+    for (const [mat, err] of Object.entries(erroriMateria)) {
+        if (err > maxErrori) {
+            maxErrori = err;
+            peggiorMateria = mat;
+        }
+    }
+    
     const msgSuccesso = [
-        `I parametri indicano una preparazione strutturata. Tuttavia, si consiglia un approfondimento su <strong>${peggiorMateria}</strong> per blindare la graduatoria.`, 
+        `I parametri indicano una preparazione strutturata. Tuttavia, si consiglia un approfondimento su <strong>${peggiorMateria}</strong> per blindare la graduatoria.`,
         `Performance in linea con gli standard ministeriali richiesti. Consolidare la dottrina relativa a <strong>${peggiorMateria}</strong> eliminerà i margini di errore residui.`
     ];
-    
     const msgFallimento = [
-        `La soglia di sbarramento non è stata raggiunta. L'algoritmo segnala carenze critiche nell'ambito: <strong>${peggiorMateria}</strong>. È necessario un riallineamento teorico rigoroso.`, 
+        `La soglia di sbarramento non è stata raggiunta. L'algoritmo segnala carenze critiche nell'ambito: <strong>${peggiorMateria}</strong>. È necessario un riallineamento teorico rigoroso.`,
         `L'accuratezza espressa è insufficiente per il superamento della prova. Si rileva una sistematica difficoltà in <strong>${peggiorMateria}</strong>. Intervenire sul quadro normativo di riferimento.`
     ];
     
-    let feedbackCasuale = (sessionScore === totalQuestions) ? "Esecuzione impeccabile. Nessuna criticità rilevata nel quadro delle competenze testate." : (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
-    
-    let promoTesto = passed ? "BLINDA LA TUA PREPARAZIONE CON IL MANUALE OPERATIVO 2026 (69 PAGG.)" : "COLMA LE LACUNE TEORICHE: ACQUISISCI IL MANUALE OPERATIVO 2026 (69 PAGG.)";
+    let feedbackCasuale = (sessionScore === totalQuestions) ? 
+        "Esecuzione impeccabile. Nessuna criticità rilevata nel quadro delle competenze testate." :
+        (passed ? msgSuccesso[Math.floor(Math.random() * msgSuccesso.length)] : msgFallimento[Math.floor(Math.random() * msgFallimento.length)]);
 
     document.getElementById('quiz-container').innerHTML = `
         <div class="results-header">
-            <div class="results-title">Report di Valutazione Ufficiale</div>
+            <div class="results-title">Report di Valutazione Finale</div>
             <h2 class="results-status ${statusClass}">${statusText}</h2>
         </div>
         
         <div class="metrics-grid">
             <div class="metric-card">
+                <div class="metric-label">Punteggio</div>
+                <div class="metric-value ${valClass}">${sessionScore}/${totalQuestions}</div>
+                <div class="metric-sub">Risposte Esatte</div>
+            </div>
+            <div class="metric-card">
                 <div class="metric-label">Accuratezza</div>
                 <div class="metric-value ${valClass}">${exactPercentage}%</div>
+                <div class="metric-sub">Soglia Minima: 85%</div>
             </div>
             <div class="metric-card">
-                <div class="metric-label">Quesiti Esatti</div>
-                <div class="metric-value">${sessionScore}<span class="metric-sub">/${totalQuestions}</span></div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-label">Tempo Operativo</div>
-                <div class="metric-value">${timeString}</div>
+                <div class="metric-label">Tempo Impiegato</div>
+                <div class="metric-value" style="color: var(--accent);">${timeString}</div>
+                <div class="metric-sub">Esecuzione Rapida</div>
             </div>
         </div>
-        
+
         <div class="feedback-box">
-            <div class="feedback-title">Analisi Diagnostica</div>
+            <div class="feedback-title">Analisi Algoritmica delle Competenze</div>
             <div class="feedback-text">${feedbackCasuale}</div>
+            
+            ${!passed ? `
+            <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="promo-link-premium">
+                <span class="promo-highlight">⚠️ Azione Consigliata</span>
+                Le lacune rilevate rischiano di compromettere l'idoneità. Acquisisci il Manuale di Diritto Amministrativo e Codice Appalti per colmare immediatamente i deficit teorici.
+            </a>
+            ` : ''}
         </div>
-        
-        <button class="btn-start" style="margin-bottom: 20px;" onclick="location.reload()">NUOVA SESSIONE</button>
-        
-        <a href="https://toscano334.gumroad.com/l/nhrfnx" target="_blank" class="promo-link-premium">
-            <span class="promo-highlight">Risorsa Avanzata</span>
-            ${promoTesto}
-        </a>
+
+        <button class="btn-start" onclick="location.reload()" style="margin-top: 15px;">
+            CHIUDI E TORNA ALLA CENTRALE
+        </button>
     `;
 }
 </script>
