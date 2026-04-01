@@ -1104,11 +1104,81 @@ function fineSessione(reason) {
             ` : ''}
         </div>
 
-        <button class="btn-start" onclick="location.reload()" style="margin-top: 15px;">
-            CHIUDI E TORNA ALLA CENTRALE
+        
+        <button class="btn-start" onclick="salvaSessione(); mostraAnalisi()" style="margin-top: 15px; background: #27ae60 !important;">
+            🔍 RIVEDI TUTTE LE SPIEGAZIONI
         </button>
+        <button class="btn-start" onclick="location.reload()" style="margin-top: 10px; background: #444 !important;">
+            🏠 TORNA ALLA HOME
+        </button>
+    
     `;
 }
 </script>
+
+<style>
+    /* L'area del report: inizialmente nascosta con display:none */
+    #review-report-area { 
+        display: none; 
+        background: #000; 
+        padding: 25px; 
+        border-radius: 15px; 
+        border: 1px solid #333; 
+        margin-top: 20px;
+        color: #fff;
+    }
+    .card-errore { background: rgba(192, 57, 43, 0.1); border-left: 5px solid #c0392b; padding: 15px; margin-bottom: 15px; border-radius: 8px; text-align: left; }
+    .card-corretta { background: rgba(39, 174, 96, 0.1); border-left: 5px solid #27ae60; padding: 15px; margin-bottom: 15px; border-radius: 8px; text-align: left; }
+    .spiegazione-box { background: #111; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid #222; color: #ccc; font-size: 0.9em; }
+    .btn-master { background: #2980b9; color: white; border: none; padding: 15px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; }
+    .btn-master:hover { background: #3498db; }
+</style>
+
+<div id="review-report-area">
+    <h2 style="text-align:center; color:#2980b9;">ANALISI CHIRURGICA</h2>
+    <div id="lista-risultati"></div>
+    <button class="btn-master" onclick="location.reload()">TORNA ALLA HOME</button>
+</div>
+
+<script>
+// SALVATAGGIO PER DEBORA
+function salvaSessione() {
+    const data = {
+        pool: sessionPool,
+        answers: sessionAnswers,
+        time: new Date().toLocaleString()
+    };
+    localStorage.setItem('ULTIMO_TEST_MASTER', JSON.stringify(data));
+}
+
+// LA FUNZIONE CHE ACCENDE L'AREA NASCOSTA
+function mostraAnalisi() {
+    const lista = document.getElementById('lista-risultati');
+    lista.innerHTML = '';
+    
+    sessionPool.forEach((qIdx, index) => {
+        const q = databaseQuiz[qIdx];
+        const ans = sessionAnswers[index];
+        const esatta = (ans && ans.correct);
+        
+        const div = document.createElement('div');
+        div.className = esatta ? 'card-corretta' : 'card-errore';
+        div.innerHTML = `
+            <div style="font-weight:bold; margin-bottom:5px;">${index + 1}. ${q.q}</div>
+            <div style="font-size:0.85em;">Tua: <span style="color:${esatta?'#27ae60':'#c0392b'}">${ans ? q.options[ans.clickedIndex] : 'Non data'}</span></div>
+            <div style="font-size:0.85em; color:#27ae60;">Esatta: ${q.options[q.a]}</div>
+            <div class="spiegazione-box"><strong>Perché:</strong> ${q.e}</div>
+        `;
+        lista.appendChild(div);
+    });
+
+    // Scambio scena: Nascondi quiz e risultati, mostra Report
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('home-page').style.display = 'none';
+    document.getElementById('review-report-area').style.display = 'block';
+    window.scrollTo(0,0);
+}
+</script>
+
 </body>
 </html>
