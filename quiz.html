@@ -1090,6 +1090,8 @@ function prossimaDomanda() {
 }
 
 function fineSessione(reason) {
+    salvaSessione();
+
     clearInterval(timerInterval);
     distruggiStatoSessione();
     
@@ -1173,7 +1175,7 @@ function fineSessione(reason) {
         <button class="btn-start" onclick="salvaSessione(); mostraAnalisi()" style="margin-top: 15px; background: #27ae60 !important;">
             🔍 RIVEDI TUTTE LE SPIEGAZIONI
         </button>
-        <button class="btn-start" onclick="location.reload()" style="margin-top: 10px; background: #444 !important;">
+        <button class="btn-start" onclick="uscitaSicura()" style="margin-top: 10px; background: #444 !important;">
             🏠 TORNA ALLA HOME
         </button>
     
@@ -1243,6 +1245,130 @@ function mostraAnalisi() {
     document.getElementById('review-report-area').style.display = 'block';
     window.scrollTo(0,0);
 }
+</script>
+
+
+<style>
+    #review-report-area { display: none; background: #000; padding: 25px; border-radius: 15px; border: 1px solid #333; margin-top: 20px; color: #fff; max-width: 850px; width: 95%; box-shadow: 0 30px 60px rgba(0,0,0,0.9); margin-left: auto; margin-right: auto; }
+    .card-errore { background: rgba(192, 57, 43, 0.1); border-left: 5px solid #c0392b; padding: 15px; margin-bottom: 15px; border-radius: 8px; text-align: left; }
+    .card-corretta { background: rgba(39, 174, 96, 0.1); border-left: 5px solid #27ae60; padding: 15px; margin-bottom: 15px; border-radius: 8px; text-align: left; }
+    .spiegazione-box { background: #111; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid #222; color: #ccc; font-size: 0.9em; line-height: 1.5; }
+    .btn-master { background: #2980b9; color: white; border: none; padding: 15px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-master:hover { background: #3498db; }
+</style>
+
+<div id="review-report-area">
+    <h2 style="text-align:center; color:#2980b9; text-transform: uppercase; letter-spacing: 2px;">Analisi Chirurgica Errori</h2>
+    <div id="lista-risultati"></div>
+    <button class="btn-master" onclick="uscitaSicura()">🏠 TORNA ALLA HOME</button>
+</div>
+
+<script>
+// 1. SALVATAGGIO BLINDATO
+function salvaSessione() {
+    if(typeof sessionPool !== 'undefined' && sessionPool.length > 0) {
+        const data = {
+            pool: sessionPool,
+            answers: sessionAnswers,
+            time: new Date().toLocaleString('it-IT')
+        };
+        localStorage.setItem('ULTIMO_TEST_MASTER', JSON.stringify(data));
+    }
+    // Segniamo nella memoria a breve termine che siamo nella schermata risultati
+    sessionStorage.setItem('schermata_attiva', 'risultati');
+}
+
+// 2. USCITA SICURA (Pulisce la cache del refresh e torna alla home)
+function uscitaSicura() {
+    sessionStorage.removeItem('schermata_attiva');
+    location.reload();
+}
+
+// 3. MOSTRA ANALISI (A prova di bomba)
+function mostraAnalisi() {
+    sessionStorage.setItem('schermata_attiva', 'report'); // Segna che siamo nel report
+
+    let pool = typeof sessionPool !== 'undefined' ? sessionPool : [];
+    let answers = typeof sessionAnswers !== 'undefined' ? sessionAnswers : [];
+
+    // Se la pagina ha fatto refresh, le variabili ram sono vuote. Peschiamo dall'hard disk (localStorage)!
+    if (!pool || pool.length === 0) {
+        const salvato = localStorage.getItem('ULTIMO_TEST_MASTER');
+        if (salvato) {
+            const dati = JSON.parse(salvato);
+            pool = dati.pool;
+            answers = dati.answers;
+        } else {
+            uscitaSicura();
+            return;
+        }
+    }
+
+    const lista = document.getElementById('lista-risultati');
+    lista.innerHTML = '';
+    
+    pool.forEach((qIdx, index) => {
+        const q = databaseQuiz[qIdx];
+        const ans = answers[index];
+        const esatta = (ans && ans.correct);
+        
+        const div = document.createElement('div');
+        div.className = esatta ? 'card-corretta' : 'card-errore';
+        div.innerHTML = `
+            <div style="font-weight:bold; margin-bottom:5px;">${index + 1}. ${q.q}</div>
+            <div style="font-size:0.85em;">Tua risposta: <span style="color:${esatta?'#27ae60':'#c0392b'}; font-weight:bold;">${ans ? q.options[ans.clickedIndex] : 'Non data'}</span></div>
+            <div style="font-size:0.85em; color:#27ae60;">Risposta esatta: ${q.options[q.a]}</div>
+            <div class="spiegazione-box"><strong>Il Razionale:</strong><br>${q.e}</div>
+        `;
+        lista.appendChild(div);
+    });
+
+    const qc = document.getElementById('quiz-container');
+    const hp = document.getElementById('home-page');
+    if(qc) qc.style.display = 'none';
+    if(hp) hp.style.display = 'none';
+    document.getElementById('review-report-area').style.display = 'block';
+    window.scrollTo(0,0);
+}
+
+// 4. RECUPERO INTELLIGENTE AL CARICAMENTO DELLA PAGINA
+window.addEventListener('load', function() {
+    const schermata = sessionStorage.getItem('schermata_attiva');
+    
+    if (schermata === 'report') {
+        // Se si è aggiornata la pagina mentre guardava il report, lo riapre subito!
+        mostraAnalisi();
+    } else if (schermata === 'risultati') {
+        // Se si è aggiornata la pagina sui risultati finali (quelli con l'88%), li ricostruisce!
+        const salvato = localStorage.getItem('ULTIMO_TEST_MASTER');
+        if (salvato) {
+            const dati = JSON.parse(salvato);
+            sessionPool = dati.pool;
+            sessionAnswers = dati.answers;
+            MAX_TIME_SECONDS = 0;
+            timeLeft = 0;
+            fineSessione("RECUPERO");
+        }
+    } else {
+        // Altrimenti siamo in Home: mostriamo il box per recuperare il vecchio test
+        const salvato = localStorage.getItem('ULTIMO_TEST_MASTER');
+        if (salvato) {
+            const dati = JSON.parse(salvato);
+            const home = document.getElementById('home-page');
+            if (home && !document.getElementById('box-recupero')) {
+                const box = document.createElement('div');
+                box.id = 'box-recupero';
+                box.innerHTML = `
+                    <div style="background: rgba(41, 128, 185, 0.1); border: 1px solid #2980b9; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+                        <p style="margin: 0 0 10px 0; color: #bbb; font-size: 0.85em; text-transform:uppercase;">📌 <strong>Sessione Salvata:</strong> ${dati.time}</p>
+                        <button class="btn-master" onclick="mostraAnalisi()" style="background: #2980b9; color: #fff; padding: 12px; font-size: 0.85em; letter-spacing: 1px;">🔍 RIVEDI ULTIMO TEST</button>
+                    </div>
+                `;
+                home.insertBefore(box, home.querySelector('.mode-grid'));
+            }
+        }
+    }
+});
 </script>
 
 </body>
