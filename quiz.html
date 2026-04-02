@@ -197,6 +197,606 @@
 <script>
 const databaseQuiz = [
 {
+        "q": "Nel D.Lgs 36/2023, il \"Principio del risultato\" (art. 1) stabilisce che:",
+        "options": [
+            "Il RUP deve garantire l'assenza assoluta di ricorsi giurisdizionali.",
+            "Costituisce il criterio prioritario per l'esercizio del potere discrezionale e per l'individuazione della regola del caso concreto.",
+            "Autorizza la PA a derogare al codice penale per accelerare i lavori.",
+            "È subordinato al principio della libera concorrenza in ogni fase della gara."
+        ],
+        "a": 1,
+        "e": "Il principio del risultato diventa la bussola del nuovo Codice: l'obiettivo primario è fare l'opera presto e bene, la concorrenza è un mezzo, non il fine ultimo.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "In un appalto misto (lavori e servizi), il contratto è aggiudicato secondo le disposizioni applicabili:",
+        "options": [
+            "Sempre ai lavori, in quanto attraggono normativamente i servizi.",
+            "Alla componente che costituisce l'oggetto principale del contratto in base al valore stimato.",
+            "Scegliendo a sorte il regime giuridico.",
+            "Secondo il regime più restrittivo previsto dal Codice."
+        ],
+        "a": 1,
+        "e": "Criterio di prevalenza economica: se i servizi valgono di più dei lavori, si applicano le regole degli appalti di servizi.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il Collegio Consultivo Tecnico (CCT) nel D.Lgs 36/2023 è:",
+        "options": [
+            "Un organo di giustizia amministrativa di secondo grado.",
+            "Obbligatorio per i lavori diretti alla realizzazione di opere pubbliche di importo pari o superiore alle soglie europee.",
+            "Un comitato di cittadini che valuta l'impatto ambientale dell'opera.",
+            "Una commissione facoltativa per importi sotto i 40.000 euro."
+        ],
+        "a": 1,
+        "e": "Il CCT serve a prevenire e risolvere rapidamente le controversie in fase di esecuzione per le grandi opere. È obbligatorio sopra soglia.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "L'illecito professionale grave (art. 98 D.Lgs 36/2023) comporta l'esclusione dell'operatore economico se:",
+        "options": [
+            "È dimostrato da qualsiasi segnalazione anonima.",
+            "Rende dubbia la sua integrità o affidabilità, provato dalla stazione appaltante con mezzi adeguati.",
+            "Comporta un ritardo di 1 giorno nei pagamenti INPS.",
+            "Viene dichiarato in un'intervista televisiva."
+        ],
+        "a": 1,
+        "e": "L'illecito professionale è causa di esclusione discrezionale: la PA deve valutarlo e motivare perché l'impresa non è più affidabile.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il promotore in una procedura di Finanza di Progetto (Project Financing):",
+        "options": [
+            "Vince automaticamente la gara senza confronto competitivo.",
+            "Ha un diritto di prelazione che gli consente di aggiudicarsi il contratto pareggiando la migliore offerta dei concorrenti.",
+            "Non può partecipare alla gara successiva.",
+            "Deve essere obbligatoriamente un ente pubblico."
+        ],
+        "a": 1,
+        "e": "Il diritto di prelazione è il vantaggio chiave del promotore: se un altro offre di meglio, il promotore può pareggiare e vincere.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "La concessione di servizi è caratterizzata dal fatto che il corrispettivo consiste:",
+        "options": [
+            "In un canone fisso mensile pagato dalla PA.",
+            "Unicamente o in parte nel diritto di gestire il servizio, assumendo il rischio operativo (rischio di domanda o di offerta).",
+            "Nelle sole sovvenzioni europee.",
+            "In un bonifico anticipato dell'intero importo stimato."
+        ],
+        "a": 1,
+        "e": "Il trasferimento del rischio operativo è lo spartiacque tra appalto (paga la PA) e concessione (il guadagno dipende dall'utenza).",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Nelle procedure negoziate sotto soglia senza bando, gli operatori economici da invitare vengono individuati:",
+        "options": [
+            "Sulla base di indagini di mercato o tramite elenchi di operatori economici.",
+            "Pescando a caso dall'elenco telefonico.",
+            "Esclusivamente tramite sorteggio pubblico informatico.",
+            "Sempre invitando tutti gli iscritti alla Camera di Commercio regionale."
+        ],
+        "a": 0,
+        "e": "La PA usa elenchi telematici aperti (Albi fornitori) o fa una manifestazione di interesse pre-gara.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "La garanzia definitiva a corredo del contratto (art. 117 Codice Appalti) è di norma pari al:",
+        "options": [
+            "2% dell'importo contrattuale.",
+            "5% dell'importo a base di gara.",
+            "10% dell'importo contrattuale.",
+            "30% in ogni caso."
+        ],
+        "a": 2,
+        "e": "10% del contratto. Può aumentare se l'offerta ha un ribasso anomalo. Non confonderla con la provvisoria (2% a base di gara).",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il soccorso istruttorio NON può essere utilizzato per sanare:",
+        "options": [
+            "La mancanza della firma su una dichiarazione sostitutiva.",
+            "Carenze della documentazione tecnica che comporterebbero una modifica dell'offerta.",
+            "L'omessa allegazione del documento d'identità del legale rappresentante.",
+            "Una data errata sul certificato camerale."
+        ],
+        "a": 1,
+        "e": "L'offerta tecnica e l'offerta economica sono intoccabili. Il soccorso vale solo per la documentazione amministrativa.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "L'accesso civico generalizzato (FOIA) si differenzia dall'accesso documentale (L. 241/90) perché:",
+        "options": [
+            "Richiede un interesse diretto, concreto e attuale.",
+            "Chiunque può richiederlo, senza dover dimostrare una motivazione o un interesse qualificato.",
+            "Si applica solo agli atti edilizi.",
+            "È a pagamento obbligatorio per ogni pagina estratta."
+        ],
+        "a": 1,
+        "e": "Il FOIA (art. 5 c. 2 D.Lgs 33/2013) è lo strumento per il controllo democratico generalizzato. Nessun interesse da dimostrare.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Un provvedimento amministrativo \"Perfetto\" ma \"Inefficace\" è un atto che:",
+        "options": [
+            "Ha concluso il suo iter di formazione (esistenza giuridica) ma non può ancora produrre effetti (es. manca il controllo o la notifica).",
+            "È viziato da eccesso di potere.",
+            "È stato annullato dal Giudice Amministrativo.",
+            "Non ha ancora ottenuto la firma del Dirigente."
+        ],
+        "a": 0,
+        "e": "Perfezione = conclusione dell'iter formativo. Efficacia = idoneità a produrre effetti. Es: un atto recettizio non notificato è perfetto ma inefficace.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il ricorso gerarchico (D.P.R. 1199/1971) deve essere proposto entro:",
+        "options": [
+            "30 giorni dalla notifica o piena conoscenza dell'atto.",
+            "60 giorni dalla data di adozione dell'atto.",
+            "120 giorni al Capo dello Stato.",
+            "Senza limiti di tempo per i vizi di merito."
+        ],
+        "a": 0,
+        "e": "Ricorso gerarchico: 30 giorni. Ricorso al TAR: 60 giorni. Ricorso straordinario al PdR: 120 giorni.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Ai sensi dell'art. 10 L. 241/90, i soggetti che partecipano al procedimento hanno diritto di:",
+        "options": [
+            "Firmare il provvedimento finale con il Dirigente.",
+            "Prendere visione degli atti e presentare memorie scritte e documenti, che la PA ha l'obbligo di valutare ove pertinenti.",
+            "Sospendere i termini per 180 giorni lavorativi.",
+            "Sostituire il RUP se non concordano con le sue valutazioni."
+        ],
+        "a": 1,
+        "e": "È il cuore della partecipazione procedimentale. L'obbligo della PA di valutare le memorie se pertinenti è garanzia costituzionale.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "L'incompetenza \"Relativa\" (es. Dirigente di un settore che emana un atto di un altro settore dello stesso ente):",
+        "options": [
+            "Rende l'atto nullo insanabile.",
+            "È un vizio di legittimità che determina l'annullabilità del provvedimento.",
+            "Costituisce un reato contravvenzionale.",
+            "Non incide sulla validità dell'atto per il principio del risultato."
+        ],
+        "a": 1,
+        "e": "L'incompetenza relativa = annullabilità. L'incompetenza assoluta (o difetto assoluto di attribuzione) = nullità.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "La violazione o l'elusione del giudicato (sentenza passata in giudicato) da parte della PA comporta:",
+        "options": [
+            "L'annullabilità dell'atto adottato.",
+            "La nullità del provvedimento amministrativo ai sensi dell'art. 21-septies L. 241/90.",
+            "Solo una sanzione disciplinare al funzionario.",
+            "L'inefficacia temporanea fino a sanatoria."
+        ],
+        "a": 1,
+        "e": "Se la PA emana un atto contro una sentenza passata in giudicato, l'atto è nullo (giudizio di ottemperanza).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Nel caso di adozione di provvedimenti in materia sanzionatoria (es. multe), il \"Silenzio-assenso\" ex art. 20:",
+        "options": [
+            "Si forma dopo 90 giorni.",
+            "Si applica solo se la sanzione è inferiore a 5.000 euro.",
+            "Non si applica mai.",
+            "Equivale a silenzio-rigetto dopo 30 giorni."
+        ],
+        "a": 2,
+        "e": "I procedimenti sanzionatori, come quelli in materia ambientale, di pubblica sicurezza, ecc., sono esclusi dall'istituto del silenzio-assenso.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "La motivazione del provvedimento (art. 3) può essere \"per relationem\", ovvero:",
+        "options": [
+            "Motivata solo oralmente su richiesta.",
+            "Rimandare a un altro atto dell'amministrazione, purché questo sia indicato e reso disponibile.",
+            "Basata su legami di parentela tra funzionari.",
+            "Omessa se l'atto è a favore del cittadino."
+        ],
+        "a": 1,
+        "e": "Motivazione per relationem: l'atto fa riferimento ai risultati di un'istruttoria o di un parere tecnico, allegandolo o indicandolo chiaramente.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "L'attività libero-professionale per i dipendenti pubblici è consentita:",
+        "options": [
+            "Mai, in nessun caso.",
+            "Previa autorizzazione, purché il dipendente sia in regime di part-time con prestazione lavorativa non superiore al 50%.",
+            "Sempre, basta fare una comunicazione al dirigente.",
+            "Solo per i dipendenti dei ruoli tecnici."
+        ],
+        "a": 1,
+        "e": "Regola d'oro del TUPI (art. 53): le incompatibilità assolute saltano se sei in part-time <= 50%, ma serve comunque l'iscrizione ad albi ove richiesta.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Le segnalazioni anonime nel sistema Whistleblowing:",
+        "options": [
+            "Sono cestinate immediatamente senza eccezioni.",
+            "Sono prese in carico e gestite dal RPCT solo se adeguatamente circostanziate e fornite di dettagli precisi.",
+            "Portano all'arresto di tutto l'ufficio indicato.",
+            "Obbligano l'ente a sporgere querela contro ignoti."
+        ],
+        "a": 1,
+        "e": "L'anonimato non blocca l'istruttoria, a patto che la segnalazione contenga fatti concreti e verificabili, non chiacchiere da bar.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Chi stabilisce gli obiettivi strategici e definisce le direttive generali dell'ente pubblico?",
+        "options": [
+            "I dirigenti di prima fascia.",
+            "L'organo di indirizzo politico-amministrativo (Sindaco, Giunta, Ministro).",
+            "L'OIV (Organismo Indipendente Valutazione).",
+            "La Corte dei Conti."
+        ],
+        "a": 1,
+        "e": "Separazione dei poteri (D.Lgs 165/01): ai politici l'indirizzo e il controllo, ai dirigenti la gestione tecnica e finanziaria.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "False dichiarazioni o documenti falsi prodotti dal dipendente al momento dell'assunzione comportano:",
+        "options": [
+            "Sospensione fino a 6 mesi.",
+            "Sanzione pecuniaria.",
+            "Licenziamento disciplinare senza preavviso.",
+            "Obbligo di regolarizzazione in 30 giorni."
+        ],
+        "a": 2,
+        "e": "Falsificare i titoli per farsi assumere o far carriera comporta la decadenza/licenziamento fulmineo (art. 55-quater TUPI).",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "I permessi mensili retribuiti ex L. 104/1992 (assistenza a familiari disabili) ammontano a:",
+        "options": [
+            "3 giorni al mese, frazionabili anche in ore.",
+            "5 giorni lavorativi consecutivi.",
+            "10 ore mensili assolute.",
+            "15 giorni all'anno."
+        ],
+        "a": 0,
+        "e": "Il diritto garantisce 3 giorni mensili di permesso retribuito, spesso frazionabili in ore secondo i contratti collettivi.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Se un dipendente pubblico ravvisa un \"grave motivo di convenienza\" (es. amicizia stretta con l'istante), secondo il Codice di Comportamento deve:",
+        "options": [
+            "Continuare a curare la pratica per dimostrare imparzialità.",
+            "Astenersi obbligatoriamente comunicandolo per iscritto al proprio dirigente.",
+            "Rifiutare la pratica senza dirlo a nessuno.",
+            "Chiedere un parere formale all'ANAC."
+        ],
+        "a": 1,
+        "e": "L'astensione (art. 7 D.P.R. 62/2013) è un obbligo ferreo e spetta al Dirigente decidere se l'astensione è effettivamente necessaria.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "L'OIV (Organismo Indipendente di Valutazione) è nominato:",
+        "options": [
+            "Tramite concorso per esami.",
+            "Dall'organo di indirizzo politico-amministrativo tra i soggetti iscritti nell'Elenco nazionale del Dipartimento della Funzione Pubblica.",
+            "Direttamente dai sindacati di categoria.",
+            "Dal Segretario Comunale in totale autonomia."
+        ],
+        "a": 1,
+        "e": "L'OIV valuta la performance dell'ente ed è nominato dai vertici politici, ma attingendo da un albo nazionale di esperti qualificati.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "La rotazione ordinaria degli incarichi dirigenziali (Misura anticorruzione):",
+        "options": [
+            "Si applica trasferendo il dirigente in un'altra città.",
+            "Prevede l'alternanza della titolarità degli uffici dirigenziali sensibili alla scadenza dell'incarico, salvo specifiche esenzioni motivate.",
+            "È vietata dalla giurisprudenza costituzionale.",
+            "Scatta solo dopo una condanna penale."
+        ],
+        "a": 1,
+        "e": "Misura preventiva cardine: a fine mandato (es. 3 o 5 anni), il dirigente di un settore a rischio cambia settore.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Sillogismo: Se piove, prendo l'ombrello. Oggi non ho preso l'ombrello. Dunque:",
+        "options": [
+            "Oggi piove.",
+            "Oggi non piove.",
+            "Forse pioverà domani.",
+            "Ho dimenticato l'ombrello."
+        ],
+        "a": 1,
+        "e": "Modus Tollens (Logica proposizionale classica): Se A implica B, la negazione di B (Non ho l'ombrello) implica la negazione di A (Non piove).",
+        "materia": "Logica"
+    },
+    {
+        "q": "Completare la sequenza: 2, 5, 11, 23, ?",
+        "options": [
+            "46",
+            "47",
+            "45",
+            "48"
+        ],
+        "a": 1,
+        "e": "La regola è (numero precedente * 2) + 1. Quindi 23 * 2 + 1 = 47.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Qual è la probabilità che, lanciando contemporaneamente due dadi a sei facce, la somma dei punteggi sia esattamente 7?",
+        "options": [
+            "1/6",
+            "1/12",
+            "7/36",
+            "1/7"
+        ],
+        "a": 0,
+        "e": "Le combinazioni possibili sono 36 (6x6). Quelle che danno 7 sono: 1-6, 2-5, 3-4, 4-3, 5-2, 6-1. Totale 6 combinazioni favorevoli su 36, cioè 1/6.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Tre rubinetti identici riempiono una vasca in 6 ore. Quante ore impiegherebbero 2 rubinetti?",
+        "options": [
+            "4 ore",
+            "8 ore",
+            "9 ore",
+            "12 ore"
+        ],
+        "a": 2,
+        "e": "Proporzionalità INVERSA. Meno rubinetti = più tempo. 3 * 6 = 18 (lavoro totale). 18 / 2 rubinetti = 9 ore.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Risolvi l'anagramma e trova la parola intrusa tra: ALMIE, ORPE, ANAANB, IOLNC.",
+        "options": [
+            "ALMIE",
+            "ORPE",
+            "ANAANB",
+            "IOLNC"
+        ],
+        "a": 3,
+        "e": "Riordinate formano: MELA, PERA, BANANA, LEONE (IOLNC). Leone è un animale, le altre frutta.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Il padre della sorella di mio figlio è per me:",
+        "options": [
+            "Mio fratello.",
+            "Mio padre.",
+            "Io stesso (o mio marito/compagno).",
+            "Mio nipote."
+        ],
+        "a": 2,
+        "e": "La sorella di mio figlio è mia figlia. Il padre di mia figlia sono io (se parla un uomo) o mio marito (se parla una donna).",
+        "materia": "Logica"
+    },
+    {
+        "q": "Dal punto di vista del significato, un evento \"Ineluttabile\" è un evento:",
+        "options": [
+            "Estremamente raro.",
+            "Che non si può assolutamente evitare.",
+            "Incomprensibile.",
+            "Di natura tragica."
+        ],
+        "a": 1,
+        "e": "Ineluttabile deriva dal latino ed è sinonimo di fatale, inevitabile.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Se A+B=10, B+C=14, A+C=12. Quanto vale B?",
+        "options": [
+            "6",
+            "4",
+            "8",
+            "2"
+        ],
+        "a": 0,
+        "e": "Somma le equazioni: 2A+2B+2C=36 -> A+B+C=18. Siccome A+C=12, B = 18 - 12 = 6.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Un treno lungo 100 metri viaggia a 36 km/h. Quanto tempo impiega ad attraversare completamente un ponte lungo 200 metri?",
+        "options": [
+            "20 secondi",
+            "30 secondi",
+            "10 secondi",
+            "40 secondi"
+        ],
+        "a": 1,
+        "e": "Velocità: 36 km/h = 10 m/s. Spazio da percorrere: ponte (200m) + l'intera lunghezza del treno per uscire (100m) = 300m. Tempo = 300/10 = 30 sec.",
+        "materia": "Logica"
+    },
+    {
+        "q": "La Crittografia Asimmetrica si basa sull'utilizzo di:",
+        "options": [
+            "Una sola chiave condivisa in segreto tra le parti.",
+            "Una coppia di chiavi: una pubblica distribuibile a tutti e una privata tenuta segreta.",
+            "Un algoritmo biometrico a impronta digitale.",
+            "Nessuna chiave, ma solo un canale VPN."
+        ],
+        "a": 1,
+        "e": "È il meccanismo alla base della Firma Digitale e del protocollo HTTPS (chiave pubblica per criptare/verificare, chiave privata per decriptare/firmare).",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Nella Firma Elettronica Qualificata (FEQ), la validità legale è garantita da:",
+        "options": [
+            "Un indirizzo email certificato del mittente.",
+            "Un Certificato Qualificato emesso da una Certification Authority (Prestatore di Servizi Fiduciari) accreditata.",
+            "La registrazione vocale del consenso dell'utente.",
+            "Una password di 12 caratteri."
+        ],
+        "a": 1,
+        "e": "La Certification Authority (es. Aruba, InfoCert) garantisce l'identità del firmatario fornendo il certificato crittografico.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "L'autenticazione MFA (Multi-Factor Authentication) richiede per l'accesso:",
+        "options": [
+            "Solo la password inserita due volte.",
+            "L'utilizzo congiunto di almeno due fattori diversi (es. qualcosa che si sa come la password + qualcosa che si possiede come l'OTP).",
+            "Il riconoscimento congiunto di tre dirigenti.",
+            "Esclusivamente la biometria dell'iride."
+        ],
+        "a": 1,
+        "e": "Conoscenza (password), Possesso (smartphone/OTP), Inerenza (impronta digitale/viso). La MFA richiede fattori di categorie diverse.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Il \"Diritto alla portabilità dei dati\" (Art. 20 GDPR) consente all'interessato di:",
+        "options": [
+            "Salvare i dati sensibili su pen drive non criptate.",
+            "Ricevere i dati personali forniti a un Titolare in un formato strutturato e leggibile da dispositivo automatico, per trasferirli ad un altro Titolare.",
+            "Esportare dati governativi all'estero.",
+            "Evitare i controlli di sicurezza aeroportuale sui dispositivi IT."
+        ],
+        "a": 1,
+        "e": "Serve per impedire il \"lock-in\" (es. voglio cambiare provider di posta, ho diritto di esportare tutto in formato standard e importarlo altrove).",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Nel Cloud Computing, il modello PaaS (Platform as a Service) offre all'utente:",
+        "options": [
+            "Hardware grezzo (server, storage) su cui installare i propri sistemi operativi.",
+            "Un ambiente di esecuzione e sviluppo preconfigurato per sviluppare, testare e gestire applicazioni (es. database pronti).",
+            "Un software finale già completo per gli utenti (es. webmail).",
+            "La stampa 3D a distanza."
+        ],
+        "a": 1,
+        "e": "PaaS: non ti curi dell'hardware né del sistema operativo, ti danno la piattaforma (il motore) per sviluppare i tuoi software.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Nella PEC, la \"Ricevuta di Avvenuta Consegna\" (RAC):",
+        "options": [
+            "È emessa dal gestore del mittente.",
+            "È generata dal gestore di posta del destinatario, certificando il momento in cui il messaggio arriva nella sua casella.",
+            "Viene inviata automaticamente non appena il destinatario legge l'email.",
+            "Sostituisce la fattura elettronica."
+        ],
+        "a": 1,
+        "e": "Accettazione (gestore mittente: \"L'ho presa in carico\"). Consegna (gestore destinatario: \"L'ho messa nella cassetta\").",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Da un punto di vista tecnico, un attacco di \"Phishing\" rientra nella categoria:",
+        "options": [
+            "Vulnerabilità Hardware del processore.",
+            "Attacco di tipo Ingegneria Sociale (Social Engineering).",
+            "Sfruttamento di falle nel protocollo Bluetooth.",
+            "Attacco DDoS (Denial of Service)."
+        ],
+        "a": 1,
+        "e": "Il phishing non buca i server, buca l'ingenuità umana convincendo le persone a fornire credenziali volontariamente.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Il documento di \"Manuale di Conservazione\" nella PA definisce:",
+        "options": [
+            "Come riparare i server guasti.",
+            "L'organizzazione, i ruoli e le procedure per la conservazione a lungo termine dei documenti informatici a norma di legge.",
+            "Le modalità di smaltimento della carta straccia.",
+            "Le procedure per conservare l'edificio comunale."
+        ],
+        "a": 1,
+        "e": "Atto obbligatorio (Linee Guida AgID) per garantire che i file informatici dell'ente rimangano leggibili e validi in futuro.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Which is the correct translation for \"Appaltatore\" in a public procurement context?",
+        "options": [
+            "Contracting Authority.",
+            "Contractor.",
+            "Bidder.",
+            "Stakeholder."
+        ],
+        "a": 1,
+        "e": "Contractor = Appaltatore/Contraente. Contracting Authority = Stazione Appaltante.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In procurement, what does \"To bid\" mean?",
+        "options": [
+            "Vincere una gara d'appalto.",
+            "Fare un'offerta / Partecipare a una gara d'appalto.",
+            "Annullare un contratto.",
+            "Redigere il bando di gara."
+        ],
+        "a": 1,
+        "e": "To bid = fare un'offerta in un'asta o gara. Bidder = colui che offre.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Choose the sentence with the correct grammar:",
+        "options": [
+            "The company complies to all environmental regulations.",
+            "The company complies with all environmental regulations.",
+            "The company complies at all environmental regulations.",
+            "The company complies for all environmental regulations."
+        ],
+        "a": 1,
+        "e": "To comply ALWAYS takes the preposition WITH. Errore frequentissimo nei test RIPAM.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In HR and recruitment, a \"Shortlist\" is:",
+        "options": [
+            "Un difetto del sistema informatico.",
+            "Una lista ristretta di candidati ritenuti più idonei per procedere ai colloqui finali.",
+            "Un contratto a tempo determinato di breve durata.",
+            "L'elenco delle sanzioni disciplinari."
+        ],
+        "a": 1,
+        "e": "To shortlist someone = Selezionare i migliori candidati in una prima scrematura.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "The \"Steering committee\" of a large project is responsible for:",
+        "options": [
+            "Guidare fisicamente i mezzi da cantiere.",
+            "Fornire la direzione strategica, la guida e la supervisione del progetto.",
+            "Redigere il codice software del sito web.",
+            "Sostituire gli operai assenti."
+        ],
+        "a": 1,
+        "e": "Steering = Direttivo/Guida. Comitato Guida che prende le decisioni ad alto livello.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "The Phrasal Verb \"To call off\" means:",
+        "options": [
+            "Rispondere al telefono.",
+            "Rinviare a data da destinarsi.",
+            "Annullare/Cancellare (es. un meeting o un evento).",
+            "Chiamare ad alta voce nei corridoi."
+        ],
+        "a": 2,
+        "e": "The meeting was called off = Il meeting è stato annullato. Da non confondere con \"Put off\" (rinviare).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Fill in the blank: \"If the contractor fails to deliver on time, the contract _______ terminated.\"",
+        "options": [
+            "would be",
+            "is being",
+            "will be",
+            "has been"
+        ],
+        "a": 2,
+        "e": "First Conditional: If + Present Simple (fails), + Future Simple (will be).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In Business English, an \"Invoice\" is:",
+        "options": [
+            "Una ricevuta non fiscale.",
+            "Un sollecito di pagamento per ritardo.",
+            "Una fattura commerciale che richiede il pagamento per beni o servizi prestati.",
+            "Un invito formale a un evento aziendale."
+        ],
+        "a": 2,
+        "e": "Invoice = Fattura. To issue an invoice = Emettere fattura.",
+        "materia": "Inglese"
+    },
+{
         "q": "Ai sensi dell'art. 21-quater L. 241/90, la sospensione dell'efficacia di un provvedimento amministrativo può essere disposta per un periodo:",
         "options": [
             "Illimitato, fino a sentenza del TAR.",
