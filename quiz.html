@@ -197,6 +197,534 @@
 <script>
 const databaseQuiz = [
 {
+        "q": "Ai sensi dell'art. 21-ter L. 241/90, l'Esecutorietà del provvedimento amministrativo consiste nella:",
+        "options": [
+            "Capacità del provvedimento di produrre effetti giuridici immediati.",
+            "Facoltà della PA di imporre coattivamente l'adempimento degli obblighi nei propri confronti, senza previa pronuncia del giudice.",
+            "Possibilità di annullare d'ufficio gli atti illegittimi.",
+            "Necessità di ottenere un decreto ingiuntivo dal Tribunale prima di agire."
+        ],
+        "a": 1,
+        "e": "L'esecutorietà è il potere di agire con la forza (es. sgombero coatto) senza dover passare prima da un giudice. È la massima espressione del potere autoritativo.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Nel Diritto di Accesso Civico Generalizzato (FOIA), se l'amministrazione individua dei \"controinteressati\", questi ultimi hanno un termine per opporsi pari a:",
+        "options": [
+            "5 giorni lavorativi.",
+            "10 giorni dalla ricezione della comunicazione.",
+            "15 giorni liberi.",
+            "30 giorni perentori."
+        ],
+        "a": 1,
+        "e": "Termine di 10 giorni. Durante questo periodo, il termine per la conclusione del procedimento di accesso è sospeso.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il risarcimento del danno da ritardo (art. 2-bis L. 241/90) per mancata conclusione del procedimento nei termini:",
+        "options": [
+            "È automatico e forfettario in ogni caso.",
+            "Presuppone che il ritardo sia doloso e superi i 30 giorni.",
+            "Richiede la prova del danno ingiusto cagionato dall'inosservanza dolosa o colposa del termine.",
+            "Viene erogato direttamente dal RUP decurtando il proprio stipendio."
+        ],
+        "a": 2,
+        "e": "Non è un indennizzo automatico. Il cittadino deve andare al TAR e dimostrare di aver subito un danno effettivo e che la PA ha agito con dolo o colpa.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Nella Conferenza di Servizi decisoria, se un'amministrazione preposta alla tutela ambientale esprime un \"dissenso qualificato\":",
+        "options": [
+            "La conferenza si chiude con esito negativo in ogni caso.",
+            "La decisione viene rimessa al TAR competente per territorio.",
+            "La determinazione finale è rimessa al Consiglio dei Ministri (se statale) o alla Giunta Regionale.",
+            "Il RUP può superare il dissenso motivando adeguatamente."
+        ],
+        "a": 2,
+        "e": "Il dissenso delle amministrazioni preposte a interessi \"sensibili\" (ambiente, salute, beni culturali) non può essere scavalcato dal RUP: la palla passa all'organo politico di vertice.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Un provvedimento amministrativo si definisce \"Recettizio\" quando:",
+        "options": [
+            "Produce effetti solo a seguito della comunicazione/notifica al destinatario.",
+            "Rilascia una ricevuta fiscale.",
+            "Viene pubblicato sulla Gazzetta Ufficiale.",
+            "È adottato su istanza di parte."
+        ],
+        "a": 0,
+        "e": "Tipico dei provvedimenti restrittivi (es. multa, ordine di demolizione): non hanno efficacia finché non entrano nella sfera di conoscibilità del destinatario (art. 21-bis).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Se un cittadino presenta una SCIA in materia edilizia ma l'immobile si trova in una zona sottoposta a vincolo paesaggistico:",
+        "options": [
+            "La SCIA ha effetto immediato, il vincolo non rileva.",
+            "La SCIA è nulla e il cittadino viene sanzionato.",
+            "L'efficacia della SCIA è sospesa fino all'acquisizione dell'autorizzazione/assenso dell'ente tutelare.",
+            "La competenza passa automaticamente al Prefetto."
+        ],
+        "a": 2,
+        "e": "La SCIA non scavalca i vincoli (ambientali, paesaggistici, culturali). Prima si ottiene il nulla osta, poi la SCIA acquista efficacia.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il vizio di \"Incompetenza Relativa\" determina:",
+        "options": [
+            "L'inesistenza giuridica dell'atto.",
+            "L'annullabilità dell'atto, in quanto vizio di legittimità.",
+            "La nullità assoluta dell'atto.",
+            "La mera irregolarità formale sanabile d'ufficio."
+        ],
+        "a": 1,
+        "e": "Incompetenza relativa (tra organi dello stesso ente, es. Giunta invece di Consiglio) = Annullabilità. Difetto assoluto di attribuzione = Nullità.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "In tema di contratti pubblici (D.Lgs 36/2023), il principio di rotazione degli inviti NON si applica:",
+        "options": [
+            "Per gli affidamenti diretti superiori a 140.000 euro.",
+            "Agli affidamenti di importo inferiore a 5.000 euro.",
+            "Se la stazione appaltante utilizza il criterio dell'offerta economicamente più vantaggiosa.",
+            "Agli appalti di lavori sotto i 150.000 euro."
+        ],
+        "a": 1,
+        "e": "Deroga fondamentale (art. 49): sotto i 5.000 euro la rotazione non si applica per garantire massima celerità nei micro-affidamenti.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Nel D.Lgs 36/2023, la capacità economico-finanziaria richiesta ai concorrenti (es. fatturato globale) NON può di regola superare:",
+        "options": [
+            "Il valore stimato dell'appalto.",
+            "Il doppio del valore stimato dell'appalto.",
+            "Il triplo del valore stimato dell'appalto.",
+            "Un milione di euro, a prescindere dall'appalto."
+        ],
+        "a": 1,
+        "e": "Il fatturato richiesto per partecipare non può eccedere il doppio del valore dell'appalto, per favorire l'accesso alle PMI (art. 100).",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "L'Avvalimento \"in solido\" (D.Lgs 36/2023) significa che:",
+        "options": [
+            "L'impresa ausiliaria deve essere fusa per incorporazione nel concorrente.",
+            "L'impresa concorrente e l'impresa ausiliaria sono responsabili in solido nei confronti della PA per le prestazioni dedotte in contratto.",
+            "Le due imprese devono versare una cauzione doppia.",
+            "L'ausiliaria esegue l'intero appalto."
+        ],
+        "a": 1,
+        "e": "La PA è tutelata: se l'impresa che vince non riesce a fare il lavoro, l'ausiliaria (che ha prestato i requisiti) ne risponde economicamente in solido.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Le \"Garanzie Definitive\" previste dall'art. 117 possono essere oggetto di esonero negli affidamenti diretti?",
+        "options": [
+            "Mai, la fideiussione definitiva è obbligatoria per legge penale.",
+            "Sì, in casi debitamente motivati (e per importi sotto i 140.000/150.000 euro), ma applicando una trattenuta progressiva sui pagamenti (miglioramento del 10%).",
+            "Solo se l'impresa ha un rating di legalità a 3 stelle.",
+            "Sì, ma solo per i servizi di ingegneria."
+        ],
+        "a": 1,
+        "e": "Sotto soglia, per snellire, il RUP può non chiedere la polizza fideiussoria definitiva, operando una trattenuta (ritenuta di garanzia) a valere sui SAL fino al 10%.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il \"Direttore dell'Esecuzione\" del Contratto (DEC) viene nominato:",
+        "options": [
+            "Sempre negli appalti di lavori.",
+            "Negli appalti di servizi e forniture, e coincide di norma con il RUP (salvo appalti complessi).",
+            "Dall'ANAC tramite sorteggio.",
+            "Solo nei contratti di partenariato pubblico-privato."
+        ],
+        "a": 1,
+        "e": "Il DEC controlla servizi e forniture (come il Direttore dei Lavori controlla i cantieri). Di regola è lo stesso RUP, tranne per prestazioni molto complesse.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Nel nuovo Codice, le offerte anormalmente basse sono valutate:",
+        "options": [
+            "Automaticamente escluse senza alcun contraddittorio se sopra la soglia europea.",
+            "Dal RUP, che richiede per iscritto spiegazioni all'operatore economico assegnando un termine non superiore a 15 giorni.",
+            "Dalla Commissione giudicatrice in seduta pubblica.",
+            "Sempre ammesse per favorire la PA."
+        ],
+        "a": 1,
+        "e": "L'anomalia è competenza del RUP. Il contraddittorio è obbligatorio (salvo esclusione automatica prevista espressamente sotto soglia). Il termine assegnato è max 15 gg.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Quale delle seguenti procedure costituisce la regola \"ordinaria\" per gli appalti di importo superiore alle soglie comunitarie?",
+        "options": [
+            "Procedura negoziata senza previa pubblicazione di bando.",
+            "Affidamento diretto con consultazione di 3 operatori.",
+            "Procedura aperta o procedura ristretta.",
+            "Dialogo competitivo."
+        ],
+        "a": 2,
+        "e": "Sopra soglia le regole sono dettate rigidamente dall'UE: Aperta o Ristretta. Tutto il resto (es. negoziata, dialogo competitivo) è un'eccezione motivata.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "L'inconferibilità di un incarico per \"condanna penale\" (D.Lgs 39/2013) scatta:",
+        "options": [
+            "Solo a seguito di condanna definitiva (passata in giudicato) per i reati contro la PA.",
+            "Anche con condanna non definitiva (es. solo primo grado) per uno dei reati contro la PA previsti dal Codice Penale (es. corruzione, peculato).",
+            "Solo se la pena supera i 5 anni di reclusione.",
+            "Mai per gli incarichi politici, ma solo per i dirigenti."
+        ],
+        "a": 1,
+        "e": "Norma severissima: per i reati contro la PA, l'inconferibilità scatta anche solo con la condanna di primo grado (non definitiva).",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Il PIAO (Piano Integrato di Attività e Organizzazione) in caso di differimento del termine di approvazione del Bilancio di Previsione dell'Ente, deve essere approvato:",
+        "options": [
+            "Sempre e comunque entro il 31 gennaio.",
+            "Entro 30 giorni dall'approvazione del Bilancio di Previsione.",
+            "Entro il 30 giugno dell'anno successivo.",
+            "Non deve essere approvato se non c'è il bilancio."
+        ],
+        "a": 1,
+        "e": "Poiché il PIAO include il Piano dei Fabbisogni (che ha riflessi contabili), se slitta il bilancio, slitta anche il PIAO (30 giorni dopo il bilancio).",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Gli enti locali con un numero di dipendenti inferiore a 50:",
+        "options": [
+            "Sono esentati dalla nomina del RPCT.",
+            "Possono condividere la gestione del canale interno di Whistleblowing, o affidarla a terzi.",
+            "Non sono soggetti al codice di comportamento.",
+            "Non devono adottare il PIAO ma solo il Piano Triennale."
+        ],
+        "a": 1,
+        "e": "D.Lgs 24/2023 (Whistleblowing): i piccoli Comuni (< 50 dipendenti) possono convenzionarsi per gestire i canali di segnalazione sicuri e ammortizzare i costi.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Nel conflitto di interessi \"Potenziale\", il dipendente pubblico:",
+        "options": [
+            "Può curare la pratica se ritiene di essere in buona fede.",
+            "Ha l'obbligo di astensione e deve segnalarlo al dirigente, che valuta la sussistenza del conflitto.",
+            "Deve dimettersi immediatamente dall'ente.",
+            "Viene trasferito automaticamente ad un altro ufficio."
+        ],
+        "a": 1,
+        "e": "Il dipendente non valuta da solo il proprio conflitto. Lo segnala al capo, ed è il dirigente a decidere per iscritto se l'astensione è dovuta o meno.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Il principio di \"Proporzionalità\" nelle sanzioni disciplinari (Pubblico Impiego) implica che:",
+        "options": [
+            "Le sanzioni sono fisse e non dipendono dalla gravità del fatto.",
+            "La sanzione deve essere commisurata alla gravità dell'infrazione, valutando anche il dolo/colpa e l'eventuale recidiva.",
+            "Tutti i dipendenti della stessa area ricevono la stessa sanzione.",
+            "Si applica sempre la sanzione massima al primo errore."
+        ],
+        "a": 1,
+        "e": "Principio cardine (TUPI e CCNL): non si può licenziare chi ha fatto un errore lieve in buona fede per la prima volta. La pena deve essere proporzionata.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Le \"Fasce di reperibilità\" per la visita fiscale INPS per i dipendenti pubblici (in caso di malattia) sono attualmente fissate:",
+        "options": [
+            "Dalle 10 alle 12 e dalle 17 alle 19 di tutti i giorni (inclusi festivi).",
+            "Dalle 9 alle 13 e dalle 15 alle 18.",
+            "Dalle 10 alle 12 e dalle 15 alle 17 (equiparate al settore privato).",
+            "Sono state abolite per i dipendenti con patologie croniche."
+        ],
+        "a": 2,
+        "e": "Novità giurisprudenziale/normativa: le fasce degli statali (prima 9-13 / 15-18) sono state modificate per incostituzionalità, equiparandole a quelle del settore privato (10-12 / 15-17).",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Il CUG (Comitato Unico di Garanzia) all'interno delle pubbliche amministrazioni ha il compito di:",
+        "options": [
+            "Garantire la correttezza delle gare d'appalto.",
+            "Valutare il rischio di insolvenza dell'ente.",
+            "Promuovere le pari opportunità, valorizzare il benessere lavorativo e contrastare discriminazioni e mobbing.",
+            "Gestire la cassa di previdenza dei dirigenti."
+        ],
+        "a": 2,
+        "e": "Il CUG ha sostituito i vecchi comitati per le pari opportunità e contro il mobbing, unificando le tutele del benessere organizzativo.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Il dipendente pubblico ampiamente autorizzato a svolgere un incarico extra-istituzionale retribuito deve:",
+        "options": [
+            "Versare il 50% del compenso all'ente.",
+            "Nulla, l'autorizzazione lo esenta da obblighi.",
+            "Assicurarsi che l'ente conferente comunichi l'ammontare del compenso alla propria amministrazione ai fini dell'Anagrafe delle prestazioni.",
+            "Rinunciare alle ferie di quell'anno."
+        ],
+        "a": 2,
+        "e": "Non basta essere autorizzati. Per ragioni di trasparenza, quanto incassi fuori deve finire nell'Anagrafe delle prestazioni (D.Lgs 165/2001, art. 53).",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Un capitale di 2.000 euro viene investito con un interesse semplice del 5% annuo. Quale sarà il montante (capitale + interessi) dopo 3 anni?",
+        "options": [
+            "2.100 euro",
+            "2.300 euro",
+            "2.500 euro",
+            "2.050 euro"
+        ],
+        "a": 1,
+        "e": "Interesse annuo = 5% di 2000 = 100 euro. In 3 anni matura 300 euro. Montante = 2000 + 300 = 2300 euro.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Se A è fratello di B, B è sorella di C, e C è padre di D. Qual è il grado di parentela tra A e D?",
+        "options": [
+            "A è il nonno di D.",
+            "A è il cugino di D.",
+            "A è lo zio di D.",
+            "A e D sono fratelli."
+        ],
+        "a": 2,
+        "e": "A, B e C sono fratelli. Dato che C è il padre di D, suo fratello A sarà lo zio di D.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Due treni partono contemporaneamente da due città distanti 400 km e viaggiano l'uno verso l'altro su binari paralleli. Il treno A viaggia a 120 km/h, il treno B a 80 km/h. Dopo quanto tempo si incontreranno?",
+        "options": [
+            "1 ora",
+            "2 ore",
+            "3 ore",
+            "4 ore"
+        ],
+        "a": 1,
+        "e": "Le velocità si sommano (si vengono incontro): 120 + 80 = 200 km/h di velocità relativa. Tempo = Spazio / Velocità relativa = 400 / 200 = 2 ore.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Quale delle seguenti affermazioni equivale a dire: \"Non è vero che nessun elefante sa volare\"?",
+        "options": [
+            "Tutti gli elefanti sanno volare.",
+            "Nessun elefante sa volare.",
+            "Almeno un elefante sa volare.",
+            "Gli elefanti sono privi di ali."
+        ],
+        "a": 2,
+        "e": "Doppia negazione logica. Negare che \"nessuno lo fa\" significa affermare che \"almeno uno lo fa\".",
+        "materia": "Logica"
+    },
+    {
+        "q": "Completare la serie alfanumerica: A1, C4, E9, G16, ?",
+        "options": [
+            "I20",
+            "H25",
+            "I25",
+            "L25"
+        ],
+        "a": 2,
+        "e": "Lettere: salta di 1 (A->C->E->G->I). Numeri: quadrati perfetti (1, 4, 9, 16, 25). Risultato: I25.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Una commissione di 3 persone deve essere formata scegliendo tra 5 candidati. Quante combinazioni diverse sono possibili?",
+        "options": [
+            "10",
+            "15",
+            "20",
+            "60"
+        ],
+        "a": 0,
+        "e": "Combinazioni semplici: C(n,k) = n! / (k! * (n-k)!). C(5,3) = 120 / (6 * 2) = 120 / 12 = 10.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Individua l'intruso logico/etimologico: VEDERE, GUARDARE, SCRUTARE, ASCOLTARE.",
+        "options": [
+            "VEDERE",
+            "GUARDARE",
+            "SCRUTARE",
+            "ASCOLTARE"
+        ],
+        "a": 3,
+        "e": "I primi tre si riferiscono al senso della vista. Ascoltare si riferisce all'udito.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Un rubinetto riempie una vasca in 4 ore, lo scarico la svuota in 6 ore. Se apro entrambi contemporaneamente, in quanto tempo si riempie la vasca?",
+        "options": [
+            "2 ore",
+            "5 ore",
+            "10 ore",
+            "12 ore"
+        ],
+        "a": 3,
+        "e": "Flusso orario rubinetto: 1/4. Flusso orario scarico: -1/6. Insieme in un'ora: (1/4) - (1/6) = (3/12) - (2/12) = 1/12 della vasca. Serviranno 12 ore.",
+        "materia": "Logica"
+    },
+    {
+        "q": "In Sicurezza Informatica, cos'è una vulnerabilità \"Zero-Day\"?",
+        "options": [
+            "Un virus che colpisce a mezzanotte.",
+            "Una vulnerabilità del software non ancora nota agli sviluppatori o per la quale non esiste ancora una \"patch\" (aggiornamento correttivo).",
+            "Un guasto hardware del disco rigido.",
+            "Una connessione internet che cade al giorno zero dell'installazione."
+        ],
+        "a": 1,
+        "e": "L'hacker scopre il buco prima dell'azienda che ha creato il software. L'azienda ha \"zero giorni\" per difendersi al momento del primo attacco.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Il servizio DNS (Domain Name System) ha il compito principale di:",
+        "options": [
+            "Crittografare la posta elettronica.",
+            "Tradurre i nomi di dominio (es. google.com) nei corrispondenti indirizzi IP numerici (es. 142.250.180.14) necessari per il collegamento di rete.",
+            "Filtrare lo spam dalle email.",
+            "Aumentare la velocità del processore del computer."
+        ],
+        "a": 1,
+        "e": "Il DNS è l'elenco telefonico di internet. Noi ricordiamo i nomi, i computer usano gli IP numerici.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Quale livello di sicurezza eIDAS (Regolamento UE 910/2014) garantisce la massima affidabilità sull'identità dell'utente (Level of Assurance - High)?",
+        "options": [
+            "Autenticazione con sola password.",
+            "Autenticazione tramite Social Network.",
+            "Autenticazione basata su hardware crittografico sicuro (es. Smart Card, token USB, CIE 3.0).",
+            "Autenticazione via SMS."
+        ],
+        "a": 2,
+        "e": "LoA High (Livello 3 SPID o CIE) richiede il possesso di un oggetto fisico inviolabile che custodisce le chiavi crittografiche.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Nella Conservazione Sostitutiva (CAD), cosa si intende per \"Pacchetto di Archiviazione\"?",
+        "options": [
+            "Una scatola di cartone ignifuga.",
+            "L'insieme dei documenti, metadati e dati di firma, strutturato secondo regole tecniche, che viene sigillato e conservato nel tempo dal sistema.",
+            "Un file compresso formato .zip spedito via PEO.",
+            "Il software gestionale del Comune."
+        ],
+        "a": 1,
+        "e": "Le regole tecniche AgID definiscono i Pacchetti di Versamento, di Archiviazione e di Distribuzione per standardizzare la memoria digitale.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Qual è il vettore di attacco primario utilizzato più frequentemente per diffondere \"Ransomware\" all'interno delle PA?",
+        "options": [
+            "Infiltrazione fisica negli uffici.",
+            "Email di Spear Phishing con allegati malevoli o link infetti.",
+            "Connessione tramite vecchi modem 56k.",
+            "Hacking diretto del satellite GPS."
+        ],
+        "a": 1,
+        "e": "L'anello debole è sempre l'umano. Il 90% dei ransomware entra perché un dipendente clicca su un allegato fasullo via email.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "L'autenticazione tramite protocollo SAML o OIDC (OpenID Connect) viene utilizzata in Italia principalmente per:",
+        "options": [
+            "Accendere i computer aziendali.",
+            "Consentire il login sicuro e federato tramite SPID e CIE ai portali della Pubblica Amministrazione.",
+            "Inviare messaggi WhatsApp.",
+            "Installare driver per le stampanti."
+        ],
+        "a": 1,
+        "e": "SAML e OIDC sono gli standard internazionali (su cui si basano SPID e CIE) per l'autenticazione Single Sign-On sicura.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "La firma Grafometrica (es. firma effettuata su tablet in banca o ASL) è considerata:",
+        "options": [
+            "Non valida in Italia.",
+            "Una Firma Elettronica Avanzata (FEA), in quanto rileva parametri biometrici (pressione, velocità) collegando univocamente la firma al firmatario.",
+            "Una Firma Elettronica Qualificata.",
+            "Un Documento Analogico."
+        ],
+        "a": 1,
+        "e": "È una FEA perché il tablet registra i dati biometrici cifrandoli, permettendo di identificare la \"grafia\" digitale in caso di disconoscimento.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Translate the formal business expression: \"Notice of Award\".",
+        "options": [
+            "Avviso di penalità.",
+            "Bando di gara.",
+            "Avviso di aggiudicazione (o comunicazione di aggiudicazione).",
+            "Notizia di un premio aziendale."
+        ],
+        "a": 2,
+        "e": "Nel contesto degli appalti pubblici, \"Award\" significa aggiudicare (To award a contract).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Choose the correct meaning of the verb \"To outsource\":",
+        "options": [
+            "Vendere i prodotti all'estero.",
+            "Reperire materie prime.",
+            "Esternalizzare processi o servizi aziendali affidandoli a ditte terze (es. pulizie, IT).",
+            "Trovare una nuova sede aziendale."
+        ],
+        "a": 2,
+        "e": "L'outsourcing (esternalizzazione) è il contrario del lavoro svolto \"in-house\".",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Beware of false friends! \"Factory\" in English means:",
+        "options": [
+            "Fattoria agricola.",
+            "Fattura commerciale.",
+            "Fabbrica / Stabilimento industriale.",
+            "Fattore di rischio."
+        ],
+        "a": 2,
+        "e": "Fattoria = Farm. Fattura = Invoice. Factory = Fabbrica (es. car factory).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "What does the phrasal verb \"To bring up\" mean in a meeting context?",
+        "options": [
+            "Portare un caffè.",
+            "Sollevare o introdurre un argomento di discussione.",
+            "Parlare ad alta voce.",
+            "Interrompere bruscamente la riunione."
+        ],
+        "a": 1,
+        "e": "\"I'd like to bring up the issue of the budget\" -> Vorrei sollevare la questione del budget.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Fill in the blank with the correct grammar: \"_______ you sign the non-disclosure agreement, we cannot send you the project details.\"",
+        "options": [
+            "If",
+            "Unless",
+            "When",
+            "Because"
+        ],
+        "a": 1,
+        "e": "\"Unless\" significa \"A meno che non / Se non\". Unless you sign = Se non firmi.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "Choose the grammatically correct passive sentence:",
+        "options": [
+            "The new policy is being implemented next month.",
+            "The new policy implementing next month.",
+            "Next month is implemented the new policy.",
+            "The new policy has implemented next month."
+        ],
+        "a": 0,
+        "e": "Present Continuous Passive usato per un piano futuro (\"is being implemented\" = sta per essere / sarà attuata).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "The word \"Asset\" on a company's balance sheet represents:",
+        "options": [
+            "Una tassa da pagare.",
+            "Una passività o un debito.",
+            "Un bene o una risorsa di valore posseduta dall'azienda (es. liquidità, immobili, brevetti).",
+            "Il consiglio di amministrazione."
+        ],
+        "a": 2,
+        "e": "Assets = Attività (beni). Liabilities = Passività (debiti).",
+        "materia": "Inglese"
+    },
+{
         "q": "In caso di richiesta di assenso a un'amministrazione preposta alla tutela paesaggistico-territoriale (art. 17-bis L. 241/90), il termine per la formazione del silenzio-assenso tra PA è di:",
         "options": [
             "30 giorni.",
