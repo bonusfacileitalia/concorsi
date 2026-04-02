@@ -197,6 +197,606 @@
 <script>
 const databaseQuiz = [
 {
+        "q": "Nella conferenza di servizi asincrona, il termine perentorio per le determinazioni è non superiore a:",
+        "options": [
+            "30 giorni.",
+            "45 giorni.",
+            "60 giorni.",
+            "90 giorni."
+        ],
+        "a": 1,
+        "e": "Termine standard 45 giorni (90 per amministrazioni preposte a tutela ambientale/paesaggistica).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Ex art. 21-octies, il provvedimento adottato senza preavviso di rigetto (art. 10-bis) è:",
+        "options": [
+            "Sempre annullabile.",
+            "Non annullabile se la PA dimostra che il contenuto non poteva essere diverso.",
+            "Sempre nullo.",
+            "Irregolare ma valido."
+        ],
+        "a": 1,
+        "e": "Dequotizzazione dei vizi formali: la PA si salva in giudizio se l'atto è vincolato e ineccepibile nella sostanza.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "In caso di silenzio inadempimento, il ricorso al TAR può essere proposto:",
+        "options": [
+            "Entro 60 giorni.",
+            "Non oltre un anno dalla scadenza del termine.",
+            "Senza limiti di tempo.",
+            "Solo dopo diffida."
+        ],
+        "a": 1,
+        "e": "Il termine di prescrizione per agire contro il silenzio è 1 anno dalla scadenza dei termini (art. 31 c.p.a.).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Gli accordi integrativi o sostitutivi (art. 11 L. 241/90) devono essere stipulati:",
+        "options": [
+            "Per atto scritto a pena di nullità.",
+            "In forma libera con verbale.",
+            "Per atto notarile.",
+            "Tramite PEC validata."
+        ],
+        "a": 0,
+        "e": "La forma scritta ad substantiam è obbligatoria per gli accordi PA-privati.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Nel caso di SCIA ordinaria, la PA può adottare provvedimenti inibitori entro:",
+        "options": [
+            "30 giorni.",
+            "60 giorni.",
+            "90 giorni.",
+            "18 mesi."
+        ],
+        "a": 1,
+        "e": "Il potere inibitorio scade a 60gg (30gg per edilizia). Dopo, la PA usa solo l'autotutela.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il provvedimento con motivazione palesemente contraddittoria è viziato da:",
+        "options": [
+            "Violazione di legge.",
+            "Eccesso di potere.",
+            "Incompetenza relativa.",
+            "Nullità."
+        ],
+        "a": 1,
+        "e": "La contraddittorietà è la classica figura sintomatica dell'eccesso di potere (vizio della discrezionalità).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il RUP, se non è competente all'adozione del provvedimento finale:",
+        "options": [
+            "Non valuta l'istruttoria.",
+            "Trasmette gli atti all'organo competente, che non può discostarsi senza adeguata motivazione.",
+            "Firma congiuntamente.",
+            "Decade."
+        ],
+        "a": 1,
+        "e": "Il decisore può ribaltare il RUP, ma deve giustificarlo con una motivazione rafforzata.",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Il termine generale (residuale) di conclusione dei procedimenti amministrativi statali è di:",
+        "options": [
+            "90 giorni.",
+            "30 giorni.",
+            "60 giorni.",
+            "180 giorni."
+        ],
+        "a": 1,
+        "e": "30 giorni, se la legge o regolamenti non prevedono diversamente (art. 2).",
+        "materia": "Diritto Amministrativo"
+    },
+    {
+        "q": "Accesso agli atti di gara nel D.Lgs 36/2023 per i primi 5 classificati:",
+        "options": [
+            "Richiede istanza FOIA.",
+            "È garantito automaticamente dalla piattaforma telematica post-aggiudicazione.",
+            "Avviene dopo la stipula.",
+            "Vietato per segreto industriale."
+        ],
+        "a": 1,
+        "e": "Innovazione totale (art. 36): accesso digitale automatico, niente più richieste cartacee.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Nel D.Lgs 36/2023, l'acronimo RUP sta per:",
+        "options": [
+            "Responsabile Unico Procedimento.",
+            "Responsabile Unico di Progetto.",
+            "Referente Unico Programmazione.",
+            "Responsabile Ufficio Procedure."
+        ],
+        "a": 1,
+        "e": "Cambio di paradigma: RUP diventa Responsabile Unico di Progetto (art. 15).",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il contratto di appalto pubblico, a pena di nullità, deve essere stipulato:",
+        "options": [
+            "In modalità elettronica.",
+            "Per atto pubblico cartaceo.",
+            "Con scambio email informale.",
+            "Con delibera di Giunta."
+        ],
+        "a": 0,
+        "e": "Forma elettronica obbligatoria a pena di nullità ex art. 18 D.Lgs 36/2023.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il termine dilatorio (Standstill) di 35 giorni per la stipula NON si applica:",
+        "options": [
+            "Negli appalti sopra soglia.",
+            "Negli affidamenti diretti o unico offerente.",
+            "Nei PPP.",
+            "Nelle negoziate."
+        ],
+        "a": 1,
+        "e": "Senza concorrenti sconfitti non c'è rischio di ricorso: si firma subito.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "La congruità dell'offerta anormalmente bassa è valutata:",
+        "options": [
+            "Dalla commissione giudicatrice.",
+            "Dal RUP.",
+            "Dal Segretario Comunale.",
+            "Dall'ANAC."
+        ],
+        "a": 1,
+        "e": "La commissione valuta la qualità tecnica. L'anomalia è competenza esclusiva del RUP.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "La garanzia provvisoria è ridotta se l'operatore economico:",
+        "options": [
+            "Riduce i tempi di esecuzione.",
+            "Possiede una certificazione di qualità (es. ISO 9001).",
+            "Offre un ribasso estremo.",
+            "Lavora su fondi PNRR."
+        ],
+        "a": 1,
+        "e": "Meccanismo premiale: chi è certificato paga fideiussioni più basse (art. 106).",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Le clausole sociali (stabilità occupazionale) negli appalti di servizi sono:",
+        "options": [
+            "Facoltative.",
+            "Obbligatorie per le sole forniture.",
+            "Obbligatorie (salvo servizi intellettuali).",
+            "Vietate dall'UE."
+        ],
+        "a": 2,
+        "e": "Tutelano i lavoratori al subentro del nuovo gestore. Obbligo inderogabile ex art. 57.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il criterio del minor prezzo è applicabile:",
+        "options": [
+            "Per qualsiasi servizio.",
+            "Per servizi/forniture standardizzati o definiti dal mercato.",
+            "Solo contratti segretati.",
+            "Mai."
+        ],
+        "a": 1,
+        "e": "Se il bene è standard (es. risme di carta), non serve l'OEPV. Basta il prezzo.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Il \"quinto d'obbligo\" permette alla PA di:",
+        "options": [
+            "Ridurre i pagamenti del 20%.",
+            "Imporre variazioni in più o in meno fino al 20% alle stesse condizioni.",
+            "Trattenere il 20% come garanzia.",
+            "Subappaltare il 20% d'ufficio."
+        ],
+        "a": 1,
+        "e": "Fino al 20% (un quinto) l'appaltatore non può rifiutarsi di eseguire le varianti.",
+        "materia": "Codice Appalti"
+    },
+    {
+        "q": "Dipendente pubblico con misura cautelare restrittiva della libertà:",
+        "options": [
+            "Licenziamento immediato.",
+            "Sospensione obbligatoria con assegno alimentare.",
+            "Trasferimento d'ufficio.",
+            "Stipendio intero fino a condanna."
+        ],
+        "a": 1,
+        "e": "La sospensione è automatica. Riceve un assegno (max 50% dello stipendio).",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Nel PIAO, la rotazione del personale è considerata:",
+        "options": [
+            "Un premio.",
+            "Una misura organizzativa anticorruzione per aree a rischio.",
+            "Una sanzione.",
+            "Obbligo per il part-time."
+        ],
+        "a": 1,
+        "e": "Previene i comitati d'affari spostando chi lavora da troppo tempo negli stessi uffici a rischio.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Il Responsabile della Prevenzione Corruzione e Trasparenza (RPCT) è scelto:",
+        "options": [
+            "Tra i soggetti esterni all'ente.",
+            "Di norma tra i dirigenti di ruolo in servizio.",
+            "Dal Prefetto.",
+            "Tra i sindacalisti."
+        ],
+        "a": 1,
+        "e": "Negli enti locali spesso è il Segretario Comunale. Deve essere un interno di vertice.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Regali di modico valore (D.P.R. 62/2013) consentiti ai dipendenti:",
+        "options": [
+            "Non superiori a 150 euro.",
+            "Senza alcun limite a Natale.",
+            "Sino a 500 euro se tracciati.",
+            "Sempre vietati in forma assoluta."
+        ],
+        "a": 0,
+        "e": "Il limite del modico valore è fissato a 150 euro (anche sotto forma di sconto).",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "L'accesso civico generalizzato (FOIA) può essere rifiutato per tutelare:",
+        "options": [
+            "Il carico di lavoro dell'ufficio.",
+            "Gli interessi pubblici o privati indicati all'art. 5-bis (es. sicurezza, privacy).",
+            "Qualsiasi documento antecedente al 1990.",
+            "La segretezza della corrispondenza interna del RUP."
+        ],
+        "a": 1,
+        "e": "Il diniego FOIA deve fondarsi su un pregiudizio concreto agli interessi tassativi dell'art. 5-bis.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "Le sanzioni disciplinari più gravi del rimprovero verbale sono irrogate da:",
+        "options": [
+            "Il Dirigente del settore.",
+            "L'Ufficio Procedimenti Disciplinari (UPD).",
+            "L'ANAC.",
+            "La Corte dei Conti."
+        ],
+        "a": 1,
+        "e": "Separazione delle funzioni: il dirigente segnala, l'UPD istruisce e punisce.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Il Whistleblowing (D.Lgs 24/2023) tutela il segnalante da:",
+        "options": [
+            "Errori materiali sul lavoro.",
+            "Misure ritorsive (licenziamento, demansionamento, ecc.).",
+            "Responsabilità penale per diffamazione sempre.",
+            "Controlli sul cartellino."
+        ],
+        "a": 1,
+        "e": "Lo scudo protegge dalle ritorsioni lavorative, non è una franchigia totale per reati.",
+        "materia": "Anticorruzione"
+    },
+    {
+        "q": "La mobilità volontaria tra pubbliche amministrazioni (art. 30 TUPI):",
+        "options": [
+            "Richiede l'assenso dell'amministrazione di appartenenza se il posto non è in organico.",
+            "Richiede il consenso di entrambe le amministrazioni (con eccezioni recenti).",
+            "È decisa unicamente dal dipendente.",
+            "Si attua con sorteggio."
+        ],
+        "a": 1,
+        "e": "Previo assenso richiesto, salvo ipotesi specifiche di sblocco introdotte dal legislatore.",
+        "materia": "Pubblico Impiego"
+    },
+    {
+        "q": "Sillogismo: Tutti i programmatori sono nerd. Nessun nerd è sportivo. Quindi:",
+        "options": [
+            "Alcuni programmatori sono sportivi.",
+            "Nessun programmatore è sportivo.",
+            "Tutti gli sportivi sono programmatori.",
+            "Nessun nerd è programmatore."
+        ],
+        "a": 1,
+        "e": "Se P è dentro N, e N è escluso da S, allora anche P è escluso da S.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Serie: 2, 6, 12, 20, ?",
+        "options": [
+            "28",
+            "32",
+            "30",
+            "36"
+        ],
+        "a": 2,
+        "e": "+4, +6, +8, +10. Quindi 20 + 10 = 30.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Treno a 90 km/h in una galleria di 500m. Tempo impiegato (esclusa lunghezza treno)?",
+        "options": [
+            "15 secondi.",
+            "20 secondi.",
+            "25 secondi.",
+            "30 secondi."
+        ],
+        "a": 1,
+        "e": "90 km/h = 25 m/s. 500 / 25 = 20.",
+        "materia": "Logica"
+    },
+    {
+        "q": "5 operai costruiscono 5 muri in 5 ore. 10 operai per 10 muri, quante ore impiegano?",
+        "options": [
+            "10",
+            "5",
+            "1",
+            "20"
+        ],
+        "a": 1,
+        "e": "Un operaio costruisce 1 muro in 5 ore. Dieci operai costruiscono dieci muri contemporaneamente nello stesso tempo.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Negazione logica di: \"Tutti i gatti hanno la coda\".",
+        "options": [
+            "Nessun gatto ha la coda.",
+            "Almeno un gatto non ha la coda.",
+            "Alcuni gatti hanno la coda.",
+            "Tutti i cani hanno la coda."
+        ],
+        "a": 1,
+        "e": "L'universale affermativa si nega con l'esistenziale negativa.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Anagramma intruso: ORECU, OGATF, LOMEP, RBAOC.",
+        "options": [
+            "ORECU",
+            "OGATF",
+            "LOMEP",
+            "RBAOC"
+        ],
+        "a": 3,
+        "e": "CUORE, FEGATO, POLMONE sono organi. BARCA (RBAOC) è l'intruso.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Un orologio anticipa di 5 minuti ogni ora. Viene regolato alle 08:00. Che ore segnerà alle 14:00 reali?",
+        "options": [
+            "14:30",
+            "13:30",
+            "14:05",
+            "15:00"
+        ],
+        "a": 0,
+        "e": "Sono trascorse 6 ore. 6 * 5 = 30 min di anticipo. Segnerà le 14:30.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Probabilità di fare 10 lanciando due dadi a sei facce?",
+        "options": [
+            "1/6",
+            "1/12",
+            "1/36",
+            "1/18"
+        ],
+        "a": 1,
+        "e": "Combinazioni per fare 10: (4,6), (6,4), (5,5). Sono 3 su 36, quindi 3/36 = 1/12.",
+        "materia": "Logica"
+    },
+    {
+        "q": "Se BIANCO = 12 e NERO = 8, allora GRIGIO = ?",
+        "options": [
+            "12",
+            "14",
+            "10",
+            "16"
+        ],
+        "a": 0,
+        "e": "Doppio delle lettere della parola. BIANCO (6x2=12), NERO (4x2=8). GRIGIO (6x2=12).",
+        "materia": "Logica"
+    },
+    {
+        "q": "Qual è la differenza sostanziale tra PEC (Posta Elettronica Certificata) e PEO?",
+        "options": [
+            "La PEC ha spazio infinito.",
+            "La PEC garantisce valore legale opponibile a terzi di invio e consegna.",
+            "La PEC non può contenere allegati PDF.",
+            "La PEO è a pagamento, la PEC gratuita."
+        ],
+        "a": 1,
+        "e": "La PEC equivale a una raccomandata A/R. La PEO è un'email normale.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Lo SPID di Livello 2 utilizza:",
+        "options": [
+            "Solo la password.",
+            "Password + Codice OTP (One Time Password).",
+            "Smart card hardware.",
+            "Token biometrico fisico."
+        ],
+        "a": 1,
+        "e": "Livello 2: autenticazione a due fattori (credenziali + OTP). È il livello standard.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "La firma digitale PAdES:",
+        "options": [
+            "Genera un file .p7m.",
+            "È specifica per documenti in formato PDF e incorpora la firma nel file stesso.",
+            "Non ha valore legale in Italia.",
+            "Richiede una marca temporale obbligatoria."
+        ],
+        "a": 1,
+        "e": "PAdES = PDF Advanced Electronic Signature. È integrata e non cambia estensione.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Il Data Protection Officer (DPO) previsto dal GDPR:",
+        "options": [
+            "Può essere sanzionato penalmente per ogni violazione dell'Ente.",
+            "Supporta l'Ente, sorveglia l'osservanza del GDPR e funge da punto di contatto col Garante.",
+            "Deve coincidere col Dirigente del personale.",
+            "Archivia fisicamente i server."
+        ],
+        "a": 1,
+        "e": "Il DPO (RPD in Italia) è il consulente/controllore privacy dell'Ente. Ruolo obbligatorio nella PA.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "In un'architettura Cloud, IaaS sta per:",
+        "options": [
+            "Information as a Service.",
+            "Infrastructure as a Service.",
+            "Internet as a System.",
+            "Identity as a Security."
+        ],
+        "a": 1,
+        "e": "IaaS: il fornitore offre hardware (server, storage). Tu ci installi l'OS e i dati.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Un attacco informatico di tipo Ransomware ha lo scopo di:",
+        "options": [
+            "Saturare la banda della rete aziendale.",
+            "Cifrare i dati della vittima per richiedere un riscatto.",
+            "Modificare la homepage di un sito (Defacement).",
+            "Rubare le credenziali tramite finte email."
+        ],
+        "a": 1,
+        "e": "Ransom = Riscatto. È l'incubo delle ASL e dei Comuni.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Secondo il CAD (Codice Amministrazione Digitale), il Documento Informatico è:",
+        "options": [
+            "Solo il PDF firmato digitalmente.",
+            "La rappresentazione informatica di atti, fatti o dati giuridicamente rilevanti.",
+            "Una scansione di un foglio cartaceo.",
+            "Qualsiasi email stampata."
+        ],
+        "a": 1,
+        "e": "Definizione tecnica ex art. 1 del CAD.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Il Phishing è una tecnica di social engineering volta a:",
+        "options": [
+            "Inviare virus tramite pen drive.",
+            "Carpire in modo fraudolento dati sensibili o finanziari tramite false comunicazioni elettroniche.",
+            "Far cadere la connessione WiFi.",
+            "Decriptare le password forzandole."
+        ],
+        "a": 1,
+        "e": "Phishing = Pescare gonzi via mail fingendosi la banca o le Poste.",
+        "materia": "Informatica"
+    },
+    {
+        "q": "Scegli il sinonimo corretto per \"To postpone\" (rinviare) in ambito lavorativo:",
+        "options": [
+            "Put off.",
+            "Bring up.",
+            "Look forward.",
+            "Get along."
+        ],
+        "a": 0,
+        "e": "Put off = Posticipare. Molto usato nelle riunioni (To put off a meeting).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In a public tender, \"Subcontracting\" means:",
+        "options": [
+            "Il collaudo finale.",
+            "L'affidamento a terzi di una parte dei lavori o servizi (Subappalto).",
+            "La firma digitale.",
+            "Il ribasso d'asta."
+        ],
+        "a": 1,
+        "e": "Subcontract = Subappalto.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "The word \"Eligible\" means:",
+        "options": [
+            "Illeggibile.",
+            "Candidato idoneo, che ha i requisiti per partecipare.",
+            "Eletto in modo illegittimo.",
+            "Elegante."
+        ],
+        "a": 1,
+        "e": "Falso amico: non significa eleggibile politicamente, ma avente i requisiti (es. eligible candidate).",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In legal English, \"Aforementioned\" means:",
+        "options": [
+            "Successivo.",
+            "Suddidetto, citato in precedenza.",
+            "Obbligatorio.",
+            "Facoltativo."
+        ],
+        "a": 1,
+        "e": "Molto frequente negli atti: the aforementioned document = il documento di cui sopra.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "To \"Implement\" a policy means:",
+        "options": [
+            "Annullarla.",
+            "Attuarla, metterla in pratica.",
+            "Sospenderla.",
+            "Ignorarla."
+        ],
+        "a": 1,
+        "e": "Implement non è implementare nel senso di \"aggiungere codice\", ma attuare/realizzare.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "A \"Binding\" contract is a contract that:",
+        "options": [
+            "È ancora in fase di bozza.",
+            "È giuridicamente vincolante.",
+            "È scaduto.",
+            "È stato impugnato al TAR."
+        ],
+        "a": 1,
+        "e": "Binding = Vincolante. Legally binding agreement = Accordo vincolante.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "In un ufficio, la parola \"Draft\" indica:",
+        "options": [
+            "Il documento definitivo.",
+            "La bozza di un documento.",
+            "Il cestino della carta.",
+            "Un bonifico bancario."
+        ],
+        "a": 1,
+        "e": "Draft = Bozza/Progetto. Es. First draft.",
+        "materia": "Inglese"
+    },
+    {
+        "q": "What does \"Procurement\" refer to in public administration?",
+        "options": [
+            "Le ferie del personale.",
+            "Il sistema degli appalti pubblici e degli acquisti.",
+            "La gestione dei procedimenti disciplinari.",
+            "L'archiviazione dei faldoni."
+        ],
+        "a": 1,
+        "e": "Public Procurement = Appalti pubblici.",
+        "materia": "Inglese"
+    },
+{
         "q": "Ex art. 2, c. 9-ter L. 241/90, il potere sostitutivo deve essere esercitato entro un termine pari a:",
         "options": [
             "30 giorni fissi.",
